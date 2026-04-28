@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sense Deck Template Metadata",
+  "type": "object",
+  "required": ["id", "type", "bestFor", "requiredFields"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "enum": ["theme", "full-deck", "single-page-layout", "css-animation", "canvas-fx"] },
+    "path": { "type": "string" },
+    "bestFor": { "type": "array", "items": { "type": "string" } },
+    "requiredFields": { "type": "array", "items": { "type": "string" } },
+    "supports": {
+      "type": "object",
+      "properties": {
+        "mobile": { "type": "boolean" },
+        "pdfExport": { "type": "boolean" },
+        "presenterMode": { "type": "boolean" },
+        "gesture": { "type": "boolean" },
+        "canvas": { "type": "boolean" }
+      }
+    }
+  }
+}

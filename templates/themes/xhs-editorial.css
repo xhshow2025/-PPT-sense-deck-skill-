@@ -1,0 +1,46 @@
+@layer tokens, components;
+
+@layer tokens {
+  :root {
+    --bg: #fff8f4;
+    --ink: #241b1d;
+    --muted: rgba(36, 27, 29, 0.62);
+    --line: rgba(36, 27, 29, 0.12);
+    --glass: rgba(255, 255, 255, 0.7);
+    --blue: #2f72ff;
+    --mint: #1cae8f;
+    --pink: #ff4f87;
+    --orange: #ff8b3d;
+    --shadow: 0 28px 72px rgba(112, 49, 49, 0.12);
+    --radius: 24px;
+    --font: "PingFang SC", "Microsoft YaHei", "SF Pro Display", system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  body {
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 18% 18%, rgba(255, 79, 135, 0.16), transparent 26%),
+      radial-gradient(circle at 84% 20%, rgba(255, 139, 61, 0.14), transparent 24%),
+      linear-gradient(180deg, #fffaf7, #fff3ef);
+  }
+
+  .glass-panel,
+  .bento-card,
+  .metric-card,
+  .risk-card,
+  .roadmap article,
+  .genre-board article {
+    border: 1px solid rgba(36, 27, 29, 0.1);
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: var(--shadow);
+  }
+
+  .kicker {
+    color: #ff4f87;
+    border-color: rgba(255, 79, 135, 0.22);
+    background: rgba(255, 79, 135, 0.08);
+  }
+}
+

@@ -1,0 +1,158 @@
+.slide {
+  opacity: 0;
+  transform: translate3d(24px, 0, 0) scale(0.985);
+  pointer-events: none;
+  transition: opacity 520ms ease, transform 520ms ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  pointer-events: auto;
+}
+
+.slide [data-anim="fade-up"],
+.slide [data-anim="stagger"] > * {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+}
+
+.slide.active [data-anim="fade-up"] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 520ms ease 120ms, transform 520ms ease 120ms;
+}
+
+.slide.active [data-anim="stagger"] > * {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 520ms ease, transform 520ms ease;
+}
+
+.slide.active [data-anim="stagger"] > *:nth-child(1) { transition-delay: 80ms; }
+.slide.active [data-anim="stagger"] > *:nth-child(2) { transition-delay: 160ms; }
+.slide.active [data-anim="stagger"] > *:nth-child(3) { transition-delay: 240ms; }
+.slide.active [data-anim="stagger"] > *:nth-child(4) { transition-delay: 320ms; }
+.slide.active [data-anim="stagger"] > *:nth-child(5) { transition-delay: 400ms; }
+
+.slide [data-anim="card-lift"] {
+  transform: translate3d(0, 18px, 0) scale(0.98);
+  opacity: 0;
+}
+
+.slide.active [data-anim="card-lift"] {
+  transform: translate3d(0, 0, 0) scale(1);
+  opacity: 1;
+  transition: opacity 520ms ease, transform 520ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.slide [data-anim="soft-scale"] {
+  transform: scale(0.94);
+  opacity: 0;
+}
+
+.slide.active [data-anim="soft-scale"] {
+  transform: scale(1);
+  opacity: 1;
+  transition: opacity 620ms ease, transform 720ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.slide [data-anim="blur-in"] {
+  filter: blur(16px);
+  opacity: 0;
+}
+
+.slide.active [data-anim="blur-in"] {
+  filter: blur(0);
+  opacity: 1;
+  transition: opacity 620ms ease, filter 720ms ease;
+}
+
+.slide [data-anim="slide-left"] {
+  transform: translate3d(34px, 0, 0);
+  opacity: 0;
+}
+
+.slide.active [data-anim="slide-left"] {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  transition: opacity 520ms ease, transform 620ms ease;
+}
+
+.slide [data-anim="slide-right"] {
+  transform: translate3d(-34px, 0, 0);
+  opacity: 0;
+}
+
+.slide.active [data-anim="slide-right"] {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  transition: opacity 520ms ease, transform 620ms ease;
+}
+
+.slide [data-anim="line-draw"] {
+  stroke-dasharray: var(--line-length, 800);
+  stroke-dashoffset: var(--line-length, 800);
+}
+
+.slide.active [data-anim="line-draw"] {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 900ms ease;
+}
+
+.slide [data-anim="count-up"] {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+}
+
+.slide.active [data-anim="count-up"] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 420ms ease, transform 420ms ease;
+}
+
+.slide.active [data-anim="gradient-shift"] {
+  background-size: 220% 220%;
+  animation: gradient-shift 7s ease-in-out infinite alternate;
+}
+
+.slide.active [data-anim="pulse"] {
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+.slide.active [data-anim="timeline-step"] > * {
+  animation: timeline-step 620ms ease both;
+}
+
+.slide.active [data-anim="timeline-step"] > *:nth-child(1) { animation-delay: 80ms; }
+.slide.active [data-anim="timeline-step"] > *:nth-child(2) { animation-delay: 180ms; }
+.slide.active [data-anim="timeline-step"] > *:nth-child(3) { animation-delay: 280ms; }
+.slide.active [data-anim="timeline-step"] > *:nth-child(4) { animation-delay: 380ms; }
+
+@keyframes gradient-shift {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.025); filter: brightness(1.15); }
+}
+
+@keyframes timeline-step {
+  from { opacity: 0; transform: translate3d(0, 18px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide,
+  .slide [data-anim="fade-up"],
+  .slide [data-anim="stagger"] > *,
+  .slide [data-anim] {
+    transition: none;
+    animation: none;
+    filter: none;
+    transform: none;
+    opacity: 1;
+  }
+}
