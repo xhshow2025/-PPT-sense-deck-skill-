@@ -1,0 +1,426 @@
+{
+  "purpose": "Choose a complete deck first when the requested presentation matches a known scenario. Copy the closest deck, then replace content.",
+  "targetCount": 19,
+  "decks": [
+    {
+      "id": "pitch-deck",
+      "status": "implemented",
+      "path": "pitch-deck",
+      "bestFor": [
+        "startup fundraising",
+        "commercial pitch",
+        "融资路演"
+      ],
+      "defaultSlides": [
+        "cover",
+        "problem",
+        "solution",
+        "market",
+        "product",
+        "traction",
+        "business-model",
+        "go-to-market",
+        "team",
+        "ask"
+      ]
+    },
+    {
+      "id": "weekly-report",
+      "status": "implemented",
+      "path": "weekly-report",
+      "bestFor": [
+        "weekly report",
+        "business review",
+        "项目周报"
+      ],
+      "defaultSlides": [
+        "cover",
+        "highlights",
+        "kpi-dashboard",
+        "progress",
+        "risks",
+        "next-week"
+      ]
+    },
+    {
+      "id": "xhs-9-card",
+      "status": "implemented",
+      "path": "xhs-9-card",
+      "bestFor": [
+        "小红书图文",
+        "social carousel",
+        "9-card explainer"
+      ],
+      "defaultSlides": [
+        "cover",
+        "hook",
+        "pain",
+        "insight",
+        "method",
+        "case",
+        "checklist",
+        "summary",
+        "cta"
+      ]
+    },
+    {
+      "id": "product-launch",
+      "status": "implemented",
+      "path": "product-launch",
+      "bestFor": [
+        "product launch",
+        "feature release",
+        "新品发布"
+      ],
+      "defaultSlides": [
+        "cover",
+        "user-pain",
+        "new-product",
+        "features",
+        "demo",
+        "pricing",
+        "roadmap",
+        "closing"
+      ]
+    },
+    {
+      "id": "technical-talk",
+      "status": "implemented",
+      "path": "technical-talk",
+      "bestFor": [
+        "technical sharing",
+        "architecture talk",
+        "技术分享"
+      ],
+      "defaultSlides": [
+        "cover",
+        "agenda",
+        "background",
+        "architecture",
+        "workflow",
+        "code",
+        "benchmark",
+        "lessons",
+        "qa"
+      ]
+    },
+    {
+      "id": "courseware",
+      "status": "implemented",
+      "bestFor": [
+        "course",
+        "training",
+        "课程讲义"
+      ],
+      "defaultSlides": [
+        "cover",
+        "learning-goals",
+        "concept",
+        "example",
+        "exercise",
+        "summary",
+        "qa"
+      ],
+      "path": "courseware"
+    },
+    {
+      "id": "executive-strategy",
+      "status": "implemented",
+      "bestFor": [
+        "executive strategy",
+        "board meeting",
+        "战略汇报"
+      ],
+      "defaultSlides": [
+        "cover",
+        "thesis",
+        "market-context",
+        "strategic-options",
+        "decision",
+        "roadmap",
+        "risks"
+      ],
+      "path": "executive-strategy"
+    },
+    {
+      "id": "market-research",
+      "status": "implemented",
+      "bestFor": [
+        "market research",
+        "industry analysis",
+        "市场研究"
+      ],
+      "defaultSlides": [
+        "cover",
+        "market-size",
+        "segments",
+        "competitors",
+        "trend",
+        "opportunity",
+        "recommendation"
+      ],
+      "path": "market-research"
+    },
+    {
+      "id": "ai-industry-report",
+      "status": "implemented",
+      "bestFor": [
+        "AI report",
+        "industry trend",
+        "AI行业报告"
+      ],
+      "defaultSlides": [
+        "cover",
+        "macro-shift",
+        "tech-stack",
+        "use-cases",
+        "adoption",
+        "risks",
+        "future"
+      ],
+      "path": "ai-industry-report"
+    },
+    {
+      "id": "startup-roadshow",
+      "status": "implemented",
+      "bestFor": [
+        "roadshow",
+        "demo day",
+        "创业展示"
+      ],
+      "defaultSlides": [
+        "cover",
+        "vision",
+        "product",
+        "market",
+        "traction",
+        "demo",
+        "ask"
+      ],
+      "path": "startup-roadshow"
+    },
+    {
+      "id": "sales-proposal",
+      "status": "implemented",
+      "bestFor": [
+        "sales proposal",
+        "client pitch",
+        "销售方案"
+      ],
+      "defaultSlides": [
+        "cover",
+        "client-context",
+        "pain",
+        "solution",
+        "implementation",
+        "case-study",
+        "commercials",
+        "next-step"
+      ],
+      "path": "sales-proposal"
+    },
+    {
+      "id": "training-workshop",
+      "status": "implemented",
+      "bestFor": [
+        "workshop",
+        "internal training",
+        "培训工作坊"
+      ],
+      "defaultSlides": [
+        "cover",
+        "objectives",
+        "agenda",
+        "concept",
+        "activity",
+        "reflection",
+        "action-plan"
+      ],
+      "path": "training-workshop"
+    },
+    {
+      "id": "demo-day",
+      "status": "implemented",
+      "bestFor": [
+        "product demo",
+        "hardware launch",
+        "demo day",
+        "RGB keyboard showcase",
+        "consumer electronics pitch"
+      ],
+      "defaultSlides": [
+        "cover",
+        "immersive-product-shot",
+        "product-positioning",
+        "core-features",
+        "live-demo-flow",
+        "market-proof",
+        "closing"
+      ],
+      "path": "demo-day",
+      "theme": "cyber-neon"
+    },
+    {
+      "id": "brand-story",
+      "status": "implemented",
+      "bestFor": [
+        "brand narrative",
+        "campaign",
+        "品牌故事"
+      ],
+      "defaultSlides": [
+        "cover",
+        "origin",
+        "belief",
+        "audience",
+        "visual-world",
+        "campaign",
+        "closing"
+      ],
+      "path": "brand-story"
+    },
+    {
+      "id": "ai-short-drama-overseas",
+      "status": "implemented",
+      "path": "ai-short-drama-overseas",
+      "bestFor": [
+        "AI短剧出海",
+        "micro-drama overseas",
+        "AI content production",
+        "market strategy"
+      ],
+      "defaultSlides": [
+        "cover",
+        "why-now",
+        "market-signal",
+        "semantic-shift",
+        "ai-loop",
+        "business-model",
+        "genre-playbook",
+        "moat",
+        "risks",
+        "roadmap",
+        "closing"
+      ]
+    },
+    {
+      "id": "nordic-childrens-picture-book",
+      "name": "北欧儿童绘本风",
+      "status": "implemented",
+      "path": "nordic-childrens-picture-book",
+      "bestFor": [
+        "北欧童话绘本风",
+        "儿童绘本风 PPT",
+        "怀旧故事",
+        "轻松幽默主题演讲"
+      ],
+      "defaultSlides": [
+        "cover",
+        "metaphor",
+        "memory-objects",
+        "slow-time",
+        "quote",
+        "grown-up-humor",
+        "closing"
+      ]
+    },
+    {
+      "id": "电影质感",
+      "name": "电影质感",
+      "status": "implemented",
+      "path": "电影质感",
+      "theme": "史诗级",
+      "bestFor": [
+        "电影质感",
+        "昭君出塞",
+        "历史人物故事",
+        "国风文化叙事",
+        "文旅汇报",
+        "带手势识别的 HTML PPT"
+      ],
+      "defaultSlides": [
+        "cover",
+        "text",
+        "narrative",
+        "road",
+        "quote",
+        "emotion",
+        "table",
+        "method",
+        "history",
+        "end"
+      ],
+      "features": [
+        "MediaPipe hand gesture navigation",
+        "keyboard navigation",
+        "horizontal cinematic HTML deck",
+        "full-bleed background imagery"
+      ]
+    },
+    {
+      "id": "碎纸片",
+      "name": "碎纸片",
+      "status": "implemented",
+      "path": "碎纸片",
+      "theme": "paper-craft-lab",
+      "bestFor": [
+        "碎纸片",
+        "纸片拼贴风",
+        "paper craft lab",
+        "AI游戏生产线",
+        "GPT Image 2 + Codex",
+        "创意技术流程展示"
+      ],
+      "defaultSlides": [
+        "cover",
+        "agenda",
+        "role-split",
+        "asset-board",
+        "codex-loop",
+        "architecture",
+        "quality",
+        "handoff"
+      ],
+      "features": [
+        "speaker mode",
+        "keyboard navigation",
+        "touch navigation",
+        "local transparent paper assets",
+        "editable HTML source"
+      ]
+    },
+    {
+      "id": "赛博朋克",
+      "name": "赛博朋克 2098",
+      "status": "implemented",
+      "path": "赛博朋克",
+      "theme": "neon-noir-city",
+      "bestFor": [
+        "赛博朋克",
+        "cyberpunk",
+        "2098年人类生活",
+        "未来城市",
+        "neon noir",
+        "AI未来生活方式"
+      ],
+      "defaultSlides": [
+        "cover",
+        "system-overview",
+        "habitat",
+        "mobility",
+        "work-mode",
+        "body-os",
+        "identity",
+        "risk-warning",
+        "final-question"
+      ],
+      "features": [
+        "speaker mode",
+        "keyboard navigation",
+        "cyberpunk component assets",
+        "neon noir theme",
+        "template frame assets"
+      ]
+    }
+  ]
+}

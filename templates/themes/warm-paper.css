@@ -1,0 +1,49 @@
+@layer tokens, components;
+
+@layer tokens {
+  :root {
+    --bg: #fbf6ea;
+    --ink: #27221a;
+    --muted: rgba(39, 34, 26, 0.64);
+    --line: rgba(91, 70, 42, 0.14);
+    --glass: rgba(255, 252, 244, 0.76);
+    --blue: #4169a8;
+    --mint: #4e8f74;
+    --pink: #b05c77;
+    --orange: #b87535;
+    --shadow: 0 28px 72px rgba(93, 69, 36, 0.12);
+    --radius: 12px;
+    --font: "Source Han Serif SC", "Songti SC", "Noto Serif CJK SC", "PingFang SC", serif;
+  }
+}
+
+@layer components {
+  body {
+    color: var(--ink);
+    background:
+      linear-gradient(90deg, rgba(91, 70, 42, 0.035) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(91, 70, 42, 0.03) 1px, transparent 1px),
+      radial-gradient(circle at 18% 20%, rgba(184, 117, 53, 0.12), transparent 26%),
+      #fbf6ea;
+    background-size: 36px 36px, 36px 36px, auto, auto;
+  }
+
+  .glass-panel,
+  .bento-card,
+  .metric-card,
+  .risk-card,
+  .roadmap article,
+  .genre-board article {
+    border-color: var(--line);
+    background: rgba(255, 252, 244, 0.84);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(8px);
+  }
+
+  .kicker {
+    color: #8b5a2a;
+    border-color: rgba(139, 90, 42, 0.22);
+    background: rgba(184, 117, 53, 0.08);
+  }
+}
+

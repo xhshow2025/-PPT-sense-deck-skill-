@@ -1,0 +1,615 @@
+{
+  "name": "jingge-ppt-template-library",
+  "version": "0.1.0",
+  "workflow": "Read this index first, generate content IR, then select a theme, a full deck or single-page layouts, and optional animations before writing content.",
+  "catalogs": {
+    "themes": "themes/theme-catalog.json",
+    "fullDecks": "full-decks/deck-catalog.json",
+    "singlePageLayouts": "single-page-layouts/layout-catalog.json",
+    "animations": "animations/animation-catalog.json"
+  },
+  "schemas": {
+    "contentIr": "schemas/content-ir.schema.json",
+    "template": "schemas/template.schema.json"
+  },
+  "contentIr": {
+    "example": "content-ir/content-ir.example.json",
+    "rule": "Generate content IR before rendering HTML, Typst, or export artifacts."
+  },
+  "runtime": {
+    "slideLifecycle": "runtime/slide-lifecycle.js",
+    "canvasFxRuntime": "runtime/canvas-fx-runtime.js",
+    "editMode": "runtime/edit-mode.js",
+    "gestureController": "features/gesture-controller.js",
+    "lifecycleEvents": [
+      "Reveal slidechanged",
+      "deck:slidechange"
+    ]
+  },
+  "exporters": {
+    "html": "exporters/html",
+    "pdf": "exporters/pdf",
+    "typst": "exporters/typst"
+  },
+  "featureFlags": {
+    "gesture": [
+      "off",
+      "motion-lite",
+      "mediapipe-hand"
+    ],
+    "presenterMode": [
+      true,
+      false
+    ],
+    "editable": [
+      true,
+      false
+    ],
+    "typstHandout": [
+      true,
+      false
+    ]
+  },
+  "targetLibraryShape": {
+    "fullDecks": 19,
+    "singlePageLayouts": 31,
+    "cssAnimations": 27,
+    "canvasFx": 20,
+    "themes": 9
+  },
+  "themes": [
+    {
+      "id": "apple-bento-glass",
+      "path": "themes/apple-bento-glass.css",
+      "bestFor": [
+        "AI",
+        "product strategy",
+        "category narrative",
+        "premium business deck",
+        "short drama overseas"
+      ],
+      "visual": [
+        "Apple bento",
+        "glassmorphism",
+        "clean hierarchy",
+        "large semantic cards"
+      ]
+    },
+    {
+      "id": "executive-clean",
+      "path": "themes/executive-clean.css",
+      "bestFor": [
+        "board meeting",
+        "strategy report",
+        "investor update",
+        "weekly report"
+      ],
+      "visual": [
+        "light",
+        "restrained",
+        "executive",
+        "data-first"
+      ]
+    },
+    {
+      "id": "semantic-dark",
+      "path": "themes/semantic-dark.css",
+      "bestFor": [
+        "technical talk",
+        "architecture",
+        "AI systems",
+        "developer presentation"
+      ],
+      "visual": [
+        "dark",
+        "precise",
+        "high contrast",
+        "system map"
+      ]
+    },
+    {
+      "id": "xhs-editorial",
+      "path": "themes/xhs-editorial.css",
+      "bestFor": [
+        "小红书图文",
+        "social carousel",
+        "consumer education",
+        "creator content"
+      ],
+      "visual": [
+        "editorial",
+        "warm",
+        "shareable",
+        "high-retention"
+      ]
+    },
+    {
+      "id": "cyber-neon",
+      "path": "themes/cyber-neon.css",
+      "bestFor": [
+        "AI future",
+        "cyber topic",
+        "launch event",
+        "data stream"
+      ],
+      "visual": [
+        "neon",
+        "grid",
+        "electric",
+        "high-energy"
+      ]
+    },
+    {
+      "id": "warm-paper",
+      "path": "themes/warm-paper.css",
+      "bestFor": [
+        "courseware",
+        "lecture notes",
+        "storytelling",
+        "culture topic"
+      ],
+      "visual": [
+        "paper",
+        "warm",
+        "serif",
+        "calm"
+      ]
+    },
+    {
+      "id": "nordic-childrens-picture-book",
+      "name": "北欧儿童绘本风",
+      "path": "themes/nordic-childrens-picture-book.css",
+      "bestFor": [
+        "Nordic fairy-tale picture book",
+        "children's story",
+        "nostalgic childhood",
+        "playful illustrated deck"
+      ],
+      "visual": [
+        "thick black line art",
+        "flat color blocks",
+        "mint green",
+        "mustard yellow",
+        "doodle-like childlike composition"
+      ]
+    },
+    {
+      "id": "史诗级",
+      "path": "themes/史诗级.css",
+      "bestFor": [
+        "史诗级",
+        "historical culture deck",
+        "Chinese cinematic narrative",
+        "gesture-ready immersive presentation"
+      ],
+      "visual": [
+        "full-bleed film stills",
+        "desert frontier atmosphere",
+        "warm historical palette"
+      ]
+    },
+    {
+      "id": "neon-noir-city",
+      "name": "Neon Noir City",
+      "path": "themes/neon-noir-city.css",
+      "assetKit": "themes/neon-noir-city.asset-kit.json",
+      "bestFor": [
+        "赛博朋克",
+        "cyberpunk city",
+        "future life",
+        "2098 lifestyle"
+      ],
+      "visual": [
+        "neon noir",
+        "rainy futuristic city",
+        "dark glass panels",
+        "magenta cyan glow"
+      ]
+    }
+  ],
+  "fullDecks": [
+    {
+      "id": "pitch-deck",
+      "path": "full-decks/pitch-deck",
+      "slides": 7,
+      "bestFor": [
+        "startup fundraising",
+        "commercial pitch",
+        "融资路演"
+      ],
+      "features": [
+        "speaker mode",
+        "keyboard navigation",
+        "touch-ready static HTML"
+      ]
+    },
+    {
+      "id": "weekly-report",
+      "path": "full-decks/weekly-report",
+      "slides": 6,
+      "bestFor": [
+        "weekly report",
+        "business review",
+        "项目周报"
+      ],
+      "features": [
+        "speaker mode",
+        "KPI dashboard",
+        "risk board"
+      ]
+    },
+    {
+      "id": "product-launch",
+      "path": "full-decks/product-launch",
+      "slides": 6,
+      "bestFor": [
+        "product launch",
+        "feature release",
+        "新品发布"
+      ],
+      "features": [
+        "speaker mode",
+        "roadmap",
+        "metrics"
+      ]
+    },
+    {
+      "id": "technical-talk",
+      "path": "full-decks/technical-talk",
+      "slides": 7,
+      "bestFor": [
+        "technical sharing",
+        "architecture talk",
+        "技术分享"
+      ],
+      "features": [
+        "speaker mode",
+        "architecture slide",
+        "code slide"
+      ]
+    },
+    {
+      "id": "xhs-9-card",
+      "path": "full-decks/xhs-9-card",
+      "slides": 9,
+      "bestFor": [
+        "小红书图文",
+        "social carousel",
+        "9-card explainer"
+      ],
+      "features": [
+        "9-card rhythm",
+        "quote hooks",
+        "checklist"
+      ]
+    },
+    {
+      "id": "ai-short-drama-overseas",
+      "path": "full-decks/ai-short-drama-overseas",
+      "slides": 11,
+      "bestFor": [
+        "AI短剧出海",
+        "micro-drama overseas",
+        "AI content production",
+        "market strategy"
+      ],
+      "features": [
+        "speaker mode",
+        "gesture toggle",
+        "touch navigation",
+        "ambient canvas"
+      ]
+    },
+    {
+      "id": "courseware",
+      "path": "full-decks/courseware",
+      "slides": 7,
+      "bestFor": [
+        "course",
+        "training",
+        "课程讲义"
+      ],
+      "features": [
+        "speaker mode",
+        "shared runtime",
+        "static HTML"
+      ]
+    },
+    {
+      "id": "executive-strategy",
+      "path": "full-decks/executive-strategy",
+      "slides": 7,
+      "bestFor": [
+        "executive strategy",
+        "board meeting",
+        "战略汇报"
+      ],
+      "features": [
+        "speaker mode",
+        "shared runtime",
+        "static HTML"
+      ]
+    },
+    {
+      "id": "market-research",
+      "path": "full-decks/market-research",
+      "slides": 7,
+      "bestFor": [
+        "market research",
+        "industry analysis",
+        "市场研究"
+      ],
+      "features": [
+        "speaker mode",
+        "shared runtime",
+        "static HTML"
+      ]
+    },
+    {
+      "id": "ai-industry-report",
+      "path": "full-decks/ai-industry-report",
+      "slides": 7,
+      "bestFor": [
+        "AI report",
+        "industry trend",
+        "AI行业报告"
+      ],
+      "features": [
+        "speaker mode",
+        "shared runtime",
+        "static HTML"
+      ]
+    },
+    {
+      "id": "startup-roadshow",
+      "path": "full-decks/startup-roadshow",
+      "slides": 7,
+      "bestFor": [
+        "roadshow",
+        "demo day",
+        "创业展示"
+      ],
+      "features": [
+        "speaker mode",
+        "shared runtime",
+        "static HTML"
+      ]
+    },
+    {
+      "id": "sales-proposal",
+      "path": "full-decks/sales-proposal",
+      "slides": 8,
+      "bestFor": [
+        "sales proposal",
+        "client pitch",
+        "销售方案"
+      ],
+      "features": [
+        "speaker mode",
+        "shared runtime",
+        "static HTML"
+      ]
+    },
+    {
+      "id": "training-workshop",
+      "path": "full-decks/training-workshop",
+      "slides": 7,
+      "bestFor": [
+        "workshop",
+        "internal training",
+        "培训工作坊"
+      ],
+      "features": [
+        "speaker mode",
+        "shared runtime",
+        "static HTML"
+      ]
+    },
+    {
+      "id": "demo-day",
+      "path": "full-decks/demo-day",
+      "slides": 7,
+      "bestFor": [
+        "product demo",
+        "hackathon",
+        "demo day"
+      ],
+      "features": [
+        "speaker mode",
+        "shared runtime",
+        "static HTML"
+      ]
+    },
+    {
+      "id": "brand-story",
+      "path": "full-decks/brand-story",
+      "slides": 7,
+      "bestFor": [
+        "brand narrative",
+        "campaign",
+        "品牌故事"
+      ],
+      "features": [
+        "speaker mode",
+        "shared runtime",
+        "static HTML"
+      ]
+    },
+    {
+      "id": "nordic-childrens-picture-book",
+      "name": "北欧儿童绘本风",
+      "path": "full-decks/nordic-childrens-picture-book",
+      "slides": 7,
+      "bestFor": [
+        "北欧童话绘本风",
+        "儿童绘本风 PPT",
+        "nostalgia story"
+      ],
+      "features": [
+        "speaker mode",
+        "keyboard navigation",
+        "touch-ready static HTML",
+        "style-locked illustration system"
+      ]
+    },
+    {
+      "id": "电影质感",
+      "path": "full-decks/电影质感",
+      "slides": 10,
+      "bestFor": [
+        "电影质感",
+        "昭君出塞",
+        "historical concept deck",
+        "cultural tourism narrative"
+      ],
+      "theme": "史诗级",
+      "features": [
+        "MediaPipe hand gesture navigation",
+        "keyboard navigation",
+        "horizontal cinematic flow"
+      ]
+    },
+    {
+      "id": "碎纸片",
+      "path": "full-decks/碎纸片",
+      "slides": 8,
+      "bestFor": [
+        "碎纸片",
+        "纸片拼贴风",
+        "paper craft lab",
+        "AI游戏生产线",
+        "GPT Image 2 + Codex"
+      ],
+      "features": [
+        "speaker mode",
+        "keyboard navigation",
+        "touch navigation",
+        "local transparent paper assets"
+      ],
+      "theme": "paper-craft-lab"
+    },
+    {
+      "id": "赛博朋克",
+      "path": "full-decks/赛博朋克",
+      "slides": 9,
+      "bestFor": [
+        "赛博朋克",
+        "2098年人类生活",
+        "future city",
+        "neon noir"
+      ],
+      "features": [
+        "speaker mode",
+        "keyboard navigation",
+        "cyberpunk component assets",
+        "template frame assets"
+      ],
+      "theme": "neon-noir-city"
+    }
+  ],
+  "singlePageLayouts": [
+    {
+      "id": "cover-bento-glass",
+      "path": "single-page-layouts/cover-bento-glass.html",
+      "semanticUse": "Big thesis opening with premium device/card visual"
+    },
+    {
+      "id": "market-signal",
+      "path": "single-page-layouts/market-signal.html",
+      "semanticUse": "Evidence slide with three metrics and one conclusion"
+    },
+    {
+      "id": "semantic-compare",
+      "path": "single-page-layouts/semantic-compare.html",
+      "semanticUse": "Old path vs new path contrast"
+    },
+    {
+      "id": "ai-production-loop",
+      "path": "single-page-layouts/ai-production-loop.html",
+      "semanticUse": "Process, flywheel, production pipeline, or operating model"
+    },
+    {
+      "id": "roadmap-90-day",
+      "path": "single-page-layouts/roadmap-90-day.html",
+      "semanticUse": "Execution plan across four phases"
+    },
+    {
+      "id": "agenda",
+      "path": "single-page-layouts/agenda.html",
+      "semanticUse": "Talk agenda or chapter list"
+    },
+    {
+      "id": "section-divider",
+      "path": "single-page-layouts/section-divider.html",
+      "semanticUse": "Separate major narrative chapters"
+    },
+    {
+      "id": "comparison-2col",
+      "path": "single-page-layouts/comparison-2col.html",
+      "semanticUse": "Binary comparison"
+    },
+    {
+      "id": "comparison-3col",
+      "path": "single-page-layouts/comparison-3col.html",
+      "semanticUse": "Three-option or three-player comparison"
+    },
+    {
+      "id": "timeline",
+      "path": "single-page-layouts/timeline.html",
+      "semanticUse": "Historical evolution or launch schedule"
+    },
+    {
+      "id": "kpi-dashboard",
+      "path": "single-page-layouts/kpi-dashboard.html",
+      "semanticUse": "Business metrics and performance review"
+    },
+    {
+      "id": "quote",
+      "path": "single-page-layouts/quote.html",
+      "semanticUse": "Strong statement or user voice"
+    },
+    {
+      "id": "code",
+      "path": "single-page-layouts/code.html",
+      "semanticUse": "Technical snippet with explanation"
+    },
+    {
+      "id": "architecture",
+      "path": "single-page-layouts/architecture.html",
+      "semanticUse": "System diagram or product architecture"
+    },
+    {
+      "id": "qa",
+      "path": "single-page-layouts/qa.html",
+      "semanticUse": "Q&A slide"
+    },
+    {
+      "id": "thanks",
+      "path": "single-page-layouts/thanks.html",
+      "semanticUse": "Closing and contact"
+    },
+    {
+      "id": "risk-board",
+      "path": "single-page-layouts/risk-board.html",
+      "semanticUse": "Risk categories and mitigations"
+    }
+  ],
+  "animations": [
+    {
+      "id": "ambient-particles",
+      "path": "animations/ambient-particles.js",
+      "useWhen": "Premium AI or future-facing decks need a subtle live background"
+    },
+    {
+      "id": "slide-transitions",
+      "path": "animations/slide-transitions.css",
+      "useWhen": "Deck needs consistent page entrance motion"
+    },
+    {
+      "id": "canvas-fx-pack",
+      "path": "animations/canvas-fx-pack.js",
+      "useWhen": "Register first batch Canvas FX with slide lifecycle"
+    }
+  ],
+  "displayName": "鲸格PPT"
+}

@@ -1,0 +1,99 @@
+{
+  "title": "GPT Image 2 + Codex: 网页版游戏生产线",
+  "audience": "AI 应用开发者、产品经理、创意技术团队",
+  "tone": "paper-craft-lab: 暗色工程板、米白纸板层、橙色高光、线框 UI、模块化流程",
+  "features": {
+    "gesture": "off",
+    "presenterMode": true,
+    "typstHandout": false
+  },
+  "thesis": "把 GPT Image 2 当作视觉资产工坊，把 Codex 当作会运行与验证的前端工程伙伴，可以把网页版游戏从想法推进到可玩的浏览器原型。",
+  "sources": [
+    {
+      "label": "OpenAI Images API guide",
+      "url": "https://platform.openai.com/docs/guides/image-generation"
+    },
+    {
+      "label": "OpenAI Codex product/docs",
+      "url": "https://developers.openai.com/codex"
+    }
+  ],
+  "slides": [
+    {
+      "role": "cover",
+      "title": "从一张概念图到一个可玩的网页游戏",
+      "layout": "hero-pipeline",
+      "theme": "paper-craft-lab",
+      "visibleContent": {
+        "kicker": "AI GAME PIPELINE",
+        "headline": "GPT Image 2 + Codex",
+        "subhead": "视觉资产由图像模型快速探索，游戏逻辑由 Codex 实装、调试、验证，最终落到浏览器可运行版本。"
+      },
+      "speakerNotes": "开场强调这不是只生成几张图，而是把创意、资产、代码、验证连成一条生产线。"
+    },
+    {
+      "role": "agenda",
+      "title": "流程不是魔法，是四个可控工位",
+      "layout": "process-map",
+      "visibleContent": {
+        "steps": ["定义游戏体验", "生成视觉资产", "Codex 搭建与迭代", "浏览器验证与交付"]
+      },
+      "speakerNotes": "把流程拆成工位，降低听众对 AI 工作流不可控的担忧。"
+    },
+    {
+      "role": "role-split",
+      "title": "GPT Image 2 负责视觉可能性，Codex 负责工程闭环",
+      "layout": "comparison-2col",
+      "visibleContent": {
+        "left": ["角色、场景、道具、UI 风格探索", "透明背景素材和状态变体", "快速统一画风与氛围"],
+        "right": ["搭建 HTML/CSS/JS 或框架项目", "实现规则、碰撞、状态机、音效触发", "运行测试、修 bug、优化移动端"]
+      },
+      "speakerNotes": "避免把模型能力混在一起讲：一个偏视觉生成，一个偏代码执行和工程反馈。"
+    },
+    {
+      "role": "asset-board",
+      "title": "视觉资产先做成一张资产板，再进入代码仓库",
+      "layout": "asset-board",
+      "visibleContent": {
+        "assets": ["主角精灵", "敌人与障碍", "背景层", "按钮与 HUD", "胜负反馈", "图标与粒子"]
+      },
+      "speakerNotes": "建议把资产命名、尺寸、透明背景、状态枚举在进入 Codex 前整理清楚。"
+    },
+    {
+      "role": "codex-loop",
+      "title": "Codex 的价值在于边写边跑，而不是只吐代码",
+      "layout": "implementation-loop",
+      "visibleContent": {
+        "loop": ["读取需求", "生成项目骨架", "接入资产", "实现核心玩法", "运行与截图检查", "按反馈迭代"]
+      },
+      "speakerNotes": "重点讲 Codex 能在本地工作区里改文件、起服务、看错误、再修复。"
+    },
+    {
+      "role": "architecture",
+      "title": "一个轻量网页版游戏可以拆成五层",
+      "layout": "architecture",
+      "visibleContent": {
+        "layers": ["输入层", "游戏状态", "规则系统", "渲染层", "资产与音效"]
+      },
+      "speakerNotes": "技术页只讲边界，不陷入某个框架细节。Canvas、DOM、Pixi、Phaser 都能套这个结构。"
+    },
+    {
+      "role": "quality",
+      "title": "交付前至少过三道质量门",
+      "layout": "quality-gates",
+      "visibleContent": {
+        "gates": ["玩法闭环：30 秒内能理解并完成一局", "视觉一致：尺寸、描边、光源、色板统一", "浏览器稳定：桌面/移动端无重叠、无空白、无控制台错误"]
+      },
+      "speakerNotes": "强调网页版游戏最容易翻车的是视觉拼贴不统一和移动端布局。"
+    },
+    {
+      "role": "handoff",
+      "title": "最终交付的是一套可继续迭代的游戏包",
+      "layout": "handoff",
+      "visibleContent": {
+        "deliverables": ["可运行源码", "资产目录与命名规范", "玩法说明", "测试清单", "下一轮迭代 backlog"]
+      },
+      "speakerNotes": "收束到可交付物，让听众知道怎么把 demo 变成项目资产。"
+    }
+  ]
+}

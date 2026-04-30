@@ -1,0 +1,172 @@
+{
+  "purpose": "Choose a visual theme by audience, subject, and presentation scenario. Themes are CSS token/component layers and should be swappable without rewriting slide HTML.",
+  "targetCount": 36,
+  "themes": [
+    {
+      "id": "apple-bento-glass",
+      "status": "implemented",
+      "path": "apple-bento-glass.css",
+      "bestFor": [
+        "AI",
+        "product strategy",
+        "premium business deck",
+        "short drama overseas"
+      ],
+      "visual": [
+        "Apple bento",
+        "glassmorphism",
+        "large semantic cards"
+      ]
+    },
+    {
+      "id": "executive-clean",
+      "status": "implemented",
+      "path": "executive-clean.css",
+      "bestFor": [
+        "board meeting",
+        "strategy report",
+        "investor update",
+        "weekly report"
+      ],
+      "visual": [
+        "light",
+        "restrained",
+        "executive",
+        "data-first"
+      ]
+    },
+    {
+      "id": "semantic-dark",
+      "status": "implemented",
+      "path": "semantic-dark.css",
+      "bestFor": [
+        "technical talk",
+        "architecture",
+        "AI systems",
+        "developer presentation"
+      ],
+      "visual": [
+        "dark",
+        "precise",
+        "high contrast",
+        "system map"
+      ]
+    },
+    {
+      "id": "xhs-editorial",
+      "status": "implemented",
+      "path": "xhs-editorial.css",
+      "bestFor": [
+        "小红书图文",
+        "social carousel",
+        "consumer education",
+        "creator content"
+      ],
+      "visual": [
+        "editorial",
+        "warm",
+        "shareable",
+        "high-retention"
+      ]
+    },
+    {
+      "id": "cyber-neon",
+      "status": "implemented",
+      "path": "cyber-neon.css",
+      "bestFor": [
+        "demo day",
+        "product showcase",
+        "RGB hardware",
+        "keyboard launch",
+        "cyber neon launch event"
+      ],
+      "visual": [
+        "RGB gradient flow",
+        "neon grid",
+        "dark product stage",
+        "glowing glass cards",
+        "animated keyboard keys"
+      ]
+    },
+    {
+      "id": "warm-paper",
+      "status": "implemented",
+      "path": "warm-paper.css",
+      "bestFor": [
+        "courseware",
+        "lecture notes",
+        "storytelling",
+        "culture topic"
+      ],
+      "visual": [
+        "paper",
+        "warm",
+        "serif",
+        "calm"
+      ]
+    },
+    {
+      "id": "nordic-childrens-picture-book",
+      "name": "北欧儿童绘本风",
+      "status": "implemented",
+      "path": "nordic-childrens-picture-book.css",
+      "bestFor": [
+        "北欧童话绘本风",
+        "儿童绘本",
+        "怀旧主题",
+        "轻松幽默故事",
+        "hand-drawn cartoon deck"
+      ],
+      "visual": [
+        "mint and mustard palette",
+        "thick black outlines",
+        "flat color blocks",
+        "Nordic children's picture book",
+        "playful doodles"
+      ]
+    },
+    {
+      "id": "史诗级",
+      "name": "史诗级",
+      "status": "implemented",
+      "path": "史诗级.css",
+      "bestFor": [
+        "史诗级",
+        "昭君出塞",
+        "历史文化叙事",
+        "文旅概念提案",
+        "国风电影感展示",
+        "MediaPipe gesture deck"
+      ],
+      "visual": [
+        "full-bleed cinematic background",
+        "Han frontier atmosphere",
+        "warm desert and ink tones",
+        "horizontal immersive narrative",
+        "gesture-ready presentation"
+      ]
+    },
+    {
+      "id": "neon-noir-city",
+      "name": "Neon Noir City",
+      "status": "implemented",
+      "path": "neon-noir-city.css",
+      "assetKit": "neon-noir-city.asset-kit.json",
+      "bestFor": [
+        "赛博朋克",
+        "cyberpunk city",
+        "future life",
+        "neon noir narrative",
+        "AI未来城市",
+        "2098生活方式"
+      ],
+      "visual": [
+        "rainy neon city",
+        "magenta cyan violet accents",
+        "dark glass cards",
+        "transparent cyberpunk components",
+        "HUD overlays"
+      ]
+    }
+  ]
+}

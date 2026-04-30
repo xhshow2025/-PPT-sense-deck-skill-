@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{companyName}} Pitch Deck</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="deck">
+      <section class="slide active" data-title="{{companyName}} 正在重构一个高频场景">
+        <div class="hero-grid">
+          <div class="hero-stack">
+            <p class="kicker">{{category}}</p>
+            <h1 class="hero-title">{{companyName}}<br />{{oneLineVision}}</h1>
+            <p class="lead">{{heroLead}}</p>
+          </div>
+          <div class="glass-panel">
+            <small>SEED ROUND</small>
+            <div class="big-number">{{raiseAmount}}</div>
+            <p>{{roundNote}}</p>
+          </div>
+        </div>
+        <aside class="notes">开场用一句话讲清公司做什么、改变什么，以及这轮融资希望打开什么阶段。</aside>
+      </section>
+      <section class="slide" data-title="问题已经足够痛，但旧方案仍然低效">
+        <div class="slide-head"><p class="kicker">PROBLEM</p><h2>问题已经足够痛，但旧方案仍然低效</h2></div>
+        <div class="feature-grid">
+          <article class="bento-card"><small>01</small><h3>{{problem1}}</h3><p>{{problem1Note}}</p></article>
+          <article class="bento-card"><small>02</small><h3>{{problem2}}</h3><p>{{problem2Note}}</p></article>
+          <article class="bento-card"><small>03</small><h3>{{problem3}}</h3><p>{{problem3Note}}</p></article>
+        </div>
+        <aside class="notes">问题页不要讲功能，讲现有用户为什么被迫忍受低效。</aside>
+      </section>
+      <section class="slide" data-title="我们的方案把复杂流程压成一个动作">
+        <div class="slide-head"><p class="kicker">SOLUTION</p><h2>我们的方案把复杂流程压成一个动作</h2></div>
+        <div class="compare-grid">
+          <article class="glass-panel"><h3>Before</h3><ul><li>{{before1}}</li><li>{{before2}}</li><li>{{before3}}</li></ul></article>
+          <article class="glass-panel primary"><h3>After</h3><ul><li>{{after1}}</li><li>{{after2}}</li><li>{{after3}}</li></ul></article>
+        </div>
+        <aside class="notes">用前后对比讲清楚产品改变了用户行为，而不是列功能点。</aside>
+      </section>
+      <section class="slide" data-title="市场正在从工具采购转向结果采购">
+        <div class="slide-head"><p class="kicker">MARKET</p><h2>市场正在从工具采购转向结果采购</h2></div>
+        <div class="metrics-row">
+          <article class="metric-card"><small>TAM</small><strong>{{tam}}</strong><span>{{tamNote}}</span></article>
+          <article class="metric-card"><small>SAM</small><strong>{{sam}}</strong><span>{{samNote}}</span></article>
+          <article class="metric-card"><small>SOM</small><strong>{{som}}</strong><span>{{somNote}}</span></article>
+        </div>
+        <aside class="notes">市场页只讲跟当前切入点相关的可服务市场，不要堆过大的数字。</aside>
+      </section>
+      <section class="slide" data-title="增长来自一个可复利的使用闭环">
+        <div class="slide-head"><p class="kicker">GROWTH LOOP</p><h2>增长来自一个可复利的使用闭环</h2></div>
+        <div class="pipeline">
+          <div class="step"><span>01</span><strong>{{loop1}}</strong><small>{{loop1Note}}</small></div>
+          <div class="step"><span>02</span><strong>{{loop2}}</strong><small>{{loop2Note}}</small></div>
+          <div class="step"><span>03</span><strong>{{loop3}}</strong><small>{{loop3Note}}</small></div>
+          <div class="step"><span>04</span><strong>{{loop4}}</strong><small>{{loop4Note}}</small></div>
+          <div class="step"><span>05</span><strong>{{loop5}}</strong><small>{{loop5Note}}</small></div>
+        </div>
+        <aside class="notes">飞轮页要证明增长不是靠一次性投放，而是靠产品使用本身带来更多数据和传播。</aside>
+      </section>
+      <section class="slide" data-title="早期指标证明方向成立">
+        <div class="slide-head"><p class="kicker">TRACTION</p><h2>早期指标证明方向成立</h2></div>
+        <div class="dashboard-grid">
+          <article class="metric-card"><small>Users</small><strong>{{users}}</strong><span>{{usersNote}}</span></article>
+          <article class="metric-card"><small>Retention</small><strong>{{retention}}</strong><span>{{retentionNote}}</span></article>
+          <article class="metric-card"><small>Revenue</small><strong>{{revenue}}</strong><span>{{revenueNote}}</span></article>
+          <article class="metric-card"><small>Pipeline</small><strong>{{pipeline}}</strong><span>{{pipelineNote}}</span></article>
+        </div>
+        <aside class="notes">牵引力页讲趋势和质量，避免只报累计数字。</aside>
+      </section>
+      <section class="slide" data-title="这轮资金用于把验证变成规模化">
+        <div class="slide-head"><p class="kicker">ASK</p><h2>这轮资金用于把验证变成规模化</h2></div>
+        <div class="roadmap">
+          <article><small>Product</small><strong>{{use1}}</strong><p>{{use1Note}}</p></article>
+          <article><small>Growth</small><strong>{{use2}}</strong><p>{{use2Note}}</p></article>
+          <article><small>Team</small><strong>{{use3}}</strong><p>{{use3Note}}</p></article>
+          <article><small>Milestone</small><strong>{{milestone}}</strong><p>{{milestoneNote}}</p></article>
+        </div>
+        <aside class="notes">最后回到资金使用和下一阶段里程碑，让投资人知道这轮钱买到什么确定性。</aside>
+      </section>
+    </main>
+    <nav class="controls"><button id="prevBtn">‹</button><span id="counter">1 / 7</span><button id="nextBtn">›</button><button id="speakerBtn">S</button></nav>
+    <aside class="speaker-panel" id="speakerPanel"><div class="speaker-card"><small>当前页</small><strong id="speakerTitle"></strong></div><div class="speaker-card"><small>下一页</small><strong id="speakerNext"></strong></div><div class="speaker-card notes"><small>讲稿</small><p id="speakerNotes"></p></div><div class="speaker-card"><small>计时</small><strong id="timer">00:00</strong></div></aside>
+    <script src="./deck.js"></script>
+  </body>
+</html>
+
+

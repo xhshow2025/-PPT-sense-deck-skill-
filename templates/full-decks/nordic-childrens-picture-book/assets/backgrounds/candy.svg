@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 810" role="img" aria-label="小时候的富有">
+  <rect width="1440" height="810" fill="#fff8e8"/>
+  <path d="M0 610 C260 540 430 570 650 510 C900 440 1120 480 1440 390 L1440 810 L0 810 Z" fill="#eadfff" stroke="#101010" stroke-width="8"/>
+  <path d="M0 705 C250 650 540 685 790 620 C1010 562 1200 610 1440 520 L1440 810 L0 810 Z" fill="#f4be35" opacity=".72" stroke="#101010" stroke-width="7"/>
+  <circle cx="1175" cy="150" r="68" fill="#ff8b6e" stroke="#101010" stroke-width="8"/>
+  <path d="M145 170 C194 132 250 143 286 185 C338 184 372 213 382 254 L104 254 C96 215 108 190 145 170Z" fill="#fff" stroke="#101010" stroke-width="7"/>
+</svg>

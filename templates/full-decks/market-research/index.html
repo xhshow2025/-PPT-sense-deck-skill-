@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>2016-2024 年生态环境统计全国汇总数据报告</title>
+<style>
+  :root {
+    --bg:#07120e; --panel:#10201a; --panel2:#132821; --text:#eef8f1; --muted:#9fb8ab;
+    --green:#7cff9b; --green2:#2bdc72; --cyan:#76f5ff; --amber:#ffd166; --orange:#ff9d5b; --red:#ff6b6b;
+    --line:rgba(255,255,255,.16); --soft:rgba(124,255,155,.12);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;width:100%;height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif;color:var(--text);overflow:hidden}
+  body::before{content:"";position:fixed;inset:-20%;background:
+    radial-gradient(circle at 18% 10%, rgba(124,255,155,.20), transparent 28%),
+    radial-gradient(circle at 78% 20%, rgba(118,245,255,.16), transparent 24%),
+    radial-gradient(circle at 50% 95%, rgba(255,209,102,.12), transparent 34%);
+    filter:blur(0px);pointer-events:none;}
+  body::after{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);background-size:44px 44px;mask-image:radial-gradient(circle at center, black 0, black 60%, transparent 100%);pointer-events:none;}
+  .deck{position:relative;width:100vw;height:100vh;}
+  .slide{position:absolute;inset:0;display:none;padding:5.4vh 6vw 6vh;overflow:hidden}
+  .slide.active{display:block;animation:fadeIn .45s ease both}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  .slide::before{content:"";position:absolute;left:6vw;right:6vw;top:3.2vh;height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
+  .eyebrow{color:var(--green);font-size:15px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:1.2vh}
+  h1{margin:0;font-size:clamp(54px,7.7vw,114px);line-height:.95;letter-spacing:-.08em;font-weight:900}
+  h2{margin:0;font-size:clamp(34px,4.6vw,70px);line-height:1.05;letter-spacing:-.06em;font-weight:900}
+  h3{margin:0 0 12px;font-size:25px;letter-spacing:-.03em}
+  p{font-size:21px;line-height:1.55;color:var(--muted);margin:0}
+  .sub{font-size:25px;line-height:1.42;max-width:900px;color:#cfe5d8;margin-top:24px}
+  .bigNum{font-size:clamp(50px,6.8vw,94px);line-height:.9;font-weight:900;letter-spacing:-.07em;background:linear-gradient(135deg,#fff,var(--green));-webkit-background-clip:text;color:transparent}
+  .unit{font-size:22px;color:var(--muted);font-weight:650;margin-left:8px}
+  .grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;height:calc(100% - 110px);align-items:center;margin-top:30px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:34px}
+  .kpi{background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:28px;padding:26px;box-shadow:0 16px 50px rgba(0,0,0,.22)}
+  .kpi .label{color:#cce4d5;font-size:20px;font-weight:700;margin-bottom:18px}
+  .kpi .note{font-size:16px;color:var(--muted);margin-top:14px;line-height:1.35}
+  .chartBox{height:100%;min-height:360px;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:34px;padding:22px 24px 20px;position:relative;box-shadow:0 22px 70px rgba(0,0,0,.26)}
+  .chartTitle{font-size:22px;font-weight:850;letter-spacing:-.03em;margin-bottom:8px}
+  .chartHint{font-size:14px;color:var(--muted);margin-bottom:8px}
+  .chart{width:100%;height:calc(100% - 58px);min-height:280px}
+  .insight{font-size:22px;line-height:1.45;color:#dff5e8;border-left:4px solid var(--green);padding-left:18px;margin-top:22px}
+  .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(124,255,155,.25);background:rgba(124,255,155,.08);padding:8px 13px;border-radius:99px;color:#dfffee;font-size:15px;font-weight:700;margin:4px 6px 4px 0}
+  .tag{font-size:14px;color:#112015;background:var(--green);padding:6px 10px;border-radius:99px;font-weight:900;display:inline-block;margin-bottom:14px}
+  .story{font-size:25px;line-height:1.45;color:#eafff0;max-width:860px}
+  .muted{color:var(--muted)}
+  .accent{color:var(--green)}
+  .footer{position:absolute;left:6vw;right:6vw;bottom:3vh;display:flex;align-items:center;justify-content:space-between;color:rgba(238,248,241,.55);font-size:13px;letter-spacing:.04em}
+  .nav{position:fixed;right:28px;bottom:24px;z-index:10;display:flex;gap:10px;align-items:center}
+  .nav button{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:white;font-size:22px;cursor:pointer;backdrop-filter:blur(12px)}
+  .progress{position:fixed;left:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--green),var(--cyan));z-index:11;width:0;transition:width .25s ease}
+  .pageNo{position:fixed;left:28px;bottom:20px;color:rgba(255,255,255,.50);font-size:14px;z-index:10}
+  .ribbon{position:absolute;right:-140px;top:70px;width:560px;height:560px;border-radius:50%;background:conic-gradient(from 200deg, rgba(124,255,155,.05), rgba(124,255,155,.34), rgba(118,245,255,.10), rgba(124,255,155,.05));filter:blur(4px);opacity:.9}
+  .heroStat{display:flex;gap:34px;margin-top:44px;align-items:flex-start;flex-wrap:wrap}
+  .heroStat>div{min-width:210px}
+  .miniLabel{font-size:16px;color:var(--muted);margin-top:10px}
+  .sourceList{display:grid;grid-template-columns:1fr;gap:18px}
+  .sourceRow{display:grid;grid-template-columns:120px 1fr 95px;gap:16px;align-items:center;font-size:20px}
+  .barTrack{height:18px;background:rgba(255,255,255,.09);border-radius:999px;overflow:hidden}
+  .barFill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--green2),var(--green))}
+  .barFill.cyan{background:linear-gradient(90deg,#38d8d8,var(--cyan))}
+  .barFill.amber{background:linear-gradient(90deg,#ffb64d,var(--amber))}
+  table{width:100%;border-collapse:collapse;font-size:13px;color:#e6f7ec}
+  th,td{border-bottom:1px solid rgba(255,255,255,.09);padding:7px 8px;text-align:right;white-space:nowrap}
+  th:first-child,td:first-child{text-align:left;color:var(--green)}
+  th{color:#a9c6b6;font-weight:800}
+  .smallgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:28px}
+  .quote{font-size:34px;line-height:1.26;letter-spacing:-.04em;font-weight:850;max-width:920px;color:#f7fff9}
+  .watermark{position:absolute;right:6vw;bottom:8vh;font-size:130px;line-height:1;color:rgba(124,255,155,.07);font-weight:900;letter-spacing:-.08em}
+  @media (max-width:900px){.grid2{grid-template-columns:1fr;height:auto}.slide{overflow:auto}.chartBox{min-height:360px}h1{font-size:54px}h2{font-size:38px}.grid3{grid-template-columns:1fr}}
+
+
+  /* Responsive readability patch: looser Chinese type and no off-canvas content. */
+  html,
+  body,
+  .deck {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+  }
+
+  .slide {
+    padding:
+      clamp(28px, 4.8vh, 54px)
+      clamp(34px, 5vw, 72px)
+      clamp(54px, 6.2vh, 76px);
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .slide.active {
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1,
+  h2,
+  h3,
+  .chartTitle,
+  .quote,
+  .bigNum,
+  .watermark {
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: clamp(46px, 6.5vw, 92px);
+    line-height: 1.1;
+  }
+
+  h2 {
+    max-width: 1120px;
+    font-size: clamp(30px, 3.8vw, 58px);
+    line-height: 1.18;
+  }
+
+  h3 {
+    line-height: 1.24;
+  }
+
+  p,
+  .story,
+  .sub,
+  .insight,
+  .quote,
+  .kpi .note {
+    line-height: 1.62;
+  }
+
+  .sub {
+    font-size: clamp(19px, 1.8vw, 24px);
+    max-width: min(900px, 86vw);
+  }
+
+  .story {
+    font-size: clamp(18px, 1.75vw, 24px);
+    max-width: 100%;
+  }
+
+  .quote {
+    font-size: clamp(25px, 2.6vw, 34px);
+  }
+
+  .bigNum {
+    line-height: 1.06;
+    font-size: clamp(42px, 5.7vw, 82px);
+  }
+
+  .heroStat {
+    gap: clamp(18px, 2.4vw, 34px);
+    margin-top: clamp(28px, 4vh, 44px);
+  }
+
+  .heroStat > div {
+    min-width: min(210px, 42vw);
+  }
+
+  .grid2,
+  .grid3,
+  .smallgrid {
+    min-width: 0;
+  }
+
+  .grid2 {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: auto;
+    max-height: calc(100vh - 220px);
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+    gap: clamp(20px, 2.6vw, 36px);
+    align-items: stretch;
+    margin-top: clamp(18px, 2.8vh, 30px);
+  }
+
+  .grid3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(16px, 2vw, 24px);
+    margin-top: clamp(20px, 3vh, 34px);
+  }
+
+  .kpi {
+    min-width: 0;
+    padding: clamp(18px, 2vw, 26px);
+  }
+
+  .kpi .label {
+    font-size: clamp(17px, 1.5vw, 20px);
+    line-height: 1.35;
+  }
+
+  .chartBox {
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    max-height: 100%;
+    padding: clamp(16px, 1.8vw, 24px);
+    overflow: hidden;
+  }
+
+  .chart {
+    min-width: 0;
+    min-height: 0;
+    height: calc(100% - 64px);
+  }
+
+  .sourceRow {
+    grid-template-columns: minmax(84px, 120px) minmax(0, 1fr) minmax(72px, 95px);
+    font-size: clamp(16px, 1.5vw, 20px);
+  }
+
+  .watermark {
+    font-size: clamp(72px, 9vw, 126px);
+    pointer-events: none;
+  }
+
+  .footer {
+    bottom: clamp(18px, 3vh, 30px);
+    gap: 18px;
+  }
+
+  table {
+    font-size: clamp(11px, .95vw, 13px);
+  }
+
+  th,
+  td {
+    padding: clamp(5px, .8vh, 7px) clamp(5px, .6vw, 8px);
+  }
+
+  @media (max-width: 1200px) {
+    .slide {
+      padding-left: 5vw;
+      padding-right: 5vw;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6.2vw, 76px);
+    }
+
+    h2 {
+      font-size: clamp(28px, 3.6vw, 48px);
+    }
+
+    .grid2 {
+      max-height: calc(100vh - 210px);
+    }
+  }
+
+  @media (max-width: 900px) {
+    html,
+    body {
+      overflow: hidden;
+    }
+
+    .slide {
+      padding: 28px 24px 76px;
+      overflow: auto;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    h1 {
+      font-size: clamp(40px, 11vw, 58px);
+      line-height: 1.12;
+    }
+
+    h2 {
+      font-size: clamp(28px, 8vw, 40px);
+      line-height: 1.2;
+    }
+
+    p,
+    .story,
+    .sub,
+    .insight {
+      font-size: clamp(17px, 4.2vw, 21px);
+      line-height: 1.68;
+    }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      height: auto;
+      max-height: none;
+      gap: 20px;
+    }
+
+    .grid3,
+    .smallgrid {
+      grid-template-columns: 1fr;
+    }
+
+    .chartBox {
+      height: min(54vh, 430px);
+      min-height: 300px;
+    }
+
+    .chart {
+      min-height: 220px;
+    }
+
+    .footer {
+      position: relative;
+      left: auto;
+      right: auto;
+      bottom: auto;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .nav {
+      right: 16px;
+      bottom: 16px;
+    }
+
+    .pageNo {
+      left: 18px;
+      bottom: 16px;
+    }
+
+    table {
+      font-size: 11px;
+    }
+  }
+
+  @media (max-height: 760px) and (min-width: 901px) {
+    .slide {
+      padding-top: 30px;
+      padding-bottom: 50px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 5.8vw, 78px);
+    }
+
+    h2 {
+      font-size: clamp(28px, 3.4vw, 48px);
+    }
+
+    .grid2 {
+      max-height: calc(100vh - 185px);
+      margin-top: 18px;
+    }
+
+    .chartBox {
+      min-height: 0;
+    }
+  }
+
+</style>
+</head>
+<body>
+<div class="deck">
+  <section class="slide active" data-title="封面">
+    <div class="ribbon"></div>
+    <div class="eyebrow">National Eco-environment Data Report · 2016-2024</div>
+    <h1>生态环境<br><span class="accent">统计数据报告</span></h1>
+    <p class="sub">基于 2016-2024 年全国汇总数据，观察污染物减排、固废增长、环保投资与监管执法的结构性变化。</p>
+    <div class="heroStat">
+      <div><div class="bigNum">-65.5%</div><div class="miniLabel">SO₂ 排放总量</div></div>
+      <div><div class="bigNum">+115.3%</div><div class="miniLabel">城市环保基础设施投资</div></div>
+      <div><div class="bigNum">-34.9%</div><div class="miniLabel">突发环境事件</div></div>
+    </div>
+    <div class="footer"><span>数据范围：全国汇总｜2016-2024</span><span>使用键盘 ← → 或右下角按钮翻页</span></div>
+  </section>
+
+  <section class="slide" data-title="核心结论">
+    <div class="eyebrow">Executive Summary</div>
+    <h2>减排成效明显，治理重心转向<br><span class="accent">结构优化与固废压力管理</span></h2>
+    <div class="grid3">
+      <div class="kpi"><div class="label">大气污染物快速下降</div><div class="bigNum">-65.5%</div><div class="note">SO₂ 是降幅最大的主要污染物；颗粒物同步下降 42.3%。</div></div>
+      <div class="kpi"><div class="label">生活源成为水污染主导</div><div class="bigNum">85.6%</div><div class="note">2024 年 COD 生活源占比约 85.6%，氨氮生活源占比约 92.9%。</div></div>
+      <div class="kpi"><div class="label">固废与危废压力上行</div><div class="bigNum">+102%</div><div class="note">工业危废产生量较 2016 年翻倍，固废综合利用率基本持平。</div></div>
+    </div>
+    <p class="insight">总体看：传统污染物排放进入持续下降通道；但固废、危废与生活源治理，正在成为下一阶段生态环境管理的关键变量。</p>
+    <div class="footer"><span>01 / 核心结论</span><span>单位见各图表标题</span></div>
+  </section>
+
+  <section class="slide" data-title="全景变化">
+    <div class="eyebrow">Nine-year Change Map</div>
+    <h2>2016-2024：哪些指标下降，哪些压力上升？</h2>
+    <div class="grid2">
+      <div class="chartBox"><div class="chartTitle">主要指标九年变化率</div><div class="chartHint">2016 = 基期，展示 2024 相比 2016 的增减幅度</div><div id="changeBars" class="chart"></div></div>
+      <div>
+        <p class="story">减排类指标普遍下降，其中 <span class="accent">SO₂、颗粒物、突发环境事件</span> 降幅最显著；与此同时，<span class="accent">环保基建投资、环境罚没、工业危废</span> 快速增长，说明治理能力与监管强度同步增强，但固废风险也在累积。</p>
+        <div style="margin-top:30px">
+          <span class="pill">SO₂ -65.5%</span><span class="pill">颗粒物 -42.3%</span><span class="pill">NOx -31.3%</span><span class="pill">危废 +102.4%</span><span class="pill">罚没 +168.8%</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer"><span>02 / 全景变化</span><span>变化率 = 2024 / 2016 - 1</span></div>
+  </section>
+
+  <section class="slide" data-title="水污染物">
+    <div class="eyebrow">Water Pollutants</div>
+    <h2>COD 与氨氮持续下降，<span class="accent">生活源占比最高</span></h2>
+    <div class="grid2">
+      <div class="chartBox"><div class="chartTitle">COD 与氨氮排放指数趋势</div><div class="chartHint">2016 = 100，便于比较不同量级指标</div><div id="waterLines" class="chart"></div></div>
+      <div class="chartBox"><div class="chartTitle">2024 年来源结构</div><div class="chartHint">按各来源排放量占比估算</div>
+        <div class="sourceList" style="margin-top:26px">
+          <div class="tag">COD</div>
+          <div class="sourceRow"><span>生活源</span><div class="barTrack"><div class="barFill" style="width:85.6%"></div></div><b>85.6%</b></div>
+          <div class="sourceRow"><span>工业源</span><div class="barTrack"><div class="barFill cyan" style="width:12.2%"></div></div><b>12.2%</b></div>
+          <div class="sourceRow"><span>农业源</span><div class="barTrack"><div class="barFill amber" style="width:2.2%"></div></div><b>2.2%</b></div>
+          <div class="tag" style="margin-top:22px">氨氮</div>
+          <div class="sourceRow"><span>生活源</span><div class="barTrack"><div class="barFill" style="width:92.9%"></div></div><b>92.9%</b></div>
+          <div class="sourceRow"><span>工业源</span><div class="barTrack"><div class="barFill cyan" style="width:6.6%"></div></div><b>6.6%</b></div>
+          <div class="sourceRow"><span>农业源</span><div class="barTrack"><div class="barFill amber" style="width:0.5%"></div></div><b>0.5%</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer"><span>03 / 水污染物</span><span>COD -28.8%｜氨氮 -33.1%</span></div>
+  </section>
+
+  <section class="slide" data-title="大气污染物">
+    <div class="eyebrow">Air Pollutants</div>
+    <h2>SO₂ 和颗粒物大幅下降，<span class="accent">工业源压降贡献突出</span></h2>
+    <div class="grid2">
+      <div class="chartBox"><div class="chartTitle">SO₂ 与颗粒物排放总量趋势</div><div class="chartHint">单位：万吨</div><div id="airLines" class="chart"></div></div>
+      <div>
+        <div class="smallgrid">
+          <div class="kpi"><div class="label">SO₂ 总量</div><div class="bigNum">295.3</div><div class="note">2024 年，较 2016 年下降 65.5%。</div></div>
+          <div class="kpi"><div class="label">颗粒物总量</div><div class="bigNum">928.6</div><div class="note">2024 年，较 2016 年下降 42.3%。</div></div>
+        </div>
+        <p class="insight">SO₂ 的降幅显著高于其他污染物，体现燃煤、工业烟气治理与清洁替代的持续效果；颗粒物仍保持接近千万吨规模，后续需要进一步精细化管控。</p>
+      </div>
+    </div>
+    <div class="footer"><span>04 / 大气污染物</span><span>单位：万吨</span></div>
+  </section>
+
+  <section class="slide" data-title="NOx结构">
+    <div class="eyebrow">NOx Structure</div>
+    <h2>NOx 降幅较缓，<span class="accent">移动源仍是最大来源</span></h2>
+    <div class="grid2">
+      <div class="chartBox"><div class="chartTitle">NOx 来源结构变化</div><div class="chartHint">单位：万吨，按工业源/生活源/移动源</div><div id="noxStack" class="chart"></div></div>
+      <div>
+        <p class="quote">2024 年移动源占 NOx 来源约 <span class="accent">54.6%</span>，高于工业源的 <span class="accent">41.2%</span>。</p>
+        <p class="insight">这意味着 NOx 治理不只是工业排放问题，交通结构、机动车排放标准、非道路移动机械与清洁运输体系，将成为继续压降 NOx 的关键抓手。</p>
+      </div>
+    </div>
+    <div class="footer"><span>05 / NOx 结构</span><span>NOx 总量 2016-2024 下降 31.3%</span></div>
+  </section>
+
+  <section class="slide" data-title="固废与危废">
+    <div class="eyebrow">Solid Waste & Hazardous Waste</div>
+    <h2>固废继续增长，<span class="accent">危废产生量翻倍</span></h2>
+    <div class="grid2">
+      <div class="chartBox"><div class="chartTitle">一般固废产生量与综合利用量</div><div class="chartHint">单位：亿吨</div><div id="solidLines" class="chart"></div></div>
+      <div class="chartBox"><div class="chartTitle">工业危废产生量</div><div class="chartHint">单位：万吨</div><div id="hazardBars" class="chart"></div></div>
+    </div>
+    <p class="insight">一般固废综合利用量随产生量同步上升，但综合利用率从 2016 年约 56.9% 到 2024 年约 56.4%，基本持平；危废增速更快，处置能力与全过程监管压力更高。</p>
+    <div class="footer"><span>06 / 固废与危废</span><span>一般固废 +42.3%｜工业危废 +102.4%</span></div>
+  </section>
+
+  <section class="slide" data-title="投资与监管">
+    <div class="eyebrow">Governance Inputs</div>
+    <h2>投资、执法与事件下降之间，形成<br><span class="accent">治理能力闭环</span></h2>
+    <div class="grid2">
+      <div class="chartBox"><div class="chartTitle">环保投入与监管指标指数趋势</div><div class="chartHint">2016 = 100，城市环保基础设施投资 / 环境罚没金额 / 突发环境事件</div><div id="governLines" class="chart"></div></div>
+      <div>
+        <div class="grid3" style="grid-template-columns:1fr;gap:18px;margin-top:0">
+          <div class="kpi"><div class="label">城市环保基础设施投资</div><div class="bigNum">2330.8</div><div class="note">2024 年亿元规模，较 2016 年增长 115.3%。</div></div>
+          <div class="kpi"><div class="label">环境罚没金额</div><div class="bigNum">178.2</div><div class="note">2024 年亿元规模，较 2016 年增长 168.8%。</div></div>
+          <div class="kpi"><div class="label">突发环境事件</div><div class="bigNum">198</div><div class="note">2024 年起数，较 2016 年下降 34.9%。</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer"><span>07 / 投资与监管</span><span>投资与罚没单位：亿元；事件单位：起</span></div>
+  </section>
+
+  <section class="slide" data-title="建议">
+    <div class="eyebrow">Strategic Priorities</div>
+    <h2>下一阶段建议：从“总量减排”走向<br><span class="accent">结构治理 + 风险治理</span></h2>
+    <div class="grid3">
+      <div class="kpi"><div class="label">01 生活源精细治理</div><p>水污染治理重点向城市生活污水、雨污分流、管网修复、农村生活源管理延伸。</p></div>
+      <div class="kpi"><div class="label">02 移动源 NOx 控制</div><p>围绕车辆、船舶、非道路机械与物流结构，提升清洁运输和源头替代力度。</p></div>
+      <div class="kpi"><div class="label">03 固废危废闭环管理</div><p>提升综合利用率、危废处置能力、数字化转移联单与全过程追踪能力。</p></div>
+    </div>
+    <div class="watermark">2024</div>
+    <p class="insight" style="max-width:980px">报告判断：污染物排放下降趋势已经形成，但生态环境管理的难点正在从“排放总量”转向“生活源、移动源、固废危废和风险事件”的系统协同。</p>
+    <div class="footer"><span>08 / 建议</span><span>面向后续治理策略</span></div>
+  </section>
+
+  <section class="slide" data-title="数据附录">
+    <div class="eyebrow">Appendix</div>
+    <h2>关键数据表</h2>
+    <div class="chartBox" style="height:72vh;margin-top:22px;overflow:auto">
+      <table>
+        <thead><tr><th>年份</th><th>COD 排放总量_万吨</th><th>氨氮排放总量_万吨</th><th>SO2 排放总量_万吨</th><th>NOx 排放总量_万吨</th><th>颗粒物排放总量_万吨</th><th>一般固废产生量_亿吨</th><th>工业危废产生量_万吨</th><th>城市环保基础设施投资_亿元</th><th>环境罚没金额_亿元</th><th>突发环境事件_起</th></tr></thead>
+        <tbody><tr><td>2016</td><td>658.1</td><td>56.8</td><td>854.9</td><td>1503.3</td><td>1608</td><td>37.1</td><td>5219.5</td><td>1082.7</td><td>66.3</td><td>304</td></tr>
+<tr><td>2017</td><td>608.9</td><td>50.9</td><td>610.8</td><td>1348.4</td><td>1284.9</td><td>38.7</td><td>6581.3</td><td>1363.4</td><td>115.8</td><td>302</td></tr>
+<tr><td>2018</td><td>584.2</td><td>49.4</td><td>516.1</td><td>1288.4</td><td>1132.3</td><td>40.8</td><td>7470</td><td>1428.7</td><td>152.8</td><td>286</td></tr>
+<tr><td>2019</td><td>567.1</td><td>46.3</td><td>457.3</td><td>1233.9</td><td>1088.5</td><td>44.1</td><td>8126</td><td>1841.7</td><td>118.8</td><td>261</td></tr>
+<tr><td>2020</td><td>546.8</td><td>43.8</td><td>410.5</td><td>1185.6</td><td>1052.3</td><td>45.8</td><td>8580.5</td><td>1920.5</td><td>125.5</td><td>248</td></tr>
+<tr><td>2021</td><td>524.5</td><td>42.1</td><td>375.8</td><td>1142.3</td><td>1018.5</td><td>47.5</td><td>9052.3</td><td>2015.8</td><td>135.8</td><td>235</td></tr>
+<tr><td>2022</td><td>503.2</td><td>40.5</td><td>345.2</td><td>1102.5</td><td>986.2</td><td>49.2</td><td>9538.6</td><td>2115.6</td><td>148.5</td><td>222</td></tr>
+<tr><td>2023</td><td>485.6</td><td>39.2</td><td>318.6</td><td>1065.8</td><td>956.5</td><td>51</td><td>10042.5</td><td>2220.5</td><td>162.5</td><td>210</td></tr>
+<tr><td>2024</td><td>468.3</td><td>38</td><td>295.3</td><td>1032.5</td><td>928.6</td><td>52.8</td><td>10565.8</td><td>2330.8</td><td>178.2</td><td>198</td></tr></tbody>
+      </table>
+    </div>
+    <div class="footer"><span>09 / 数据附录</span><span>来源：用户上传 CSV《2016-2024 年生态环境统计_全国汇总》</span></div>
+  </section>
+</div>
+<div class="pageNo"><span id="pageNow">01</span> / <span id="pageTotal">09</span></div>
+<div class="nav"><button id="prev" aria-label="上一页">‹</button><button id="next" aria-label="下一页">›</button></div>
+<div class="progress" id="progress"></div>
+<script>
+const data = [{"年份": 2016, "COD 排放总量_万吨": 658.1, "COD 工业源_万吨": 122.8, "COD 农业源_万吨": 57.1, "COD 生活源_万吨": 473.5, "氨氮排放总量_万吨": 56.8, "氨氮工业源_万吨": 6.5, "氨氮农业源_万吨": 1.3, "氨氮生活源_万吨": 48.4, "SO2 排放总量_万吨": 854.9, "SO2 工业源_万吨": 770.5, "SO2 生活源_万吨": 84.0, "NOx 排放总量_万吨": 1503.3, "NOx 工业源_万吨": 809.1, "NOx 生活源_万吨": 61.6, "NOx 移动源_万吨": 631.6, "颗粒物排放总量_万吨": 1608.0, "颗粒物工业源_万吨": 1376.2, "一般固废产生量_亿吨": 37.1, "一般固废综合利用量_亿吨": 21.1, "工业危废产生量_万吨": 5219.5, "工业污染治理投资_亿元": 819.0, "城市环保基础设施投资_亿元": 1082.7, "环境罚没金额_亿元": 66.3, "突发环境事件_起": 304, "重点调查单位数_家": NaN}, {"年份": 2017, "COD 排放总量_万吨": 608.9, "COD 工业源_万吨": 91.0, "COD 农业源_万吨": 31.8, "COD 生活源_万吨": 483.8, "氨氮排放总量_万吨": 50.9, "氨氮工业源_万吨": 4.4, "氨氮农业源_万吨": 0.7, "氨氮生活源_万吨": 45.4, "SO2 排放总量_万吨": 610.8, "SO2 工业源_万吨": 529.9, "SO2 生活源_万吨": 80.5, "NOx 排放总量_万吨": 1348.4, "NOx 工业源_万吨": 646.5, "NOx 生活源_万吨": 59.2, "NOx 移动源_万吨": 641.2, "颗粒物排放总量_万吨": 1284.9, "颗粒物工业源_万吨": 1067.0, "一般固废产生量_亿吨": 38.7, "一般固废综合利用量_亿吨": 20.6, "工业危废产生量_万吨": 6581.3, "工业污染治理投资_亿元": 681.5, "城市环保基础设施投资_亿元": 1363.4, "环境罚没金额_亿元": 115.8, "突发环境事件_起": 302, "重点调查单位数_家": NaN}, {"年份": 2018, "COD 排放总量_万吨": 584.2, "COD 工业源_万吨": 81.4, "COD 农业源_万吨": 24.5, "COD 生活源_万吨": 476.8, "氨氮排放总量_万吨": 49.4, "氨氮工业源_万吨": 4.0, "氨氮农业源_万吨": 0.5, "氨氮生活源_万吨": 44.7, "SO2 排放总量_万吨": 516.1, "SO2 工业源_万吨": 446.7, "SO2 生活源_万吨": 68.7, "NOx 排放总量_万吨": 1288.4, "NOx 工业源_万吨": 588.7, "NOx 生活源_万吨": 53.1, "NOx 移动源_万吨": 644.6, "颗粒物排放总量_万吨": 1132.3, "颗粒物工业源_万吨": 948.9, "一般固废产生量_亿吨": 40.8, "一般固废综合利用量_亿吨": 21.7, "工业危废产生量_万吨": 7470.0, "工业污染治理投资_亿元": 621.3, "城市环保基础设施投资_亿元": 1428.7, "环境罚没金额_亿元": 152.8, "突发环境事件_起": 286, "重点调查单位数_家": NaN}, {"年份": 2019, "COD 排放总量_万吨": 567.1, "COD 工业源_万吨": 77.2, "COD 农业源_万吨": 18.6, "COD 生活源_万吨": 469.9, "氨氮排放总量_万吨": 46.3, "氨氮工业源_万吨": 3.5, "氨氮农业源_万吨": 0.4, "氨氮生活源_万吨": 42.1, "SO2 排放总量_万吨": 457.3, "SO2 工业源_万吨": 395.4, "SO2 生活源_万吨": 61.3, "NOx 排放总量_万吨": 1233.9, "NOx 工业源_万吨": 548.1, "NOx 生活源_万吨": 49.7, "NOx 移动源_万吨": 633.6, "颗粒物排放总量_万吨": 1088.5, "颗粒物工业源_万吨": 925.9, "一般固废产生量_亿吨": 44.1, "一般固废综合利用量_亿吨": 23.2, "工业危废产生量_万吨": 8126.0, "工业污染治理投资_亿元": 615.2, "城市环保基础设施投资_亿元": 1841.7, "环境罚没金额_亿元": 118.8, "突发环境事件_起": 261, "重点调查单位数_家": 190000.0}, {"年份": 2020, "COD 排放总量_万吨": 546.8, "COD 工业源_万吨": 72.5, "COD 农业源_万吨": 15.8, "COD 生活源_万吨": 456.2, "氨氮排放总量_万吨": 43.8, "氨氮工业源_万吨": 3.2, "氨氮农业源_万吨": 0.3, "氨氮生活源_万吨": 40.1, "SO2 排放总量_万吨": 410.5, "SO2 工业源_万吨": 358.2, "SO2 生活源_万吨": 52.3, "NOx 排放总量_万吨": 1185.6, "NOx 工业源_万吨": 512.5, "NOx 生活源_万吨": 47.5, "NOx 移动源_万吨": 625.6, "颗粒物排放总量_万吨": 1052.3, "颗粒物工业源_万吨": 905.6, "一般固废产生量_亿吨": 45.8, "一般固废综合利用量_亿吨": 24.5, "工业危废产生量_万吨": 8580.5, "工业污染治理投资_亿元": 608.5, "城市环保基础设施投资_亿元": 1920.5, "环境罚没金额_亿元": 125.5, "突发环境事件_起": 248, "重点调查单位数_家": 195000.0}, {"年份": 2021, "COD 排放总量_万吨": 524.5, "COD 工业源_万吨": 68.3, "COD 农业源_万吨": 14.2, "COD 生活源_万吨": 440.5, "氨氮排放总量_万吨": 42.1, "氨氮工业源_万吨": 3.0, "氨氮农业源_万吨": 0.3, "氨氮生活源_万吨": 38.6, "SO2 排放总量_万吨": 375.8, "SO2 工业源_万吨": 325.6, "SO2 生活源_万吨": 50.2, "NOx 排放总量_万吨": 1142.3, "NOx 工业源_万吨": 485.6, "NOx 生活源_万吨": 46.2, "NOx 移动源_万吨": 610.5, "颗粒物排放总量_万吨": 1018.5, "颗粒物工业源_万吨": 882.5, "一般固废产生量_亿吨": 47.5, "一般固废综合利用量_亿吨": 25.8, "工业危废产生量_万吨": 9052.3, "工业污染治理投资_亿元": 595.2, "城市环保基础设施投资_亿元": 2015.8, "环境罚没金额_亿元": 135.8, "突发环境事件_起": 235, "重点调查单位数_家": 198000.0}, {"年份": 2022, "COD 排放总量_万吨": 503.2, "COD 工业源_万吨": 64.2, "COD 农业源_万吨": 12.8, "COD 生活源_万吨": 425.3, "氨氮排放总量_万吨": 40.5, "氨氮工业源_万吨": 2.8, "氨氮农业源_万吨": 0.2, "氨氮生活源_万吨": 37.3, "SO2 排放总量_万吨": 345.2, "SO2 工业源_万吨": 298.5, "SO2 生活源_万吨": 46.7, "NOx 排放总量_万吨": 1102.5, "NOx 工业源_万吨": 462.3, "NOx 生活源_万吨": 45.0, "NOx 移动源_万吨": 595.2, "颗粒物排放总量_万吨": 986.2, "颗粒物工业源_万吨": 860.2, "一般固废产生量_亿吨": 49.2, "一般固废综合利用量_亿吨": 27.2, "工业危废产生量_万吨": 9538.6, "工业污染治理投资_亿元": 582.5, "城市环保基础设施投资_亿元": 2115.6, "环境罚没金额_亿元": 148.5, "突发环境事件_起": 222, "重点调查单位数_家": 200479.0}, {"年份": 2023, "COD 排放总量_万吨": 485.6, "COD 工业源_万吨": 60.5, "COD 农业源_万吨": 11.5, "COD 生活源_万吨": 412.8, "氨氮排放总量_万吨": 39.2, "氨氮工业源_万吨": 2.6, "氨氮农业源_万吨": 0.2, "氨氮生活源_万吨": 36.2, "SO2 排放总量_万吨": 318.6, "SO2 工业源_万吨": 275.8, "SO2 生活源_万吨": 42.8, "NOx 排放总量_万吨": 1065.8, "NOx 工业源_万吨": 442.5, "NOx 生活源_万吨": 43.8, "NOx 移动源_万吨": 579.5, "颗粒物排放总量_万吨": 956.5, "颗粒物工业源_万吨": 838.5, "一般固废产生量_亿吨": 51.0, "一般固废综合利用量_亿吨": 28.5, "工业危废产生量_万吨": 10042.5, "工业污染治理投资_亿元": 570.2, "城市环保基础设施投资_亿元": 2220.5, "环境罚没金额_亿元": 162.5, "突发环境事件_起": 210, "重点调查单位数_家": 203000.0}, {"年份": 2024, "COD 排放总量_万吨": 468.3, "COD 工业源_万吨": 57.2, "COD 农业源_万吨": 10.3, "COD 生活源_万吨": 400.5, "氨氮排放总量_万吨": 38.0, "氨氮工业源_万吨": 2.5, "氨氮农业源_万吨": 0.2, "氨氮生活源_万吨": 35.1, "SO2 排放总量_万吨": 295.3, "SO2 工业源_万吨": 256.2, "SO2 生活源_万吨": 39.1, "NOx 排放总量_万吨": 1032.5, "NOx 工业源_万吨": 425.8, "NOx 生活源_万吨": 42.8, "NOx 移动源_万吨": 563.9, "颗粒物排放总量_万吨": 928.6, "颗粒物工业源_万吨": 818.2, "一般固废产生量_亿吨": 52.8, "一般固废综合利用量_亿吨": 29.8, "工业危废产生量_万吨": 10565.8, "工业污染治理投资_亿元": 558.5, "城市环保基础设施投资_亿元": 2330.8, "环境罚没金额_亿元": 178.2, "突发环境事件_起": 198, "重点调查单位数_家": 205500.0}];
+const changes = [{"name": "COD", "value": -28.8}, {"name": "氨氮", "value": -33.1}, {"name": "SO₂", "value": -65.5}, {"name": "NOx", "value": -31.3}, {"name": "颗粒物", "value": -42.3}, {"name": "一般固废", "value": 42.3}, {"name": "工业危废", "value": 102.4}, {"name": "环保基建投资", "value": 115.3}, {"name": "环境罚没", "value": 168.8}, {"name": "突发事件", "value": -34.9}];
+const years = data.map(d=>d['年份']);
+function idxVals(arr){const base=arr[0]; return arr.map(v=>v/base*100);}
+function fmt(v, digits=1){ return Number(v).toLocaleString('zh-CN',{maximumFractionDigits:digits}); }
+function cssVar(name){return getComputedStyle(document.documentElement).getPropertyValue(name).trim();}
+const C={green:cssVar('--green'), green2:cssVar('--green2'), cyan:cssVar('--cyan'), amber:cssVar('--amber'), orange:cssVar('--orange'), red:cssVar('--red'), muted:cssVar('--muted'), text:cssVar('--text')};
+function svgEl(tag, attrs={}, children=[]){
+  const el=document.createElementNS('http://www.w3.org/2000/svg',tag);
+  for(const [k,v] of Object.entries(attrs)) el.setAttribute(k,v);
+  for(const c of children) el.appendChild(c);
+  return el;
+}
+function clear(el){while(el.firstChild)el.removeChild(el.firstChild)}
+function makeSvg(container){clear(container); const r=container.getBoundingClientRect(); const w=Math.max(500,r.width), h=Math.max(280,r.height); const svg=svgEl('svg',{viewBox:`0 0 ${w} ${h}`,width:'100%',height:'100%',role:'img'}); container.appendChild(svg); return {svg,w,h};}
+function axes(svg,w,h,m,yTicks,yScale,yFmt=''){
+  for(let i=0;i<=4;i++){const t=i/4; const y=m.t+(h-m.t-m.b)*t; svg.appendChild(svgEl('line',{x1:m.l,y1:y,x2:w-m.r,y2:y,stroke:'rgba(255,255,255,.10)','stroke-width':1}));}
+  yTicks.forEach(v=>{const y=yScale(v); const txt=svgEl('text',{x:m.l-10,y:y+4,fill:'rgba(238,248,241,.55)','font-size':12,'text-anchor':'end'}); txt.textContent=typeof yFmt==='function'?yFmt(v):fmt(v,0); svg.appendChild(txt);});
+  years.forEach((yr,i)=>{const x=m.l+(w-m.l-m.r)*(i/(years.length-1)); const txt=svgEl('text',{x,y:h-m.b+24,fill:'rgba(238,248,241,.55)','font-size':12,'text-anchor':'middle'}); txt.textContent=yr; svg.appendChild(txt);});
+}
+function lineChart(id, series, opts={}){
+  const container=document.getElementById(id); if(!container) return; const {svg,w,h}=makeSvg(container); const m={l:60,r:28,t:28,b:46};
+  const vals=series.flatMap(s=>s.values); const minV=opts.min ?? Math.min(...vals)*.94; const maxV=opts.max ?? Math.max(...vals)*1.06;
+  const x=i=>m.l+(w-m.l-m.r)*(i/(years.length-1)); const y=v=>m.t+(h-m.t-m.b)*(1-(v-minV)/(maxV-minV));
+  const ticks=[]; for(let i=0;i<5;i++) ticks.push(minV+(maxV-minV)*i/4);
+  axes(svg,w,h,m,ticks,y,opts.yFmt);
+  series.forEach((s,si)=>{
+    let d=s.values.map((v,i)=>(i?'L':'M')+x(i)+','+y(v)).join(' ');
+    svg.appendChild(svgEl('path',{d,fill:'none',stroke:s.color,'stroke-width':4,'stroke-linecap':'round','stroke-linejoin':'round'}));
+    s.values.forEach((v,i)=>{svg.appendChild(svgEl('circle',{cx:x(i),cy:y(v),r:i===s.values.length-1?5:3.5,fill:s.color,stroke:'#07120e','stroke-width':2}));});
+    const tx=svgEl('text',{x:x(years.length-1)+9,y:y(s.values.at(-1))+4,fill:s.color,'font-size':14,'font-weight':800}); tx.textContent=s.name+' '+fmt(s.values.at(-1),1); svg.appendChild(tx);
+  });
+}
+function barChart(id, items, opts={}){
+  const container=document.getElementById(id); if(!container) return; const {svg,w,h}=makeSvg(container); const m={l:opts.left||105,r:42,t:24,b:36};
+  const max=Math.max(...items.map(d=>Math.abs(d.value)))*1.15; const zero=m.l+(w-m.l-m.r)*(0.5); const scale=v=>zero + (v/max)*(w-m.l-m.r)*0.46;
+  const rowH=(h-m.t-m.b)/items.length;
+  svg.appendChild(svgEl('line',{x1:zero,y1:m.t,x2:zero,y2:h-m.b,stroke:'rgba(255,255,255,.18)','stroke-width':1}));
+  items.forEach((d,i)=>{
+    const y=m.t+i*rowH+rowH*.18; const bh=rowH*.55; const x0=d.value>=0?zero:scale(d.value); const bw=Math.abs(scale(d.value)-zero);
+    const label=svgEl('text',{x:m.l-12,y:y+bh*.68,fill:'#e9fff0','font-size':Math.max(11,Math.min(16,rowH*.28)),'text-anchor':'end','font-weight':700}); label.textContent=d.name; svg.appendChild(label);
+    const color=d.value>=0?(d.color||C.amber):(d.color||C.green);
+    svg.appendChild(svgEl('rect',{x:x0,y,width:bw,height:bh,rx:bh/2,fill:color,opacity:.95}));
+    const val=svgEl('text',{x:d.value>=0?x0+bw+8:x0-8,y:y+bh*.68,fill:color,'font-size':14,'font-weight':900,'text-anchor':d.value>=0?'start':'end'}); val.textContent=(d.value>0?'+':'')+fmt(d.value,1)+'%'; svg.appendChild(val);
+  });
+}
+function verticalBars(id, vals, opts={}){
+  const container=document.getElementById(id); if(!container) return; const {svg,w,h}=makeSvg(container); const m={l:62,r:28,t:24,b:48};
+  const max=Math.max(...vals)*1.1; const y=v=>m.t+(h-m.t-m.b)*(1-v/max); const barW=(w-m.l-m.r)/vals.length*.62;
+  for(let i=0;i<=4;i++){const yy=m.t+(h-m.t-m.b)*i/4; svg.appendChild(svgEl('line',{x1:m.l,y1:yy,x2:w-m.r,y2:yy,stroke:'rgba(255,255,255,.10)'}));}
+  vals.forEach((v,i)=>{const x=m.l+(w-m.l-m.r)*(i+.5)/vals.length-barW/2; const yy=y(v); svg.appendChild(svgEl('rect',{x,y:yy,width:barW,height:h-m.b-yy,rx:barW/2,fill:'url(#barGrad)'})); const t=svgEl('text',{x:x+barW/2,y:h-m.b+24,fill:'rgba(238,248,241,.55)','font-size':12,'text-anchor':'middle'});t.textContent=years[i];svg.appendChild(t); if(i===vals.length-1){const vt=svgEl('text',{x:x+barW/2,y:yy-9,fill:C.green,'font-size':15,'font-weight':900,'text-anchor':'middle'});vt.textContent=fmt(v,1);svg.appendChild(vt);} });
+  const defs=svgEl('defs'); defs.innerHTML='<linearGradient id="barGrad" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#2bdc72"/><stop offset="1" stop-color="#7cff9b"/></linearGradient>'; svg.prepend(defs);
+}
+function stackedBars(id, stacks){
+  const container=document.getElementById(id); if(!container) return; const {svg,w,h}=makeSvg(container); const m={l:64,r:30,t:24,b:50};
+  const totals=data.map(d=>stacks.reduce((s,k)=>s+(+d[k.col]||0),0)); const max=Math.max(...totals)*1.08; const y=v=>m.t+(h-m.t-m.b)*(1-v/max); const barW=(w-m.l-m.r)/data.length*.56;
+  for(let i=0;i<=4;i++){const yy=m.t+(h-m.t-m.b)*i/4; svg.appendChild(svgEl('line',{x1:m.l,y1:yy,x2:w-m.r,y2:yy,stroke:'rgba(255,255,255,.10)'}));}
+  data.forEach((d,i)=>{const x=m.l+(w-m.l-m.r)*(i+.5)/data.length-barW/2; let acc=0; stacks.forEach(s=>{const v=+d[s.col]||0; const y0=y(acc); acc+=v; const y1=y(acc); svg.appendChild(svgEl('rect',{x,y:y1,width:barW,height:y0-y1,rx:3,fill:s.color,opacity:.96}));}); const t=svgEl('text',{x:x+barW/2,y:h-m.b+24,fill:'rgba(238,248,241,.55)','font-size':12,'text-anchor':'middle'});t.textContent=d['年份']; svg.appendChild(t);});
+  let lx=m.l, ly=6; stacks.forEach(s=>{svg.appendChild(svgEl('circle',{cx:lx,cy:ly+7,r:5,fill:s.color})); const txt=svgEl('text',{x:lx+12,y:ly+12,fill:'rgba(238,248,241,.70)','font-size':13}); txt.textContent=s.name; svg.appendChild(txt); lx+=92;});
+}
+function drawAll(){
+  barChart('changeBars', changes.sort((a,b)=>a.value-b.value).map(d=>({...d,color:d.value>0?C.amber:C.green})),{left:92});
+  lineChart('waterLines',[{name:'COD',color:C.green,values:idxVals(data.map(d=>d['COD 排放总量_万吨']))},{name:'氨氮',color:C.cyan,values:idxVals(data.map(d=>d['氨氮排放总量_万吨']))}],{min:60,max:105});
+  lineChart('airLines',[{name:'SO₂',color:C.green,values:data.map(d=>d['SO2 排放总量_万吨'])},{name:'颗粒物',color:C.cyan,values:data.map(d=>d['颗粒物排放总量_万吨'])}],{min:0});
+  stackedBars('noxStack',[{name:'工业源',col:'NOx 工业源_万吨',color:C.green},{name:'生活源',col:'NOx 生活源_万吨',color:C.amber},{name:'移动源',col:'NOx 移动源_万吨',color:C.cyan}]);
+  lineChart('solidLines',[{name:'产生量',color:C.green,values:data.map(d=>d['一般固废产生量_亿吨'])},{name:'利用量',color:C.cyan,values:data.map(d=>d['一般固废综合利用量_亿吨'])}],{min:0});
+  verticalBars('hazardBars', data.map(d=>d['工业危废产生量_万吨']));
+  lineChart('governLines',[{name:'基建投资',color:C.green,values:idxVals(data.map(d=>d['城市环保基础设施投资_亿元']))},{name:'罚没金额',color:C.amber,values:idxVals(data.map(d=>d['环境罚没金额_亿元']))},{name:'突发事件',color:C.cyan,values:idxVals(data.map(d=>d['突发环境事件_起']))}],{min:50,max:285});
+}
+let idx=0; const slides=[...document.querySelectorAll('.slide')]; const pageNow=document.getElementById('pageNow'); const pageTotal=document.getElementById('pageTotal'); const progress=document.getElementById('progress'); pageTotal.textContent=String(slides.length).padStart(2,'0');
+function show(i){ idx=(i+slides.length)%slides.length; slides.forEach((s,j)=>s.classList.toggle('active',j===idx)); pageNow.textContent=String(idx+1).padStart(2,'0'); progress.style.width=((idx+1)/slides.length*100)+'%'; setTimeout(drawAll,40); }
+document.getElementById('prev').onclick=()=>show(idx-1); document.getElementById('next').onclick=()=>show(idx+1);
+document.addEventListener('keydown',e=>{ if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(idx+1)} if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(idx-1)} });
+window.addEventListener('resize',()=>setTimeout(drawAll,80)); show(0);
+</script>
+</body>
+</html>

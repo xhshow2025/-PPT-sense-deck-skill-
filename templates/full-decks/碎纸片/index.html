@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GPT Image 2 + Codex: 网页版游戏生产线</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="deck" aria-live="polite">
+      <section class="slide active cover" data-title="从一张概念图到一个可玩的网页游戏">
+        <div class="craft-field"></div>
+        <div class="hero-copy">
+          <p class="kicker">AI GAME PIPELINE</p>
+          <h1 class="sr-only">GPT Image 2 + Codex</h1>
+          <p class="lead">把视觉资产工坊和编码 agent 连成一条生产线，从概念图推进到浏览器里可玩的网页游戏。</p>
+        </div>
+        <div class="hero-machine" aria-hidden="true">
+          <img class="raster-title" src="./assets/paper-title-alpha.png" alt="GPT Image 2 + Codex 立体纸质标题" />
+          <div class="paper-stack">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="wireframes">
+            <article class="ui-window large"><i></i><i></i><i></i><div class="tiny-runner"></div></article>
+            <article class="ui-window mid"><i></i><i></i><i></i><b></b></article>
+            <article class="ui-window small"><i></i><i></i><i></i></article>
+          </div>
+          <div class="voxel-stream">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="paper-fracture" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <aside class="notes">开场强调这不是只生成几张图，而是把创意、资产、代码、验证连成一条生产线。</aside>
+      </section>
+
+      <section class="slide" data-title="流程不是魔法，是四个可控工位">
+        <header class="slide-head">
+          <p class="kicker">WORKFLOW</p>
+          <h2>流程不是魔法，是四个可控工位</h2>
+          <p>每一站都有输入、产物和验收标准，AI 负责提速，人负责定方向。</p>
+        </header>
+
+        <div class="slide-art" aria-hidden="true">
+          <img class="art art-ui" src="./assets/ui-wireframes-alpha.png" alt="" />
+          <img class="art art-inner" src="./assets/inner-ornament-alpha.png" alt="" />
+          <img class="art art-fragments" src="./assets/paper-fragments-alpha.png" alt="" />
+        </div>
+        <div class="process-ribbons">
+          <article class="ribbon paper-card"><small>01</small><strong>定义游戏体验</strong><p>玩家目标、核心循环、胜负条件、平台约束。</p></article>
+          <article class="ribbon paper-card"><small>02</small><strong>生成视觉资产</strong><p>用 GPT Image 2 形成角色、场景、UI 和状态变体。</p></article>
+          <article class="ribbon paper-card"><small>03</small><strong>Codex 搭建迭代</strong><p>生成项目骨架，实现规则，接入素材，运行调试。</p></article>
+          <article class="ribbon paper-card"><small>04</small><strong>浏览器验证交付</strong><p>检查交互、移动端、性能、截图和源码包。</p></article>
+        </div>
+        <aside class="notes">把流程拆成工位，降低听众对 AI 工作流不可控的担忧。</aside>
+      </section>
+
+      <section class="slide" data-title="GPT Image 2 负责视觉可能性，Codex 负责工程闭环">
+        <header class="slide-head">
+          <p class="kicker">ROLE SPLIT</p>
+          <h2>GPT Image 2 负责视觉可能性，Codex 负责工程闭环</h2>
+        </header>
+
+        <div class="slide-art" aria-hidden="true">
+          <img class="art art-ui" src="./assets/ui-wireframes-alpha.png" alt="" />
+          <img class="art art-inner" src="./assets/inner-ornament-alpha.png" alt="" />
+          <img class="art art-fragments" src="./assets/paper-fragments-alpha.png" alt="" />
+        </div>
+        <div class="split-board">
+          <article class="panel image-side">
+            <span class="label">GPT Image 2</span>
+            <h3>把风格变成资产</h3>
+            <ul>
+              <li>角色、场景、道具、UI 风格探索</li>
+              <li>透明背景素材和状态变体</li>
+              <li>快速统一画风、光源、色板和氛围</li>
+            </ul>
+          </article>
+          <article class="panel codex-side">
+            <span class="label">Codex</span>
+            <h3>把资产变成玩法</h3>
+            <ul>
+              <li>搭建 HTML/CSS/JS 或框架项目</li>
+              <li>实现规则、碰撞、状态机、音效触发</li>
+              <li>运行测试、修 bug、优化移动端</li>
+            </ul>
+          </article>
+        </div>
+        <aside class="notes">避免把模型能力混在一起讲：一个偏视觉生成，一个偏代码执行和工程反馈。</aside>
+      </section>
+
+      <section class="slide" data-title="视觉资产先做成一张资产板，再进入代码仓库">
+        <header class="slide-head">
+          <p class="kicker">ASSET BOARD</p>
+          <h2>视觉资产先做成一张资产板，再进入代码仓库</h2>
+          <p>让每个素材都能被命名、裁切、复用和替换，Codex 才能稳定接入。</p>
+        </header>
+
+        <div class="slide-art" aria-hidden="true">
+          <img class="art art-ui" src="./assets/ui-wireframes-alpha.png" alt="" />
+          <img class="art art-inner" src="./assets/inner-ornament-alpha.png" alt="" />
+          <img class="art art-fragments" src="./assets/paper-fragments-alpha.png" alt="" />
+        </div>
+        <div class="asset-grid">
+          <article><span class="asset-icon hero"></span><strong>主角精灵</strong><small>idle / run / hit</small></article>
+          <article><span class="asset-icon enemy"></span><strong>敌人与障碍</strong><small>variant / warning</small></article>
+          <article><span class="asset-icon bg"></span><strong>背景层</strong><small>parallax / depth</small></article>
+          <article><span class="asset-icon hud"></span><strong>按钮与 HUD</strong><small>score / lives / timer</small></article>
+          <article><span class="asset-icon fx"></span><strong>胜负反馈</strong><small>win / lose / combo</small></article>
+          <article><span class="asset-icon dot"></span><strong>图标与粒子</strong><small>collect / burst</small></article>
+        </div>
+        <aside class="notes">建议把资产命名、尺寸、透明背景、状态枚举在进入 Codex 前整理清楚。</aside>
+      </section>
+
+      <section class="slide" data-title="Codex 的价值在于边写边跑，而不是只吐代码">
+        <header class="slide-head">
+          <p class="kicker">CODEX LOOP</p>
+          <h2>Codex 的价值在于边写边跑，而不是只吐代码</h2>
+        </header>
+
+        <div class="slide-art" aria-hidden="true">
+          <img class="art art-ui" src="./assets/ui-wireframes-alpha.png" alt="" />
+          <img class="art art-inner" src="./assets/inner-ornament-alpha.png" alt="" />
+          <img class="art art-fragments" src="./assets/paper-fragments-alpha.png" alt="" />
+        </div>
+        <div class="loop-board">
+          <div class="loop-node paper-card">读取需求</div>
+          <div class="loop-node paper-card">生成骨架</div>
+          <div class="loop-node paper-card">接入资产</div>
+          <div class="loop-node paper-card">实现玩法</div>
+          <div class="loop-node paper-card">运行检查</div>
+          <div class="loop-node paper-card">反馈迭代</div>
+          <pre class="code-panel"><code>const game = createGame({
+  assets: manifest,
+  loop: "jump-dodge-score",
+  target: ["desktop", "mobile"]
+});
+
+await codex.run("npm test");
+await codex.inspect("http://localhost:3000");</code></pre>
+        </div>
+        <aside class="notes">重点讲 Codex 能在本地工作区里改文件、起服务、看错误、再修复。</aside>
+      </section>
+
+      <section class="slide" data-title="一个轻量网页版游戏可以拆成五层">
+        <header class="slide-head">
+          <p class="kicker">ARCHITECTURE</p>
+          <h2>一个轻量网页版游戏可以拆成五层</h2>
+        </header>
+
+        <div class="slide-art" aria-hidden="true">
+          <img class="art art-ui" src="./assets/ui-wireframes-alpha.png" alt="" />
+          <img class="art art-inner" src="./assets/inner-ornament-alpha.png" alt="" />
+          <img class="art art-fragments" src="./assets/paper-fragments-alpha.png" alt="" />
+        </div>
+        <div class="architecture-map">
+          <article class="arch-node"><small>01</small><strong>输入层</strong><p>键盘、触摸、手柄、暂停。</p></article>
+          <article class="arch-node"><small>02</small><strong>游戏状态</strong><p>分数、生命、关卡、计时器。</p></article>
+          <article class="arch-node core"><small>03</small><strong>规则系统</strong><p>移动、碰撞、生成、胜负判断。</p></article>
+          <article class="arch-node"><small>04</small><strong>渲染层</strong><p>Canvas、DOM、Pixi 或 Phaser。</p></article>
+          <article class="arch-node"><small>05</small><strong>资产与音效</strong><p>精灵图、背景、UI、反馈音。</p></article>
+        </div>
+        <aside class="notes">技术页只讲边界，不陷入某个框架细节。Canvas、DOM、Pixi、Phaser 都能套这个结构。</aside>
+      </section>
+
+      <section class="slide" data-title="交付前至少过三道质量门">
+        <header class="slide-head">
+          <p class="kicker">QUALITY GATES</p>
+          <h2>交付前至少过三道质量门</h2>
+        </header>
+
+        <div class="slide-art" aria-hidden="true">
+          <img class="art art-ui" src="./assets/ui-wireframes-alpha.png" alt="" />
+          <img class="art art-inner" src="./assets/inner-ornament-alpha.png" alt="" />
+          <img class="art art-fragments" src="./assets/paper-fragments-alpha.png" alt="" />
+        </div>
+        <div class="gate-row">
+          <article class="gate panel"><span>01</span><h3>玩法闭环</h3><p>30 秒内能理解并完成一局，失败后愿意再来一次。</p></article>
+          <article class="gate panel"><span>02</span><h3>视觉一致</h3><p>尺寸、描边、光源、色板、UI 密度统一。</p></article>
+          <article class="gate panel"><span>03</span><h3>浏览器稳定</h3><p>桌面/移动端无重叠、无空白、无控制台错误。</p></article>
+        </div>
+        <aside class="notes">强调网页版游戏最容易翻车的是视觉拼贴不统一和移动端布局。</aside>
+      </section>
+
+      <section class="slide" data-title="最终交付的是一套可继续迭代的游戏包">
+        <header class="slide-head">
+          <p class="kicker">HANDOFF</p>
+          <h2>最终交付的是一套可继续迭代的游戏包</h2>
+        </header>
+
+        <div class="slide-art" aria-hidden="true">
+          <img class="art art-ui" src="./assets/ui-wireframes-alpha.png" alt="" />
+          <img class="art art-inner" src="./assets/inner-ornament-alpha.png" alt="" />
+          <img class="art art-fragments" src="./assets/paper-fragments-alpha.png" alt="" />
+        </div>
+        <div class="handoff-board">
+          <article class="paper-card"><strong>可运行源码</strong><p>能本地启动，也能部署到静态站点。</p></article>
+          <article class="paper-card"><strong>资产目录</strong><p>命名规范、尺寸约定、来源说明。</p></article>
+          <article class="paper-card"><strong>玩法说明</strong><p>目标、操作、计分、胜负条件。</p></article>
+          <article class="paper-card"><strong>测试清单</strong><p>浏览器、移动端、键盘、触摸、性能。</p></article>
+          <article class="paper-card"><strong>迭代 backlog</strong><p>新关卡、新机制、留存点和商业化实验。</p></article>
+        </div>
+        <p class="source-line">Sources: OpenAI Images API guide, OpenAI Codex docs/product pages.</p>
+        <aside class="notes">收束到可交付物，让听众知道怎么把 demo 变成项目资产。</aside>
+      </section>
+    </main>
+
+    <nav class="controls" aria-label="deck controls">
+      <button id="prevBtn" aria-label="上一页">‹</button>
+      <span id="counter">1 / 8</span>
+      <button id="nextBtn" aria-label="下一页">›</button>
+      <button id="speakerBtn" aria-label="演讲者备注">S</button>
+    </nav>
+    <div class="progress"><span id="progressBar"></span></div>
+    <aside class="speaker-panel" id="speakerPanel">
+      <div class="speaker-card"><small>当前页</small><strong id="speakerTitle"></strong></div>
+      <div class="speaker-card"><small>下一页</small><strong id="speakerNext"></strong></div>
+      <div class="speaker-card notes"><small>讲稿</small><p id="speakerNotes"></p></div>
+      <div class="speaker-card"><small>计时</small><strong id="timer">00:00</strong></div>
+    </aside>
+    <script src="./deck.js"></script>
+  </body>
+</html>

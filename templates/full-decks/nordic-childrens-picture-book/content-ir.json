@@ -1,0 +1,83 @@
+{
+  "title": "回不去的小时候",
+  "audience": "怀旧主题分享 / 儿童绘本风内容 / 情绪表达型 PPT",
+  "tone": "极简手绘卡通插画 + 北欧儿童绘本风 + 轻松幽默",
+  "features": {
+    "gesture": "off",
+    "presenterMode": true,
+    "editable": true,
+    "typstHandout": false
+  },
+  "assets": {
+    "backgroundDecision": {
+      "needed": true,
+      "reason": "This storybook deck is visually led; every cover/story slide needs local illustrated scene assets or hand-authored SVG backgrounds.",
+      "assetPlan": [
+        {
+          "id": "storybook-backgrounds",
+          "path": "assets/backgrounds/",
+          "slides": ["cover", "metaphor", "memory-objects", "slow-time", "quote", "grown-up-humor", "closing"],
+          "brief": "Sparse Nordic children's picture-book scenes with thick black outlines, mint, mustard, coral, sky blue, lilac, and cream paper texture.",
+          "style": "flat hand-drawn picture book",
+          "aspectRatio": "16:9"
+        }
+      ]
+    }
+  },
+  "styleLock": {
+    "themeId": "nordic-childrens-picture-book",
+    "displayName": "北欧儿童绘本风",
+    "visualRules": [
+      "粗黑色线条，4px 主描边，硬阴影",
+      "扁平色块上色，不做真实光影",
+      "薄荷绿和芥末黄为主，辅以珊瑚橙、浅蓝、淡紫",
+      "奶油纸感背景，留白充足，画面不要复杂",
+      "所有插画保持圆润、歪一点、像儿童涂鸦",
+      "文案轻松幽默，不走沉重煽情"
+    ]
+  },
+  "slides": [
+    {
+      "role": "cover",
+      "title": "回不去的小时候",
+      "layout": "nordic-story-cover",
+      "theme": "nordic-childrens-picture-book"
+    },
+    {
+      "role": "metaphor",
+      "title": "童年像一只跑丢的风筝",
+      "layout": "nordic-illustration-left",
+      "theme": "nordic-childrens-picture-book"
+    },
+    {
+      "role": "memory-objects",
+      "title": "小时候的富有，是口袋里有三颗糖",
+      "layout": "nordic-memory-grid",
+      "theme": "nordic-childrens-picture-book"
+    },
+    {
+      "role": "time",
+      "title": "时间那时很慢，慢到足够发呆",
+      "layout": "nordic-illustration-right",
+      "theme": "nordic-childrens-picture-book"
+    },
+    {
+      "role": "quote",
+      "title": "课桌里藏着一个小宇宙",
+      "layout": "nordic-quote-card",
+      "theme": "nordic-childrens-picture-book"
+    },
+    {
+      "role": "grown-up",
+      "title": "我们没有变无趣，只是笑点开始加班",
+      "layout": "nordic-illustration-right",
+      "theme": "nordic-childrens-picture-book"
+    },
+    {
+      "role": "closing",
+      "title": "回不去，但可以把它画回来",
+      "layout": "nordic-closing",
+      "theme": "nordic-childrens-picture-book"
+    }
+  ]
+}

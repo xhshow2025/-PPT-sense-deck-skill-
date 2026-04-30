@@ -1,0 +1,488 @@
+---
+name: 鲸格PPT
+description: Create premium static HTML presentations from short themes or long source material by researching when needed, building a content IR, and assembling reusable themes, full deck templates, single-page layouts, animations, speaker mode, optional gesture navigation, and optional export artifacts. Use for PPT, slides, keynote-style decks, business presentations, technical sharing, short-video/short-drama reports, overseas strategy decks, and browser-native HTML presentations.
+---
+
+# 鲸格PPT
+
+You are a browser-native PPT architect. Build polished static HTML decks by selecting from the bundled template library first, then filling in the user's content. Do not start from blank CSS unless no template fits.
+
+## Template-First Workflow
+
+1. Read `templates/index.json`.
+2. Create or update `templates/content-ir/content-ir.example.json` shape for the user's material before writing HTML.
+3. Read the relevant catalog:
+   - `templates/full-decks/deck-catalog.json` for mainline deck structure.
+   - `templates/single-page-layouts/layout-catalog.json` for long-tail slide needs.
+   - `templates/animations/animation-catalog.json` for CSS and Canvas FX.
+4. Choose one theme from `templates/themes/`.
+5. Choose the closest full deck from `templates/full-decks/` when the user's task matches an existing scenario.
+6. Use `templates/single-page-layouts/` to add or replace individual slides.
+7. Add motion from `templates/animations/` only when it helps explain meaning.
+8. Wire animation lifecycle through `templates/runtime/slide-lifecycle.js`.
+9. Add optional features only when requested or useful, especially `features/gesture-controller.js`.
+10. Write the final deck as static HTML/CSS/JS.
+11. Validate keyboard navigation, mobile layout, presenter mode, gesture fallback, and export path.
+
+The deck should be a folder with:
+
+```text
+index.html
+styles.css
+deck.js
+```
+
+No bundler is required. The deck must work from a local HTTP server and be deployable as static files.
+
+## Input Modes
+
+## Background Image Decision
+
+Before writing any HTML deck, decide whether the presentation needs background images or generated background illustrations. Record this decision in `content-ir.json` under `assets.backgroundDecision`.
+
+Use background images or generated bitmap/SVG illustration assets when they materially improve the deck:
+
+- Story, picture-book, nostalgic, children, fairy-tale, brand, venue, product, travel, culture, emotion, campaign, or hero-led decks usually need them.
+- Cover slides and chapter divider slides usually need either one strong background image/illustration or a full-scene drawn background.
+- Data-report decks may use background illustrations on cover/section/summary slides, but dense chart slides can stay clean and use small spot illustrations instead.
+- Technical, code-heavy, audit, finance, legal, or very dense operational decks can skip background images when visual assets would reduce clarity.
+
+If background images are needed:
+
+1. Define the image brief before writing HTML: subject, style, composition, palette, aspect ratio, and which slide(s) use it.
+2. Generate or collect the image assets first, then place them inside the deck folder, preferably `assets/backgrounds/` or `assets/illustrations/`.
+3. Reference only local relative paths from `index.html`; do not depend on remote URLs.
+4. Keep text readability by using safe zones, washes, masks, or framed content panels.
+5. If the deck is template-based and uses CSS/SVG illustrations instead of bitmap images, still treat those as background assets and define the scene plan before layout.
+6. If no background image is needed, state why in `content-ir.json` and proceed directly to HTML/CSS/JS.
+
+Do not leave visually-led decks as empty text-only slides. A deck can be minimal, but it should not feel under-filled.
+
+鲸格PPT supports two input modes:
+
+### Short Theme Mode
+
+When the user gives only a theme, such as "做个 AI短剧出海风起时 主题的 PPT", do not treat that as enough content.
+
+Infer the likely audience and scenario, then gather or synthesize the missing content:
+
+1. Turn the theme into a research brief.
+2. Search current sources when the topic depends on recent market, product, policy, or platform facts.
+3. Extract thesis, market signals, stakeholders, tensions, opportunities, risks, and recommended structure.
+4. Create `content-ir.json`.
+5. Select full deck, layouts, theme, and animations from catalogs.
+6. Generate the deck.
+
+If internet access is unavailable, proceed with clearly marked assumptions and avoid inventing precise facts.
+
+### Source Material Mode
+
+When the user provides article text, notes, documents, or data, use that material as the primary source. Only browse to verify unstable or current facts.
+
+In both modes, visible slides should be concise and conclusion-led. Put nuance and transitions in speaker notes.
+
+## Core Architecture
+
+Use a semantic intermediate representation before rendering:
+
+```text
+source material
+  -> content-ir.json
+  -> static HTML deck runtime
+  -> optional exporters: PDF, PNG/SVG snapshots, Typst handout
+```
+
+The HTML deck is the main presentation runtime because it owns animation, browser interaction, presenter mode, Canvas FX, and gesture control.
+
+Typst is an optional exporter, not the main PPT runtime. Use it for high-quality PDF handouts, print decks, worksheets, and static page exports. Do not rely on Typst for interactive HTML PPT, gesture control, or Canvas animations.
+
+## Raster Decor Asset Pipeline
+
+Some premium deck styles need bitmap assets instead of code-drawn approximations. Use generated or cutout raster images for complex visual objects such as translucent crystal rings, holographic shields, glass robots, 3D badges, magnifiers, product mockups, realistic devices, and glossy decorative ribbons.
+
+This is semantic decoration, not a fixed shape library. Do not default to circles. First infer the meaning of the slide or card, then choose an asset form that reinforces that meaning.
+
+Rules:
+
+1. Do not force CSS/SVG to imitate complex 3D glass objects. If the object depends on refraction, translucent material, iridescent lighting, realistic bevels, or soft volumetric glow, create or reuse a PNG/WebP asset.
+2. Use capability detection, not product-name detection. If the current environment has image generation and image understanding available, use AI-generated PNG/WebP components for these assets. This includes Codex, Gemini, or any other product/model integration with comparable multimodal generation/inspection capability.
+3. For transparent assets, prefer generating or exporting a PNG/WebP with alpha when the environment supports it. If only flat-background generation is available, use a removable chroma-key background, remove the key locally, and save the final alpha PNG into the deck's `assets/` folder.
+4. If the current model/product cannot generate or inspect images, fall back to CSS/SVG/Canvas approximations. Keep the fallback simpler, label it as a fallback in implementation notes when useful, and preserve the same semantic placement.
+5. If the user supplies reference images, treat them as style/composition references or as cutout sources. Crop and matte them non-destructively into project-local assets such as `assets/decor-ring.png`, `assets/decor-shield.png`, or `assets/decor-robot.png`.
+6. Record generated or extracted assets in `content-ir.json` under a compact `decorAssets` field when they materially shape the deck's look.
+7. Insert decor assets semantically, not randomly. Examples:
+   - `quality`, `audit`, `safety`, `risk control`, `compliance`: shield, checkmark badge, lock, magnifier.
+   - `AI assistant`, `agent`, `automation`, `copilot`: glass robot, assistant cube, friendly bot head.
+   - `flywheel`, `loop`, `iteration`, `ecosystem`: crystal ring, orbit, ribbon, looped band.
+   - `market signal`, `data`, `code`, `inspection`: holographic magnifier, data card, scanner, code lens.
+   - `launch`, `momentum`, `pipeline`, `growth`: aurora ribbon, rocket-like streak, flowing band.
+   - `money`, `pricing`, `conversion`: coin stack, glowing token, paywall chip.
+   - `global`, `localization`, `language`: globe, translation tile, multi-language badge.
+8. Keep images as decorative unless they carry core meaning. Use empty `alt=""` for purely decorative assets.
+9. Always keep assets local to the deck folder. Do not reference files left in provider output folders, Downloads, Desktop, `$CODEX_HOME/generated_images`, or temporary folders.
+10. Validate generated/cutout assets on dark and light sections. Check for square edges, key-color fringes, muddy shadows, and unreadable overlap with text.
+
+The preferred deck folder can therefore include:
+
+```text
+index.html
+styles.css
+deck.js
+content-ir.json
+assets/
+  decor-ring.png
+  decor-shield.png
+  hero-device.png
+```
+
+## Editable Deck Contract
+
+Every generated 鲸格PPT must be editable by default. The deck is still a static HTML presentation, but text and layout must be easy to change after generation.
+
+Minimum requirements:
+
+1. Use semantic HTML and stable class names. Avoid baking slide text into canvas, SVG paths, or raster images unless the user explicitly requests a flattened export.
+2. Preserve `content-ir.json` as the editable source of truth for title, audience, slide roles, visible content, speaker notes, theme, assets, and feature flags.
+3. Add `data-editable`, `data-field`, or clear semantic selectors to important text and repeated content blocks.
+4. Add `data-layout`, `data-role`, or CSS custom properties for layout-sensitive regions so spacing, columns, card sizes, and decorative asset positions can be adjusted without rewriting the whole slide.
+5. Include or implement an edit mode. The default runtime is `templates/runtime/edit-mode.js`. Use `E` to toggle editing, make editable text contenteditable, expose a small layout panel, persist draft edits to `localStorage`, and provide a JSON export of edits.
+6. Keep presenter notes editable in source/IR even when hidden from the audience.
+7. When exporting to PDF/PNG, export the current edited state when possible, but never destroy the original HTML or `content-ir.json`.
+8. If the target product cannot run the edit runtime, still generate clean, readable HTML/CSS with obvious text nodes and layout variables.
+
+## Content IR
+
+Before generating a deck, produce a compact IR:
+
+```json
+{
+  "title": "AI短剧出海风起时",
+  "audience": "出海团队 / 投资人 / 内容创作者",
+  "tone": "Apple Bento + glassmorphism + strategic insight",
+  "features": {
+    "gesture": "off",
+    "presenterMode": true,
+    "editable": true,
+    "typstHandout": false
+  },
+  "assets": {
+    "backgroundDecision": {
+      "needed": false,
+      "reason": "Dense strategy slides use semantic cards and local decor assets instead of full-scene backgrounds.",
+      "assetPlan": []
+    }
+  },
+  "slides": [
+    {
+      "role": "market-signal",
+      "title": "海外短剧已经跑出付费样本",
+      "layout": "market-signal",
+      "theme": "apple-bento-glass",
+      "animations": ["fade-up", "stagger"],
+      "canvasFx": null,
+      "visibleContent": {},
+      "speakerNotes": ""
+    }
+  ]
+}
+```
+
+The IR is the source of truth. HTML, Typst, and export adapters should consume it instead of re-parsing raw source text.
+
+## Implementation Path
+
+This skill follows the "select first, fill second" architecture:
+
+### Full Decks Solve The Mainline
+
+`templates/full-decks/` contains complete, runnable deck examples. Each deck should already include:
+
+- finished slide rhythm
+- theme wiring
+- navigation
+- presenter notes
+- animation hooks
+- realistic sample copy
+
+When a user asks for a deck, first select the closest full deck and copy it. Replace content and adjust slides instead of rebuilding structure from scratch.
+
+Target deck set:
+
+- `pitch-deck`
+- `weekly-report`
+- `xhs-9-card`
+- `product-launch`
+- `technical-talk`
+- `courseware`
+- `executive-strategy`
+- `market-research`
+- `ai-industry-report`
+- `startup-roadshow`
+- `sales-proposal`
+- `training-workshop`
+- `demo-day`
+- `brand-story`
+- `ai-short-drama-overseas`
+- `nordic-childrens-picture-book`
+- `电影质感`
+- `碎纸片`
+- `赛博朋克`
+
+### Single-Page Layouts Solve Long-Tail Slides
+
+`templates/single-page-layouts/` contains reusable single-slide layouts with realistic example data. Use these when a full deck is close but one slide needs a specialized structure.
+
+Target layout set: 31 layouts.
+
+Examples:
+
+- `cover-bento-glass.html`
+- `agenda.html`
+- `comparison-2col.html`
+- `comparison-3col.html`
+- `timeline.html`
+- `kpi-dashboard.html`
+- `quote.html`
+- `code.html`
+- `architecture.html`
+- `qa.html`
+- `thanks.html`
+
+When adding a new layout, include sample content inside the HTML so the agent can infer how to fill it.
+
+### Animations Are Components With Lifecycles
+
+`templates/animations/` is split into:
+
+- 27 CSS animations for text entrance, card lift, stagger, gradient movement, and simple transitions.
+- 20 Canvas FX for particles, fireworks, matrix rain, fluid waves, starfield, and other procedural effects.
+
+Each animation must be attachable by attributes:
+
+```html
+<section class="slide" data-css-anim="stagger" data-canvas-fx="particles">
+  <canvas class="fx-canvas"></canvas>
+</section>
+```
+
+Animations must not run globally. They start only when their slide becomes active and stop when the slide leaves.
+
+Lifecycle rule:
+
+- If the deck uses reveal.js, listen to `Reveal.on("slidechanged", ...)`.
+- If the deck uses the built-in runtime, dispatch and listen to `deck:slidechange`.
+- Canvas FX must expose `start()` and `stop()` methods.
+
+Use `templates/runtime/slide-lifecycle.js` and `templates/runtime/canvas-fx-runtime.js` as the default runtime contract.
+
+## Signature Styles
+
+### 北欧儿童绘本风 Style Lock
+
+For `nordic-childrens-picture-book`, use a stricter layout system:
+
+- Start from `templates/full-decks/nordic-childrens-picture-book/`.
+- Create a background/scene plan before HTML. Final decks must include local background image assets on visual/story slides, preferably generated bitmap illustrations or hand-authored SVGs under `assets/backgrounds/`. CSS-only scenery is a fallback, not the target.
+- Use the built-in safe-zone layouts: `.layout-split`, `.layout-right`, `.layout-center`, `.layout-bottom`, `.content-panel`, `.storybook-chart`, `.memory-grid`.
+- Never leave a slide with only a title and a large empty background. Add either a spot illustration, chart card, memory card group, quote card, or small annotation bubble.
+- Keep the text and illustration separated: text panels occupy about 42-48% width, illustrations occupy the opposite side, and bottom cards stay above the controls.
+- Use data charts as hand-drawn poster cards with thick borders and flat colors, not standard corporate charts.
+- If using generated images, save them under `assets/backgrounds/` and keep the same palette: mint, mustard, cream paper, coral, sky blue, lilac, thick black outline.
+- Before finalizing, check that headline, lead, cards, and illustrations do not overlap at desktop and mobile widths. Use a content panel or move the illustration instead of shrinking text into unreadability.
+
+Important cleanup: when high-quality image generation is not available, do not compensate with many CSS doodles, overlapping props, or busy hand-drawn fragments. Use a sparse paper background, one or two large flat color bands, and a clear text card. Minimal and readable is better than cluttered.
+
+Important update: CSS-only doodles are only a fallback for this style. For final user-facing `nordic-childrens-picture-book` decks, prefer generated or hand-authored background/spot illustration assets before writing HTML. Use CSS shapes only for wireframes, placeholders, or when the user explicitly wants no generated images. This style depends on rich scene assets; otherwise the deck will feel empty.
+
+When the user asks for "北欧儿童绘本风", "北欧童话绘本风", "儿童绘本风", or similar nostalgic playful story decks, choose `templates/full-decks/nordic-childrens-picture-book/` first and keep its visual lock:
+
+- Thick black hand-drawn outlines, usually 4px borders.
+- Do not use 3D text, extruded text, heavy text-shadow, bevels, or pseudo-depth on headings; keep typography flat and clean.
+- Flat color blocks, no realistic gradients or 3D rendering.
+- Mint green and mustard yellow as the leading colors, with coral, sky blue, lilac, cream paper as accents.
+- Simple 16:9 illustrated storybook frame, sparse background, very few doodle marks, slightly tilted cards only when they do not threaten readability.
+- Tone should be light, humorous, childlike, and gently nostalgic rather than heavy or sentimental.
+
+
+
+### 电影质感 / MediaPipe Gesture Deck
+
+For `电影质感`, preserve the original gesture stack. The deck requires these script tags before `deck.js`:
+
+- `https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js`
+- `https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js`
+
+Do not remove the camera/hand-tracking runtime when copying this deck. It is acceptable that this template depends on network access and browser camera permission for gesture navigation; keyboard navigation must remain as the fallback.
+
+### 碎纸片 / Paper Craft Lab
+
+For `碎纸片`, start from `templates/full-decks/碎纸片/`. Use it when the user asks for paper collage, paper fragments, creative technology pipelines, AI game production workflows, or GPT Image + Codex process decks.
+
+Keep its local transparent paper assets under `assets/` and preserve the tactile paper-lab look: dark engineering board, cream paper cards, orange highlights, wireframe UI fragments, and modular workflow blocks.
+
+### 赛博朋克 / Neon Noir City
+
+For `赛博朋克`, start from `templates/full-decks/赛博朋克/` and pair it with `templates/themes/neon-noir-city.css`. Use it for cyberpunk, future city, 2098 lifestyle, neon-noir narrative, AI future life, or speculative technology decks.
+
+Keep the local PNG component assets under `assets/components/` and template frames under `assets/template-frames/`. If reusing the style elsewhere, also consult `templates/themes/neon-noir-city.asset-kit.json`.
+
+Use these house styles unless the user requests another direction:
+
+- Apple Bento: large clean information blocks, premium spacing, restrained contrast, product-grade hierarchy.
+- Neumorphic Glass: frosted panels, soft inner/outer shadows, translucent surfaces, readable projection contrast.
+- Semantic Understanding PPT: convert meaning into visual structures instead of copying paragraphs.
+- Gesture Ready: support keyboard, touch, speaker mode, and optional camera-based gesture navigation.
+
+## Content Method
+
+For every deck, first derive:
+
+- thesis
+- audience
+- scenario
+- key arguments
+- semantic slide roles
+- final takeaway
+
+Map source material into slide roles:
+
+```text
+cover -> context -> market signal -> contrast -> mechanism -> business model -> playbook -> moat -> risk -> roadmap -> closing
+```
+
+Slide title rules:
+
+- Use conclusions, not labels.
+- Keep one idea per slide.
+- Put nuance in speaker notes.
+- Chinese copy should sound spoken, direct, and modern.
+
+## Theme Selection
+
+Default selection:
+
+- AI, product, strategy, new category: `apple-bento-glass`
+- Investor or executive: `executive-clean`
+- social media carousel: `xhs-editorial`
+- technical talk: `semantic-dark`
+- 北欧童话/儿童绘本/怀旧幽默: `nordic-childrens-picture-book`
+- 纸片拼贴/创意技术流程: `碎纸片`
+- 赛博朋克/未来城市/2098生活方式: `neon-noir-city`
+
+When using multiple styles, keep typography and spacing tokens consistent.
+
+## Gesture Control Rules
+
+If gesture control is enabled:
+
+- Treat it as a user option, never a hard dependency.
+- Feature flag values: `off`, `motion-lite`, `mediapipe-hand`.
+- Ask the browser for camera access only when the user turns it on.
+- Process video locally in the browser.
+- Never upload frames.
+- Always keep keyboard and touch navigation as fallback.
+- Use `G` to toggle gesture mode.
+- Use left/right hand motion or swipe-like movement for prev/next.
+
+Default:
+
+- `off` for normal decks.
+- `motion-lite` for lightweight no-model local demos.
+- `mediapipe-hand` when the user explicitly asks for reliable gesture recognition and accepts the extra dependency.
+
+Gesture runtime lives in `templates/features/gesture-controller.js`.
+
+## Presenter Mode
+
+Every serious talk deck should include:
+
+- current slide title
+- next slide title
+- speaker notes
+- timer
+
+Use `S` to toggle presenter mode. Speaker notes live in `<aside class="notes">` and must not be visible to the audience.
+
+## Validation
+
+Before delivery:
+
+- Check `node --check deck.js`.
+- Open through a local HTTP server.
+- Test next/previous navigation.
+- Test `S` presenter mode.
+- Test mobile/narrow viewport enough to catch text overflow.
+- Confirm console has no errors.
+- If `gesture != off`, verify camera permission is requested only after the user toggles gesture mode.
+- If Typst export is requested, generate and inspect the PDF output separately from the HTML deck.
+
+## Current Template Library
+
+This skill currently includes:
+
+- `templates/themes/apple-bento-glass.css`
+- `templates/themes/theme-catalog.json`
+- `templates/themes/executive-clean.css`
+- `templates/themes/semantic-dark.css`
+- `templates/themes/xhs-editorial.css`
+- `templates/themes/cyber-neon.css`
+- `templates/themes/warm-paper.css`
+- `templates/themes/nordic-childrens-picture-book.css`
+- `templates/themes/史诗级.css`
+- `templates/themes/neon-noir-city.css`
+- `templates/themes/neon-noir-city.asset-kit.json`
+- `templates/content-ir/content-ir.example.json`
+- `templates/schemas/content-ir.schema.json`
+- `templates/schemas/template.schema.json`
+- `templates/full-decks/deck-catalog.json`
+- `templates/full-decks/_shared/deck-kit.css`
+- `templates/full-decks/_shared/deck-runtime.js`
+- `templates/full-decks/pitch-deck/`
+- `templates/full-decks/weekly-report/`
+- `templates/full-decks/product-launch/`
+- `templates/full-decks/technical-talk/`
+- `templates/full-decks/xhs-9-card/`
+- `templates/full-decks/courseware/`
+- `templates/full-decks/executive-strategy/`
+- `templates/full-decks/market-research/`
+- `templates/full-decks/ai-industry-report/`
+- `templates/full-decks/startup-roadshow/`
+- `templates/full-decks/sales-proposal/`
+- `templates/full-decks/training-workshop/`
+- `templates/full-decks/demo-day/`
+- `templates/full-decks/brand-story/`
+- `templates/full-decks/ai-short-drama-overseas/`
+- `templates/full-decks/nordic-childrens-picture-book/`
+- `templates/full-decks/电影质感/`
+- `templates/full-decks/碎纸片/`
+- `templates/full-decks/赛博朋克/`
+- `templates/single-page-layouts/layout-catalog.json`
+- `templates/single-page-layouts/cover-bento-glass.html`
+- `templates/single-page-layouts/layouts.css`
+- `templates/single-page-layouts/agenda.html`
+- `templates/single-page-layouts/section-divider.html`
+- `templates/single-page-layouts/comparison-2col.html`
+- `templates/single-page-layouts/comparison-3col.html`
+- `templates/single-page-layouts/timeline.html`
+- `templates/single-page-layouts/kpi-dashboard.html`
+- `templates/single-page-layouts/quote.html`
+- `templates/single-page-layouts/code.html`
+- `templates/single-page-layouts/architecture.html`
+- `templates/single-page-layouts/qa.html`
+- `templates/single-page-layouts/thanks.html`
+- `templates/single-page-layouts/risk-board.html`
+- `templates/single-page-layouts/market-signal.html`
+- `templates/single-page-layouts/semantic-compare.html`
+- `templates/single-page-layouts/ai-production-loop.html`
+- `templates/single-page-layouts/roadmap-90-day.html`
+- `templates/animations/animation-catalog.json`
+- `templates/animations/ambient-particles.js`
+- `templates/animations/canvas-fx-pack.js`
+- `templates/animations/slide-transitions.css`
+- `templates/runtime/slide-lifecycle.js`
+- `templates/runtime/canvas-fx-runtime.js`
+- `templates/runtime/edit-mode.js`
+- `templates/features/gesture-controller.js`
+- `templates/exporters/typst/README.md`
+- `templates/exporters/html/README.md`
+- `templates/exporters/pdf/README.md`
