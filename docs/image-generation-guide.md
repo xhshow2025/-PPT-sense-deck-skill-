@@ -40,7 +40,36 @@
 - `content-ir.json` 里应记录 `assets.imageGeneration`、`assets.spotIllustrations`、`assets.firstThreeSlideTrial`。
 - SVG 只用于图标、结构图、线框、印章、分隔符、模板框，不应作为最终插图替代品。
 
-## 非 Codex 产品
+## Claude Code / OpenCode / 非 Codex 产品
+
+鲸格PPT可以按“文件夹技能”方式兼容 Claude Code、OpenCode 和其他代码型 AI：把 `SKILL.md`、`templates/`、`docs/` 放到它们能读取的工作区，让 agent 按说明选择模板、生成 `content-ir.json`、写静态 HTML/CSS/JS。
+
+差异主要在工具层：
+
+- 有图片模型/插件：直接生成 PNG/WebP 到 `assets/`。
+- 有命令行或 API 图片模型，例如 z-image：通过项目配置调用。
+- 没有图片模型：输出 `image-prompts.json`，同时用 SVG/CSS 做信息图 fallback。
+
+推荐配置：
+
+```json
+{
+  "imageProvider": {
+    "name": "z-image",
+    "mode": "command-or-api",
+    "model": "user-selected",
+    "apiBaseEnv": "Z_IMAGE_API_BASE",
+    "apiKeyEnv": "Z_IMAGE_API_KEY",
+    "commandTemplate": "z-image generate --prompt-file {promptFile} --output {outputPath}",
+    "outputFormat": "png",
+    "supportsAlpha": false,
+    "supportsImageReference": true,
+    "fallbackStrategy": "image-prompts-json"
+  }
+}
+```
+
+不要把 API Key 写进 skill 或 deck 文件，只写环境变量名。
 
 如果当前产品能生成图：
 

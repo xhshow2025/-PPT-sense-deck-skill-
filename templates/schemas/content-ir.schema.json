@@ -43,6 +43,21 @@
             "providerHint": { "type": "string" },
             "preferRaster": { "type": "boolean" },
             "assetStrategy": { "enum": ["cinematic-images", "png-components", "svg-css-fallback", "hybrid"] },
+            "providerConfig": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "mode": { "type": "string" },
+                "model": { "type": "string" },
+                "apiBaseEnv": { "type": "string" },
+                "apiKeyEnv": { "type": "string" },
+                "commandTemplate": { "type": "string" },
+                "outputFormat": { "enum": ["png", "webp", "jpg", "jpeg"] },
+                "supportsAlpha": { "type": "boolean" },
+                "supportsImageReference": { "type": "boolean" },
+                "fallbackStrategy": { "enum": ["image-prompts-json", "svg-css-fallback", "manual-assets"] }
+              }
+            },
             "svgPolicy": { "type": "string" }
           }
         },

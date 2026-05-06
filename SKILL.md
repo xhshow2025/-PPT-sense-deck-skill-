@@ -113,9 +113,50 @@ Use capability detection instead of product-name detection.
 
 - Codex with image generation: use the available image generation skill/tool directly, save images into the deck folder, then wire local paths into HTML.
 - ChatGPT or GPT products with image generation: request image generation through the available tool, keep an asset manifest, and avoid provider-specific wording unless the user named a provider.
+- Claude Code, OpenCode, and other code-agent products: treat 鲸格PPT as a portable folder skill. Read `SKILL.md`, catalogs, schemas, and templates from this folder, then write static deck files in the target workspace. Use their own browser preview, shell, image tool, or MCP/plugin conventions when available.
 - Products with image understanding but no image generation: use user-supplied references, crop/cutout when possible, and return a prompt pack for missing assets.
 - Products with no filesystem: return `index.html`, `styles.css`, `deck.js`, `content-ir.json`, and an `image-prompts.json` manifest so the user or host product can generate and attach assets.
 - Products with no image generation at all: use sparse, high-quality layout plus SVG/CSS/Canvas assets for diagrams, icons, frames, charts, and simple editorial systems. Label missing cinematic or PNG-component assets as pending prompts instead of pretending SVG doodles have the same visual quality.
+
+## Image Model Configuration
+
+Support configurable image providers instead of hard-coding one image model. If the user names `z-image`, GPT Image, Image2, Flux, Ideogram, Midjourney, Stable Diffusion, local ComfyUI, or another provider, record it in `content-ir.json` under `assets.imageGeneration.providerConfig` and use the available local integration.
+
+Recommended project-level config file:
+
+```json
+{
+  "imageProvider": {
+    "name": "z-image",
+    "mode": "command-or-api",
+    "model": "user-selected",
+    "apiBaseEnv": "Z_IMAGE_API_BASE",
+    "apiKeyEnv": "Z_IMAGE_API_KEY",
+    "commandTemplate": "z-image generate --prompt-file {promptFile} --output {outputPath}",
+    "outputFormat": "png",
+    "supportsAlpha": false,
+    "supportsImageReference": true,
+    "fallbackStrategy": "image-prompts-json"
+  }
+}
+```
+
+Rules:
+
+1. Never write API keys into deck files, `content-ir.json`, or committed config. Reference environment variables only.
+2. If a provider command/API is configured and callable, generate assets directly into `assets/backgrounds/`, `assets/spot/`, or `assets/decor/`.
+3. If the provider is named but not callable in the current environment, generate `image-prompts.json` with paths and prompts so the user can run the provider externally.
+4. Keep image prompts provider-neutral first, then add a short provider-specific adapter note only when needed.
+5. Preserve the `assetStrategy`: `cinematic-images`, `png-components`, `svg-css-fallback`, or `hybrid`.
+
+## Existing PPT and Template Modes
+
+鲸格PPT can work from existing presentations or templates when the environment can read the files. Keep the user's requested preservation level explicit.
+
+1. Existing PPT beautification, template-preserving: improve copy hierarchy, spacing, alignment, icon/PNG component placement, chart readability, notes, and image prompts while preserving the original master/theme/layout identity. Do not replace the template, page order, logo system, brand colors, or core layout unless the user explicitly allows it.
+2. Existing template production: use a supplied `.pptx`, HTML deck, theme CSS, brand guide, or screenshots as the design source. Extract layout rules, typography, colors, component grammar, and safe zones, then create new slides that look native to that template.
+3. HTML-first rebuild from PPT: when native PPT editing is unavailable, use the PPT/template as visual reference and create a browser-native HTML deck with matching style. Clearly state that this is a rebuild, not an in-place `.pptx` edit.
+4. Native `.pptx` output: if a presentation-editing tool/plugin is available, edit or generate `.pptx` directly and render-check the result. If not, deliver HTML plus export prompts or a handoff plan.
 
 鲸格PPT supports two input modes:
 

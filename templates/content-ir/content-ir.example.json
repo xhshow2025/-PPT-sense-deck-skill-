@@ -18,6 +18,18 @@
       "providerHint": "capability-detected",
       "preferRaster": true,
       "assetStrategy": "png-components",
+      "providerConfig": {
+        "name": "z-image",
+        "mode": "command-or-api",
+        "model": "user-selected",
+        "apiBaseEnv": "Z_IMAGE_API_BASE",
+        "apiKeyEnv": "Z_IMAGE_API_KEY",
+        "commandTemplate": "z-image generate --prompt-file {promptFile} --output {outputPath}",
+        "outputFormat": "png",
+        "supportsAlpha": false,
+        "supportsImageReference": true,
+        "fallbackStrategy": "image-prompts-json"
+      },
       "svgPolicy": "SVG is only for diagrams, icons, wireframes, template frames, or fallback when image generation is unavailable."
     },
     "backgroundDecision": {
