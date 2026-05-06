@@ -17,6 +17,7 @@
       "mode": "auto",
       "providerHint": "capability-detected",
       "preferRaster": true,
+      "assetStrategy": "png-components",
       "svgPolicy": "SVG is only for diagrams, icons, wireframes, template frames, or fallback when image generation is unavailable."
     },
     "backgroundDecision": {

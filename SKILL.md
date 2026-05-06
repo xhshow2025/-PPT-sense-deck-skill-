@@ -53,6 +53,23 @@ Use generated bitmap image assets when they materially improve the deck:
 
 SVG is not a substitute for requested illustrations. Use SVG only for diagrams, icons, simple symbols, wireframes, template frames, or when image generation is unavailable or explicitly disabled. If image generation is available, do not stop at an SVG-only visual deck when the user wanted illustration.
 
+## Visual Asset Ladder
+
+Choose the right asset level for the deck instead of forcing every theme into the same cinematic treatment.
+
+1. Cinematic raster images: use for the flagship `电影质感` style, story scenes, characters, places, cultural narratives, brand films, product hero moments, and emotionally led decks. These usually need generated PNG/WebP backgrounds, scene fragments, character details, props, and texture closeups.
+2. PNG/WebP components: use for most premium business, product, strategy, training, technology, and report decks. These are reusable design components such as glass shields, 3D badges, robots, devices, magnifiers, data tiles, paper fragments, neon signs, coins, route markers, or material swatches. They often sit inside cards or side rails and should not dominate the whole slide.
+3. SVG/CSS/Canvas assets: use for diagrams, icons, structural graphics, frames, HUD lines, simple editorial marks, charts, wireframes, and environments without image generation. This is a valid production path for information-dense decks and a formal fallback for image-limited AI products.
+
+Record the chosen strategy in `content-ir.json` under `assets.imageGeneration.assetStrategy`:
+
+- `cinematic-images` for hero scene/image-led decks.
+- `png-components` for component-led premium decks.
+- `svg-css-fallback` when no image model is available or the deck is intentionally code-native.
+- `hybrid` when a deck mixes a few generated hero images with SVG/CSS diagrams and PNG components.
+
+PNG components and SVG/CSS can occupy the same semantic slot, but they are not the same asset type. Example: a risk card may use an SVG line shield in fallback mode, or a transparent PNG glass shield when image generation/cutout is available.
+
 If background images are needed:
 
 1. Define the image brief before writing HTML: subject, style, composition, palette, aspect ratio, and which slide(s) use it.
@@ -98,7 +115,7 @@ Use capability detection instead of product-name detection.
 - ChatGPT or GPT products with image generation: request image generation through the available tool, keep an asset manifest, and avoid provider-specific wording unless the user named a provider.
 - Products with image understanding but no image generation: use user-supplied references, crop/cutout when possible, and return a prompt pack for missing assets.
 - Products with no filesystem: return `index.html`, `styles.css`, `deck.js`, `content-ir.json`, and an `image-prompts.json` manifest so the user or host product can generate and attach assets.
-- Products with no image generation at all: use sparse, high-quality layout; SVG only for diagrams/icons/template frames; label illustration requests as pending assets instead of pretending SVG doodles are final illustrations.
+- Products with no image generation at all: use sparse, high-quality layout plus SVG/CSS/Canvas assets for diagrams, icons, frames, charts, and simple editorial systems. Label missing cinematic or PNG-component assets as pending prompts instead of pretending SVG doodles have the same visual quality.
 
 鲸格PPT supports two input modes:
 
@@ -213,6 +230,7 @@ Before generating a deck, produce a compact IR:
       "mode": "auto",
       "providerHint": "capability-detected",
       "preferRaster": true,
+      "assetStrategy": "png-components",
       "svgPolicy": "SVG is only for diagrams, icons, wireframes, or fallback when image generation is unavailable."
     },
     "backgroundDecision": {

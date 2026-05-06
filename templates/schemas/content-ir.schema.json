@@ -42,6 +42,7 @@
             "mode": { "enum": ["auto", "required", "off", "fallback-prompts"] },
             "providerHint": { "type": "string" },
             "preferRaster": { "type": "boolean" },
+            "assetStrategy": { "enum": ["cinematic-images", "png-components", "svg-css-fallback", "hybrid"] },
             "svgPolicy": { "type": "string" }
           }
         },

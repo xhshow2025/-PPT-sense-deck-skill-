@@ -13,7 +13,7 @@
 
 ## Image Generation
 
-For visual-led decks, 鲸格PPT should automatically use the current product's available image generation capability, save local PNG/WebP assets into the deck folder, and avoid using SVG as a substitute for requested illustrations. See `docs/image-generation-guide.md` for prompt examples and non-Codex fallback modes.
+For visual-led decks, 鲸格PPT should automatically choose the right asset strategy: cinematic raster images for story/hero decks, PNG/WebP components for most premium business decks, and SVG/CSS/Canvas as a formal fallback or information-graphic path when no image model is available. See `docs/image-generation-guide.md` for prompt examples and non-Codex fallback modes.
 
 ## Visibility
 
