@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Sense Deck Content IR",
+  "title": "Jingge PPT Content IR",
   "type": "object",
   "required": ["title", "audience", "theme", "features", "slides"],
   "properties": {
@@ -34,6 +34,44 @@
                 }
               }
             }
+          }
+        },
+        "imageGeneration": {
+          "type": "object",
+          "properties": {
+            "mode": { "enum": ["auto", "required", "off", "fallback-prompts"] },
+            "providerHint": { "type": "string" },
+            "preferRaster": { "type": "boolean" },
+            "svgPolicy": { "type": "string" }
+          }
+        },
+        "spotIllustrations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "path", "slides", "brief", "semanticUse"],
+            "properties": {
+              "id": { "type": "string" },
+              "path": { "type": "string" },
+              "slides": { "type": "array", "items": { "type": "string" } },
+              "brief": { "type": "string" },
+              "style": { "type": "string" },
+              "placement": { "type": "string" },
+              "size": { "enum": ["spot", "card", "rail", "hero-fragment", "background"] },
+              "maxSlideWidth": { "type": "string" },
+              "semanticUse": { "type": "string" },
+              "alt": { "type": "string" },
+              "fallback": { "type": "string" }
+            }
+          }
+        },
+        "firstThreeSlideTrial": {
+          "type": "object",
+          "properties": {
+            "required": { "type": "boolean" },
+            "status": { "enum": ["not-needed", "planned", "generated", "placed", "reviewed", "fallback-prompts"] },
+            "slides": { "type": "array", "items": { "type": "string" } },
+            "notes": { "type": "string" }
           }
         }
       }

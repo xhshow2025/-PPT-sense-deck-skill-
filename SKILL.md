@@ -10,19 +10,21 @@ You are a browser-native PPT architect. Build polished static HTML decks by sele
 ## Template-First Workflow
 
 1. Read `templates/index.json`.
-2. Create or update `templates/content-ir/content-ir.example.json` shape for the user's material before writing HTML.
-3. Read the relevant catalog:
+2. Detect visual capabilities before writing HTML: image generation, image understanding, local file writing, alpha/cutout support, browser preview, and export support.
+3. Create or update `templates/content-ir/content-ir.example.json` shape for the user's material before writing HTML. Include `assets.imageGeneration`, `assets.backgroundDecision`, `assets.spotIllustrations`, and `assets.firstThreeSlideTrial` whenever the deck is visual-led.
+4. Read the relevant catalog:
    - `templates/full-decks/deck-catalog.json` for mainline deck structure.
    - `templates/single-page-layouts/layout-catalog.json` for long-tail slide needs.
    - `templates/animations/animation-catalog.json` for CSS and Canvas FX.
-4. Choose one theme from `templates/themes/`.
-5. Choose the closest full deck from `templates/full-decks/` when the user's task matches an existing scenario.
-6. Use `templates/single-page-layouts/` to add or replace individual slides.
-7. Add motion from `templates/animations/` only when it helps explain meaning.
-8. Wire animation lifecycle through `templates/runtime/slide-lifecycle.js`.
-9. Add optional features only when requested or useful, especially `features/gesture-controller.js`.
-10. Write the final deck as static HTML/CSS/JS.
-11. Validate keyboard navigation, mobile layout, presenter mode, gesture fallback, and export path.
+5. Choose one theme from `templates/themes/`.
+6. Choose the closest full deck from `templates/full-decks/` when the user's task matches an existing scenario.
+7. Use `templates/single-page-layouts/` to add or replace individual slides.
+8. Generate or collect required bitmap assets before final layout when image generation is available and the deck calls for illustrations.
+9. Add motion from `templates/animations/` only when it helps explain meaning.
+10. Wire animation lifecycle through `templates/runtime/slide-lifecycle.js`.
+11. Add optional features only when requested or useful, especially `features/gesture-controller.js`.
+12. Write the final deck as static HTML/CSS/JS.
+13. Validate keyboard navigation, mobile layout, presenter mode, gesture fallback, image placement, and export path.
 
 The deck should be a folder with:
 
@@ -36,16 +38,20 @@ No bundler is required. The deck must work from a local HTTP server and be deplo
 
 ## Input Modes
 
-## Background Image Decision
+## Image-First Visual Contract
 
-Before writing any HTML deck, decide whether the presentation needs background images or generated background illustrations. Record this decision in `content-ir.json` under `assets.backgroundDecision`.
+Before writing any HTML deck, decide whether the presentation needs generated or collected raster images. Record this decision in `content-ir.json` under `assets.imageGeneration`, `assets.backgroundDecision`, and, when relevant, `assets.spotIllustrations`.
 
-Use background images or generated bitmap/SVG illustration assets when they materially improve the deck:
+When the user asks for `图文并茂`, `插图`, `配图`, `电影质感`, `王昭君风`, `绘本`, `故事感`, `产品视觉`, `品牌感`, `海报感`, or similar visual-led wording, automatically use real image generation if the current environment provides it. Do not wait for the user to say "use image2" or name a provider.
+
+Use generated bitmap image assets when they materially improve the deck:
 
 - Story, picture-book, nostalgic, children, fairy-tale, brand, venue, product, travel, culture, emotion, campaign, or hero-led decks usually need them.
 - Cover slides and chapter divider slides usually need either one strong background image/illustration or a full-scene drawn background.
 - Data-report decks may use background illustrations on cover/section/summary slides, but dense chart slides can stay clean and use small spot illustrations instead.
 - Technical, code-heavy, audit, finance, legal, or very dense operational decks can skip background images when visual assets would reduce clarity.
+
+SVG is not a substitute for requested illustrations. Use SVG only for diagrams, icons, simple symbols, wireframes, template frames, or when image generation is unavailable or explicitly disabled. If image generation is available, do not stop at an SVG-only visual deck when the user wanted illustration.
 
 If background images are needed:
 
@@ -53,10 +59,46 @@ If background images are needed:
 2. Generate or collect the image assets first, then place them inside the deck folder, preferably `assets/backgrounds/` or `assets/illustrations/`.
 3. Reference only local relative paths from `index.html`; do not depend on remote URLs.
 4. Keep text readability by using safe zones, washes, masks, or framed content panels.
-5. If the deck is template-based and uses CSS/SVG illustrations instead of bitmap images, still treat those as background assets and define the scene plan before layout.
+5. If the deck is template-based and uses CSS/SVG illustrations instead of bitmap images, mark that as a fallback in `assets.imageGeneration.svgPolicy` and keep the layout simple.
 6. If no background image is needed, state why in `content-ir.json` and proceed directly to HTML/CSS/JS.
 
 Do not leave visually-led decks as empty text-only slides. A deck can be minimal, but it should not feel under-filled.
+
+## Spot Illustration Batch Pipeline
+
+Many decks need several small images rather than one or two huge illustrations. When a deck is visual-led but not every slide should be a hero poster, create a batch of semantic spot illustrations.
+
+Default batch rules:
+
+1. Generate 6-12 small PNG/WebP assets for a 10-15 slide deck, or 2-4 small assets for the first three-slide trial.
+2. Store them under `assets/spot/` with stable names such as `spot-market-signal.png`, `spot-user-pain.png`, or `spot-cost-lever.png`.
+3. Each spot illustration must map to a point, card, keyword, quote, or mechanism. Do not scatter generic decoration.
+4. Outside cover and section-divider slides, a spot illustration should usually occupy about 18-32% of slide width, or live inside a card/side rail. Avoid images that take one-third to one-half of the slide unless the layout explicitly calls for a main visual.
+5. Prefer small scenes, props, icons with material depth, character gestures, object clusters, UI fragments, or metaphorical still lifes. Keep a unified art direction across the batch.
+6. Keep text editable and visible. Small images may sit near card corners, gutters, right rails, bottom strips, or behind a masked wash, but they must not occlude title or body text.
+7. Record each asset in `content-ir.json` under `assets.spotIllustrations` with `id`, `path`, `slides`, `brief`, `style`, `placement`, `size`, and `maxSlideWidth`.
+8. If the environment cannot generate images, output an `image-prompts.json` manifest with the same briefs and use simple local fallback shapes only as placeholders.
+
+## First Three-Slide Visual Trial
+
+For visual-heavy decks, internally lock the visual system on the cover plus the next two slides before producing the full deck.
+
+1. Create image briefs for the first three slides.
+2. Generate or collect the cover/main image and at least 2-4 spot illustrations for the next two slides when image generation is available.
+3. Place those images into the actual deck layout and inspect the rendered result when browser preview is available.
+4. Check that text is readable, images are not oversized, the style is consistent, and the deck does not look like a collage of unrelated assets.
+5. Record the result in `content-ir.json` under `assets.firstThreeSlideTrial`.
+6. In interactive work, show or mention the trial for user review when practical. In autonomous work, continue with the same locked art direction after the trial passes.
+
+## Cross-Product Capability Modes
+
+Use capability detection instead of product-name detection.
+
+- Codex with image generation: use the available image generation skill/tool directly, save images into the deck folder, then wire local paths into HTML.
+- ChatGPT or GPT products with image generation: request image generation through the available tool, keep an asset manifest, and avoid provider-specific wording unless the user named a provider.
+- Products with image understanding but no image generation: use user-supplied references, crop/cutout when possible, and return a prompt pack for missing assets.
+- Products with no filesystem: return `index.html`, `styles.css`, `deck.js`, `content-ir.json`, and an `image-prompts.json` manifest so the user or host product can generate and attach assets.
+- Products with no image generation at all: use sparse, high-quality layout; SVG only for diagrams/icons/template frames; label illustration requests as pending assets instead of pretending SVG doodles are final illustrations.
 
 鲸格PPT supports two input modes:
 
@@ -105,9 +147,9 @@ This is semantic decoration, not a fixed shape library. Do not default to circle
 Rules:
 
 1. Do not force CSS/SVG to imitate complex 3D glass objects. If the object depends on refraction, translucent material, iridescent lighting, realistic bevels, or soft volumetric glow, create or reuse a PNG/WebP asset.
-2. Use capability detection, not product-name detection. If the current environment has image generation and image understanding available, use AI-generated PNG/WebP components for these assets. This includes Codex, Gemini, or any other product/model integration with comparable multimodal generation/inspection capability.
+2. Use capability detection, not product-name detection. If the current environment has image generation and image understanding available, use AI-generated PNG/WebP components for these assets. This includes Codex, ChatGPT, Gemini, or any other product/model integration with comparable multimodal generation/inspection capability.
 3. For transparent assets, prefer generating or exporting a PNG/WebP with alpha when the environment supports it. If only flat-background generation is available, use a removable chroma-key background, remove the key locally, and save the final alpha PNG into the deck's `assets/` folder.
-4. If the current model/product cannot generate or inspect images, fall back to CSS/SVG/Canvas approximations. Keep the fallback simpler, label it as a fallback in implementation notes when useful, and preserve the same semantic placement.
+4. If the current model/product cannot generate or inspect images, fall back to CSS/SVG/Canvas approximations. Keep the fallback simpler, label it as a fallback in implementation notes when useful, and preserve the same semantic placement. Do not present fallback SVG doodles as completed generated illustrations.
 5. If the user supplies reference images, treat them as style/composition references or as cutout sources. Crop and matte them non-destructively into project-local assets such as `assets/decor-ring.png`, `assets/decor-shield.png`, or `assets/decor-robot.png`.
 6. Record generated or extracted assets in `content-ir.json` under a compact `decorAssets` field when they materially shape the deck's look.
 7. Insert decor assets semantically, not randomly. Examples:
@@ -121,6 +163,7 @@ Rules:
 8. Keep images as decorative unless they carry core meaning. Use empty `alt=""` for purely decorative assets.
 9. Always keep assets local to the deck folder. Do not reference files left in provider output folders, Downloads, Desktop, `$CODEX_HOME/generated_images`, or temporary folders.
 10. Validate generated/cutout assets on dark and light sections. Check for square edges, key-color fringes, muddy shadows, and unreadable overlap with text.
+11. For a visual-led deck, use decor assets together with background and spot illustration planning. A few large decorative images are not enough if the user asked for viewpoint-driven small illustrations.
 
 The preferred deck folder can therefore include:
 
@@ -166,10 +209,22 @@ Before generating a deck, produce a compact IR:
     "typstHandout": false
   },
   "assets": {
+    "imageGeneration": {
+      "mode": "auto",
+      "providerHint": "capability-detected",
+      "preferRaster": true,
+      "svgPolicy": "SVG is only for diagrams, icons, wireframes, or fallback when image generation is unavailable."
+    },
     "backgroundDecision": {
       "needed": false,
       "reason": "Dense strategy slides use semantic cards and local decor assets instead of full-scene backgrounds.",
       "assetPlan": []
+    },
+    "spotIllustrations": [],
+    "firstThreeSlideTrial": {
+      "required": false,
+      "status": "not-needed",
+      "notes": "Use required=true for visual-led decks before completing the full deck."
     }
   },
   "slides": [
@@ -188,6 +243,22 @@ Before generating a deck, produce a compact IR:
 ```
 
 The IR is the source of truth. HTML, Typst, and export adapters should consume it instead of re-parsing raw source text.
+
+## User Prompt Shortcuts
+
+Users do not need to name a specific image model. Still, these prompt patterns help other agents understand the intended behavior:
+
+```text
+用鲸格PPT做一版电影质感PPT，自动使用当前产品可用的文生图/图像生成能力，不要用SVG冒充插图。先做前3页图文试样，每页配1张主视觉或2-4张小配图，图片围绕观点生成，统一风格，放在assets里。
+```
+
+```text
+图文并茂：除封面和章节页外，不要让大图占半屏。优先批量生成围绕观点的小图片、小道具、小场景、小图标，尺寸控制在18%-32%页面宽度，和文字卡片配合。
+```
+
+```text
+如果当前AI产品不能直接生成图片，请输出content-ir.json和image-prompts.json，标明每张图的用途、风格、比例、放置位置和备选SVG/布局占位。
+```
 
 ## Implementation Path
 
@@ -314,6 +385,14 @@ For `电影质感`, preserve the original gesture stack. The deck requires these
 
 Do not remove the camera/hand-tracking runtime when copying this deck. It is acceptable that this template depends on network access and browser camera permission for gesture navigation; keyboard navigation must remain as the fallback.
 
+For cinematic narrative decks such as "王昭君", "古风人物", "电影海报感", or dramatic story scenes, lock the image language before scaling:
+
+- Prefer generated raster images for character/scene atmosphere. SVG is only for seals, dividers, simple icons, or fallback placeholders.
+- Cover and chapter slides may use a full-bleed scene with a dark wash and strict text safe zones.
+- Body slides should usually use smaller scene fragments, props, facial details, fabric textures, route markers, or symbolic still lifes around the point instead of repeated half-screen posters.
+- Keep all generated images in the same camera language, lighting, palette, costume/material logic, and grain level. Do not mix anime, stock-photo, vector, and 3D styles inside one deck unless the concept explicitly asks for collage.
+- When the user references a successful sample, extract its visual grammar: strong cinematic background, restrained text, readable mask, elegant Chinese typography, and a consistent emotional temperature.
+
 ### 碎纸片 / Paper Craft Lab
 
 For `碎纸片`, start from `templates/full-decks/碎纸片/`. Use it when the user asks for paper collage, paper fragments, creative technology pipelines, AI game production workflows, or GPT Image + Codex process decks.
@@ -413,6 +492,11 @@ Before delivery:
 - Test `S` presenter mode.
 - Test mobile/narrow viewport enough to catch text overflow.
 - Confirm console has no errors.
+- If `assets.imageGeneration.mode != "off"`, confirm generated or collected assets exist at the paths referenced by `content-ir.json`.
+- For visual-led decks, confirm `assets/backgrounds/`, `assets/spot/`, or `assets/decor/` exists when the IR says those assets are needed.
+- Inspect the first three-slide visual trial when required. Confirm image style consistency, readable text, and no oversized spot illustrations.
+- Confirm spot illustrations stay within their declared `maxSlideWidth` unless the slide role is `cover`, `section-divider`, or another explicit hero layout.
+- Confirm SVG assets are used only for diagrams, icons, template frames, wireframes, or declared fallbacks.
 - If `gesture != off`, verify camera permission is requested only after the user toggles gesture mode.
 - If Typst export is requested, generate and inspect the PDF output separately from the HTML deck.
 

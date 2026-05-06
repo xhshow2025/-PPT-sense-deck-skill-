@@ -13,10 +13,48 @@
   },
   "theme": "apple-bento-glass",
   "assets": {
+    "imageGeneration": {
+      "mode": "auto",
+      "providerHint": "capability-detected",
+      "preferRaster": true,
+      "svgPolicy": "SVG is only for diagrams, icons, wireframes, template frames, or fallback when image generation is unavailable."
+    },
     "backgroundDecision": {
       "needed": false,
       "reason": "This strategy deck uses semantic glass cards and small local decor assets; dense business slides stay clearer without full-scene backgrounds.",
       "assetPlan": []
+    },
+    "spotIllustrations": [
+      {
+        "id": "spot-market-signal",
+        "path": "assets/spot/spot-market-signal.png",
+        "slides": ["market-signal"],
+        "brief": "A small premium illustration of a vertical-drama phone screen with floating payment and region signal chips, no text in image.",
+        "style": "Apple Bento glass, soft dimensional lighting, consistent blue-green accent palette",
+        "placement": "right rail beside metric cards",
+        "size": "card",
+        "maxSlideWidth": "28%",
+        "semanticUse": "paid-market validation signal",
+        "alt": ""
+      },
+      {
+        "id": "spot-ai-localization",
+        "path": "assets/spot/spot-ai-localization.png",
+        "slides": ["cover"],
+        "brief": "A compact AI localization object cluster: subtitle layers, voice waveform, globe tile, and editing cursor, no text in image.",
+        "style": "Apple Bento glass, soft dimensional lighting, consistent blue-green accent palette",
+        "placement": "lower-right card corner",
+        "size": "spot",
+        "maxSlideWidth": "24%",
+        "semanticUse": "AI production and localization",
+        "alt": ""
+      }
+    ],
+    "firstThreeSlideTrial": {
+      "required": false,
+      "status": "not-needed",
+      "slides": [],
+      "notes": "Set required=true for cinematic, story, picture-book, product, brand, or other visual-led decks before completing the full deck."
     }
   },
   "decorAssets": [
