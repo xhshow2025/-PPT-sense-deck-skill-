@@ -46,6 +46,66 @@
 9. 接入演讲者模式、编辑模式、动画生命周期、可选手势控制。
 10. 通过本地 HTTP 服务预览并验证导航、响应式、控制台、素材路径和导出路径。
 
+## 目录结构
+
+```text
+鲸格PPT/
+  SKILL.md
+  README.md
+  docs/
+    image-generation-guide.md
+  templates/
+    index.json
+    content-ir/
+      content-ir.example.json
+    schemas/
+      content-ir.schema.json
+      template.schema.json
+    themes/
+      theme-catalog.json
+      *.css
+      *.asset-kit.json
+    full-decks/
+      deck-catalog.json
+      _shared/
+      pitch-deck/
+      weekly-report/
+      product-launch/
+      technical-talk/
+      xhs-9-card/
+      courseware/
+      executive-strategy/
+      market-research/
+      ai-industry-report/
+      startup-roadshow/
+      sales-proposal/
+      training-workshop/
+      demo-day/
+      brand-story/
+      ai-short-drama-overseas/
+      nordic-childrens-picture-book/
+      电影质感/
+      碎纸片/
+      赛博朋克/
+    single-page-layouts/
+      layout-catalog.json
+      *.html
+      layouts.css
+    animations/
+      animation-catalog.json
+      ambient-particles.js
+      canvas-fx-pack.js
+      slide-transitions.css
+    runtime/
+      slide-lifecycle.js
+      canvas-fx-runtime.js
+      edit-mode.js
+    features/
+      gesture-controller.js
+    exporters/
+      html/
+      pdf/
+      typst/
 ```
 
 ## 主要目录说明
@@ -281,7 +341,459 @@ HTML Deck 的运行时辅助，包括 slide lifecycle、Canvas FX runtime、编�
 - HTML-first rebuild：无法原生编辑 PPT 时，以 PPT 为视觉参考重建 HTML Deck。
 - Native `.pptx` 输出：如果有可用 PPT 工具，直接编辑或生成 PPTX 并渲染检查。
 
+## 输出结构
 
+默认输出为静态文件夹：
+
+```text
+deck-name/
+  index.html
+  styles.css
+  deck.js
+  content-ir.json
+  assets/
+    backgrounds/
+    spot/
+    decor/
+```
+
+Deck 应能通过本地 HTTP 服务运行，也可部署到静态托管环境。除非用户要求，不需要 bundler。
+
+## 使用教程
+
+这一节说明在不同情况下怎样调用鲸格PPT、准备材料、选择模板、生成交付物和做最终检查。
+
+### 1. 只有一个主题，想自动生成 PPT
+
+适合行业趋势、产品战略、市场机会、课程选题、技术分享、AI 工具报告等主题型任务。
+
+示例提示词：
+
+```text
+用鲸格PPT做一份《AI短剧出海风起时》的演示文稿，面向内容创业团队和投资人。请自动补齐结构，必要时搜索最新市场信息，输出浏览器可运行的 HTML PPT。
+```
+
+处理流程：
+
+1. 把主题转成研究 brief。
+2. 判断受众、演讲场景、页数、语气和需要回答的问题。
+3. 对具有时效性的事实进行搜索或核验。
+4. 生成 `content-ir.json`，明确 thesis、audience、slide roles、assets 和 feature flags。
+5. 从 `templates/full-decks/` 选择最接近的模板。
+6. 选择主题和必要单页布局。
+7. 输出 HTML Deck，并通过本地 HTTP 服务验证。
+
+常用模板：
+
+- 行业趋势：`market-research`、`ai-industry-report`
+- 战略判断：`executive-strategy`
+- 产品叙事：`product-launch`
+- 创业展示：`startup-roadshow`、`pitch-deck`
+
+### 2. 把文章、资料或长文本变成 PPT
+
+适合公众号文章、行业报告、会议纪要、访谈、课程材料、产品文档。
+
+示例提示词：
+
+```text
+用鲸格PPT把这篇文章改成 12 页演示稿。保留核心观点，页面结论先行，每页不要堆长段落，复杂解释放 speaker notes。
+```
+
+处理流程：
+
+1. 抽取原文的主题、主张、证据、案例和结论。
+2. 删除重复内容，保留可演示的观点链。
+3. 将内容映射到 slide roles，例如 `cover -> context -> insight -> mechanism -> case -> roadmap -> closing`。
+4. 可见页面只保留标题、关键短句、数字、图示和必要标签。
+5. 细节、转场话术和解释放进 `<aside class="notes">`。
+6. 原文事实优先；只有当前事实或不稳定事实才额外核验。
+
+推荐模板：
+
+- 通用报告：`weekly-report`
+- 行业分析：`market-research`
+- 技术文章：`technical-talk`
+- 课程内容：`courseware`
+- 社交传播：`xhs-9-card`
+
+### 3. 根据表格、数据或指标做汇报
+
+适合周报、经营复盘、KPI dashboard、竞品对比、市场规模、风险追踪。
+
+示例提示词：
+
+```text
+用鲸格PPT把这些数据做成一份经营周报，重点突出异常、趋势、风险和下周动作。需要 dashboard、风险页和行动计划页。
+```
+
+处理流程：
+
+1. 识别指标口径、时间范围和业务上下文。
+2. 明确本次汇报要回答的问题。
+3. 用结论型标题表达发现，而不是只写“数据分析”。
+4. 使用 `kpi-dashboard`、`market-signal`、`comparison-2col`、`risk-board`、`roadmap-90-day` 等布局。
+5. 图表服务结论，避免把所有数据塞进页面。
+6. 指标口径、异常解释和补充数据放 speaker notes。
+
+### 4. 美化已有 PPT 或按模板重建
+
+适合已有 PPT 层级混乱、视觉陈旧、想保留模板优化，或想重建成 HTML Deck。
+
+示例提示词：
+
+```text
+用鲸格PPT美化这个 PPT。保留原来的品牌色、logo、页面顺序和核心布局，只优化层级、排版、图标、图表和演讲者备注。
+```
+
+也可以说：
+
+```text
+参考这个 PPT 的内容，用鲸格PPT重建成浏览器原生 HTML Deck。可以重新设计视觉风格，但不要改变核心观点。
+```
+
+处理流程：
+
+1. 先确认 preservation level：
+   - 保留模板，只优化细节。
+   - 保留内容，重建视觉。
+   - 保留品牌，允许重排结构。
+   - 完全重做成新 Deck。
+2. 如果可原生编辑 `.pptx`，优先编辑 PPTX 并渲染检查。
+3. 如果不能原生编辑，就做 HTML-first rebuild。
+4. 不要擅自修改 logo、品牌色、页序、法务页和核心结论。
+5. 交付时说明是“原生 PPT 编辑”还是“HTML 重建版”。
+
+### 5. 根据品牌规范、截图或模板生产新 Deck
+
+适合企业模板、品牌发布、客户提案、统一视觉体系。
+
+示例提示词：
+
+```text
+用鲸格PPT根据这个品牌规范做一份产品发布 Deck。保持品牌色、字体气质和组件风格，生成 HTML PPT。
+```
+
+处理流程：
+
+1. 提取品牌色、字体、间距、圆角、卡片、按钮、图表和安全区。
+2. 选择最接近的内置主题作为底座。
+3. 必要时创建项目级主题 CSS。
+4. 在 `content-ir.json` 中记录 theme、tone、visual rules 和 asset plan。
+5. 生成后检查每页是否符合品牌语法。
+
+### 6. 需要图文并茂或强视觉风格
+
+适合电影质感、品牌故事、绘本风、产品视觉、文化叙事、海报感 Deck。
+
+示例提示词：
+
+```text
+用鲸格PPT做一版电影质感 PPT。自动使用当前可用的图片生成能力，不要用 SVG 冒充插图。先做前三页视觉试样，确认风格后再扩展全稿。
+```
+
+处理流程：
+
+1. 在 `content-ir.json` 中设置 `assets.imageGeneration.assetStrategy`：
+   - `cinematic-images`
+   - `png-components`
+   - `svg-css-fallback`
+   - `hybrid`
+2. 先写图片 brief，再生成或收集图片。
+3. 图片保存到 Deck 输出目录：
+
+```text
+assets/
+  backgrounds/
+  spot/
+  decor/
+```
+
+4. 封面和章节页可用主视觉；正文页优先用小场景、小道具、小组件配合观点。
+5. 前三页试样必须检查文字可读、图片尺寸和风格一致性。
+6. 如果没有图片生成能力，输出 `image-prompts.json`，不要把 SVG fallback 当作真实插图。
+
+### 7. 商务汇报、战略报告或投资人材料
+
+示例提示词：
+
+```text
+用鲸格PPT做一份面向管理层的战略汇报。风格克制、数据优先、结论先行。每页只讲一个判断，复杂解释放备注。需要封面、核心判断、市场背景、战略选项、路线图、风险和决策页。
+```
+
+推荐模板和主题：
+
+- `executive-strategy`
+- `pitch-deck`
+- `sales-proposal`
+- `weekly-report`
+- `executive-clean`
+- `apple-bento-glass`
+
+注意事项：
+
+- 少用装饰，多用结构和证据。
+- 标题写结论，不写泛泛标签。
+- 关键数字标注口径或来源。
+- 风险页要有 mitigation，不只列问题。
+
+### 8. 技术分享或架构演讲
+
+示例提示词：
+
+```text
+用鲸格PPT做一份技术分享 Deck，主题是 AI Agent 工作流架构。需要 agenda、背景、架构图、关键流程、代码片段、benchmark、经验教训和 Q&A。
+```
+
+推荐模板和布局：
+
+- `technical-talk`
+- `semantic-dark`
+- `agenda`
+- `architecture`
+- `code`
+- `timeline`
+- `qa`
+
+注意事项：
+
+- 图解优先于长段落。
+- 架构图要有输入、处理、输出和边界。
+- 代码页只展示关键片段，解释放备注。
+- Canvas FX 只能做轻量背景，不要干扰阅读。
+
+### 9. 小红书九宫格或社交传播图文
+
+示例提示词：
+
+```text
+用鲸格PPT做一组小红书 9 卡图文，主题是新手如何用 AI 做 PPT。要有强 hook、痛点、方法、案例、清单和 CTA。风格 editorial，适合手机阅读。
+```
+
+推荐模板和主题：
+
+- `xhs-9-card`
+- `xhs-editorial`
+
+注意事项：
+
+- 第一页必须有 hook。
+- 每页只讲一个点。
+- 字号和留白适合手机浏览。
+- CTA 页要明确下一步动作。
+
+### 10. 课程、培训或工作坊
+
+示例提示词：
+
+```text
+用鲸格PPT做一份 45 分钟培训课件，主题是提示词工程入门。需要学习目标、核心概念、例子、练习、总结和 Q&A。风格清晰，不要太营销。
+```
+
+推荐模板：
+
+- `courseware`
+- `training-workshop`
+- `warm-paper`
+
+注意事项：
+
+- 每个章节给学习目标。
+- 概念页之后安排例子或练习。
+- 练习页给任务、时间和输出格式。
+- 讲师提示放 speaker notes。
+
+### 11. 使用特殊风格模板
+
+当用户明确要求强风格，优先使用对应完整 Deck：
+
+- 北欧儿童绘本风：`templates/full-decks/nordic-childrens-picture-book/`
+- 电影质感：`templates/full-decks/电影质感/`
+- 碎纸片：`templates/full-decks/碎纸片/`
+- 赛博朋克：`templates/full-decks/赛博朋克/`
+
+示例提示词：
+
+```text
+用鲸格PPT的赛博朋克模板做一份《2098 年人类生活方式》PPT。保留 neon-noir city 的透明组件、霓虹色和未来城市氛围，但内容要清晰，不要只做氛围图。
+```
+
+注意事项：
+
+- 特殊风格模板通常带本地 `assets/`，复制时不要漏掉。
+- 强视觉风格也要服务观点，不能只做装饰。
+- 电影质感和赛博朋克模板体积较大，做 20MB 轻量包时通常走远程引用或按需下载。
+
+### 12. 需要导出 PDF、图片或 Typst handout
+
+示例提示词：
+
+```text
+用鲸格PPT生成 HTML Deck，并额外导出 PDF 讲义版本。HTML 保留动画，PDF 适合打印阅读。
+```
+
+处理流程：
+
+1. HTML Deck 是主运行时，负责动画、导航、编辑和手势。
+2. PDF/PNG 是静态导出物，要单独检查分页、字体、图片和图表。
+3. Typst 适合 handout、讲义、打印页，不适合承载 HTML 动画和手势。
+4. 导出前确认是否要纳入当前编辑状态。
+
+### 13. 需要可编辑 HTML Deck
+
+示例提示词：
+
+```text
+用鲸格PPT生成可编辑 HTML PPT。页面文字要能直接改，保留 content-ir.json，按 E 可以进入编辑模式。
+```
+
+处理流程：
+
+1. 保留真实文本节点。
+2. 给可编辑内容加 `data-editable` 或 `data-field`。
+3. 接入 `templates/runtime/edit-mode.js`。
+4. 重要布局参数使用 CSS variables。
+5. 编辑状态可存入 `localStorage`，并提供 JSON 导出。
+
+### 14. 需要手势翻页
+
+示例提示词：
+
+```text
+用鲸格PPT生成一个支持手势翻页的演示。默认不要打开摄像头，用户按 G 后再启用手势，键盘翻页必须保留。
+```
+
+处理流程：
+
+1. 在 `content-ir.json` 中设置 `features.gesture`。
+2. 默认 `off`，除非用户明确要求。
+3. 使用 `templates/features/gesture-controller.js`。
+4. 摄像头权限只在用户按 `G` 或开启手势时请求。
+5. 保留键盘和触摸 fallback。
+
+### 15. 生成轻量版或平台导入版
+
+适合目标平台限制上传 20MB，不能导入完整版。
+
+示例提示词：
+
+```text
+根据鲸格PPT完整版生成一个 20MB 以内的轻量版 skill。保留 SKILL.md、schema、content IR、主题、布局、runtime、animations、exporters 和常用 deck；电影质感和赛博朋克走远程按需下载。
+```
+
+处理流程：
+
+1. 保留核心文本和小组件。
+2. 排除单独过大的 deck 目录。
+3. 在 README 中写清哪些模板被排除。
+4. 在 `references/remote-assets.md` 中配置 verified GitHub URL。
+5. 压缩后检查 zip 根目录是否直接包含 `SKILL.md`。
+
+## 常用提示词模板
+
+### 通用生成
+
+```text
+用鲸格PPT做一份《主题》的 12 页演示文稿，面向【受众】，用于【场景】。请先生成 content-ir.json，再选择合适的 full deck、theme 和 single-page layouts，最后输出可运行的 HTML Deck。
+```
+
+### 资料转 PPT
+
+```text
+用鲸格PPT把以下资料整理成 PPT。要求结论先行，每页一个观点，保留关键数字和案例，复杂解释放 speaker notes。输出 index.html、styles.css、deck.js、content-ir.json。
+```
+
+### 图文并茂
+
+```text
+用鲸格PPT做图文并茂版本。自动判断需要 cinematic-images、png-components、svg-css-fallback 还是 hybrid。先做前三页视觉试样，图片都保存到 assets/，不要引用远程热链。
+```
+
+### PPT 美化
+
+```text
+用鲸格PPT美化这个 PPT。保留原模板、品牌色、logo、页序和核心布局，只优化排版层级、图表可读性、图标/图片、备注和导出质量。
+```
+
+### 技术分享
+
+```text
+用鲸格PPT做技术分享 Deck。需要 agenda、背景、架构图、流程图、代码页、benchmark、经验教训、Q&A。风格 semantic-dark，页面要适合投屏阅读。
+```
+
+### 小红书九宫格
+
+```text
+用鲸格PPT做小红书 9 卡图文。第一页强 hook，中间讲痛点、方法、案例、清单，最后 CTA。手机阅读优先，文字短，视觉统一。
+```
+
+### 电影质感
+
+```text
+用鲸格PPT做电影质感 Deck。优先使用 templates/full-decks/电影质感/，生成或收集统一风格的主视觉和小配图。不要用 SVG 冒充插图，先做前三页试样。
+```
+
+## 使用时的交付标准
+
+无论是哪种场景，最终交付都应尽量包含：
+
+```text
+deck-name/
+  index.html
+  styles.css
+  deck.js
+  content-ir.json
+  assets/
+```
+
+如果无法直接生成图片，应额外输出：
+
+```text
+image-prompts.json
+```
+
+如果需要导出，应按需增加：
+
+```text
+exports/
+  deck.pdf
+  slides/
+  handout.typ
+```
+
+交付说明应简短写明：
+
+- 使用的 full deck 模板。
+- 使用的主题。
+- 是否启用图片生成、演讲者模式、编辑模式、手势控制。
+- 如何本地预览。
+- 已完成哪些验证。
+
+## 常见问题
+
+### 为什么不能直接从空白 CSS 开始写？
+
+鲸格PPT 的设计目标是复用稳定模板和组件。先选模板能保证页面节奏、交互、备注、动画和响应式基础一致，也能减少不必要的工程化。
+
+### 为什么要先写 content-ir.json？
+
+`content-ir.json` 是 Deck 的源头。它让内容结构、视觉资产、备注、功能开关和导出路径可追踪，也方便后续修改和二次渲染。
+
+### 用户只给主题时能不能直接做？
+
+可以，但应先补齐受众、场景、论点和结构。涉及当前市场、政策、产品、价格或平台规则时，需要搜索或核验，不应凭空编造具体事实。
+
+### 没有图片生成能力怎么办？
+
+输出 `image-prompts.json`，同时用 SVG/CSS/Canvas 做清晰 fallback。不要把 fallback 描述成已完成的真实插图。
+
+### 什么时候使用完整 Deck，什么时候使用单页布局？
+
+主线场景先用完整 Deck。只有当某一页需要特殊结构时，再从 `single-page-layouts/` 补页面。
+
+### 什么时候需要本地 HTTP 服务？
+
+只要 Deck 使用模块化 JS、Canvas FX、某些浏览器权限、图片路径或演讲者模式，都应通过本地 HTTP 服务预览，而不是只双击 `index.html`。
 
 ## 验证清单
 
@@ -331,14 +843,15 @@ HTML Deck 的运行时辅助，包括 slide lifecycle、Canvas FX runtime、编�
 - 适合未来城市、AI 未来生活、2098 叙事、霓虹 noir。
 - 保留 `assets/components/` 和 `assets/template-frames/`。
 
+## 完整版与 20MB 版的关系
 
-## 维护建议
+完整版包含全部模板和重素材，当前 `templates/full-decks/` 是体积主体。若目标平台限制导入 20MB，应从完整版派生轻量版：
 
-- 新增主题时，同步更新 `templates/themes/theme-catalog.json`。
-- 新增完整 Deck 时，同步更新 `templates/full-decks/deck-catalog.json`，并确保示例可运行。
-- 新增单页布局时，同步更新 `templates/single-page-layouts/layout-catalog.json`，HTML 内应保留真实示例内容。
-- 新增动画时，同步更新 `templates/animations/animation-catalog.json`，并确认生命周期可控。
-- 修改 IR 字段时，同步更新 `templates/schemas/content-ir.schema.json` 和 `templates/content-ir/content-ir.example.json`。
-- 视觉资产应放在对应模板或生成 Deck 的 `assets/` 目录下，不要引用临时目录。
-- 发布前检查 README、SKILL.md、catalog 和实际文件是否一致。
+- 保留 `SKILL.md`、schema、content IR、主题、单页布局、runtime、animations、features、exporters 和部分 Deck。
+- 排除单独过大的重素材目录，例如 `电影质感`、`赛博朋克`。
+- 在轻量版中通过 verified GitHub URL 或用户提供路径按需下载重素材。
+
+完整版适合本地开发和作为上游；轻量版适合受上传限制的平台导入。
+
+
 
