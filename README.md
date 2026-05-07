@@ -1,4 +1,5 @@
 # 鲸格PPT
+![Uploading image.png…]()
 
 鲸格PPT is a Codex skill for creating polished browser-native presentation decks from themes, source material, and reusable HTML/CSS/JS templates.
 
