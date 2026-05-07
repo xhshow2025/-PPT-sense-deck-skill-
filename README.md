@@ -843,7 +843,7 @@ exports/
 - 适合未来城市、AI 未来生活、2098 叙事、霓虹 noir。
 - 保留 `assets/components/` 和 `assets/template-frames/`。
 
-## 完整版与 20MB 版的关系
+## 完整版与 轻量版的关系
 
 完整版包含全部模板和重素材，当前 `templates/full-decks/` 是体积主体。若目标平台限制导入 20MB，应从完整版派生轻量版：
 
