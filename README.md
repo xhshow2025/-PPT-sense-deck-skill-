@@ -1,5 +1,7 @@
-# 鲸格PPT
-![Uploading image.png…]()
+<img width="1672" height="941" alt="ChatGPT Image 2026年5月7日 15_49_46" src="https://github.com/user-attachments/assets/d8efd376-4916-430a-9d41-6059554d1851" /><img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/e0aa1e56-9fe5-47a9-b8a7-91ca06d71165" /># 鲸格PPT
+
+
+[IMAGE:https://wechatimage-1353206637.cos.ap-beijing.myqcloud.com/wechat-formatter/1778140279953-zaae0w.png]
 
 鲸格PPT is a Codex skill for creating polished browser-native presentation decks from themes, source material, and reusable HTML/CSS/JS templates.
 
