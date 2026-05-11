@@ -1,6 +1,6 @@
 {
   "purpose": "Use single-page layouts to fill specialized slide needs after choosing a full deck.",
-  "targetCount": 31,
+  "targetCount": 32,
   "layouts": [
     { "id": "cover-bento-glass", "status": "implemented", "path": "cover-bento-glass.html", "semanticUse": "Premium opening thesis with device/card visual" },
     { "id": "market-signal", "status": "implemented", "path": "market-signal.html", "semanticUse": "Three metrics plus one conclusion" },
@@ -22,7 +22,8 @@
     { "id": "solution-stack", "status": "planned", "semanticUse": "Layered solution" },
     { "id": "persona", "status": "planned", "semanticUse": "User or customer profile" },
     { "id": "case-study", "status": "planned", "semanticUse": "Before/after case narrative" },
-    { "id": "feature-grid", "status": "planned", "semanticUse": "Capabilities or modules" },
+    { "id": "feature-ops-dashboard", "status": "implemented", "path": "feature-ops-dashboard.html", "semanticUse": "Product feature overview with operations dashboard, editable charts, and capability cards" },
+    { "id": "noir-growth-story", "status": "implemented", "path": "noir-growth-story.html", "semanticUse": "Black-bronze editorial data story with three hero stats, growth curve, and milestone labels" },
     { "id": "pricing", "status": "planned", "semanticUse": "Plans and commercial packaging" },
     { "id": "risk-board", "status": "implemented", "path": "risk-board.html", "semanticUse": "Risk categories and mitigations" },
     { "id": "decision-matrix", "status": "planned", "semanticUse": "Choose between options" },

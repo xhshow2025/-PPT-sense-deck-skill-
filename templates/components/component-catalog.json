@@ -1,0 +1,35 @@
+{
+  "purpose": "Reusable HTML/CSS components for slide layouts. Prefer these components over raster images when text, charts, or metrics need to stay editable.",
+  "components": [
+    {
+      "id": "feature-tile",
+      "status": "implemented",
+      "path": "charts.css",
+      "semanticUse": "Icon, title, bilingual subtitle, and short capability description"
+    },
+    {
+      "id": "sparkline-panel",
+      "status": "implemented",
+      "path": "charts.css",
+      "semanticUse": "Editable SVG trend line or area chart"
+    },
+    {
+      "id": "donut-meter",
+      "status": "implemented",
+      "path": "charts.css",
+      "semanticUse": "Editable SVG ring chart for distribution or share"
+    },
+    {
+      "id": "waveform-bars",
+      "status": "implemented",
+      "path": "charts.css",
+      "semanticUse": "Editable CSS bar waveform for traffic, media, or signal intensity"
+    },
+    {
+      "id": "alert-list",
+      "status": "implemented",
+      "path": "charts.css",
+      "semanticUse": "Operations, events, warnings, or notification summary list"
+    }
+  ]
+}

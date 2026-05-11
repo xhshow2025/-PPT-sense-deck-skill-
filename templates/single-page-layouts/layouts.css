@@ -1,8 +1,11 @@
+@import "../components/charts.css";
+
 .agenda-list,
 .three-col-grid,
 .dashboard-grid,
 .code-grid,
-.risk-grid {
+.risk-grid,
+.noir-stat-row {
   display: grid;
   gap: 20px;
 }
@@ -183,6 +186,131 @@
   background: linear-gradient(90deg, var(--blue), transparent);
 }
 
+.layout-noir-growth-story {
+  position: relative;
+  min-height: 100vh;
+  padding: 64px 80px 60px;
+  background: var(--bg);
+}
+
+.layout-noir-growth-story .chapter,
+.layout-noir-growth-story .meta {
+  position: absolute;
+  top: 64px;
+  font-size: 14px;
+}
+
+.layout-noir-growth-story .chapter {
+  left: 80px;
+}
+
+.layout-noir-growth-story .meta {
+  right: 80px;
+  text-align: right;
+  line-height: 1.7;
+}
+
+.noir-hero {
+  margin-top: 66px;
+  max-width: 980px;
+}
+
+.noir-stat-row {
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 42px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--line);
+}
+
+.noir-stat small {
+  display: block;
+  margin-bottom: 10px;
+  font-family: var(--mono, monospace);
+  color: var(--muted-3, rgba(245, 239, 230, 0.38));
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.noir-stat strong {
+  font-family: var(--serif-latin, serif);
+  color: var(--ink);
+  font-size: clamp(72px, 6.2vw, 120px);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: 0;
+}
+
+.noir-stat.gold strong {
+  color: var(--bronze, #d4a574);
+}
+
+.noir-stat em {
+  margin-left: 8px;
+  color: var(--muted);
+  font-family: var(--serif-latin, serif);
+  font-size: clamp(24px, 2.2vw, 42px);
+  font-style: italic;
+}
+
+.noir-stat p {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: clamp(14px, 1vw, 17px);
+  line-height: 1.55;
+}
+
+.noir-chart-block {
+  margin-top: 40px;
+}
+
+.noir-chart-head,
+.noir-xaxis {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono, monospace);
+  color: var(--muted-3, rgba(245, 239, 230, 0.38));
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.noir-chart {
+  position: relative;
+  height: clamp(240px, 30vh, 330px);
+  margin-top: 18px;
+  border-bottom: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, transparent 0 19%, rgba(245, 239, 230, 0.045) 20%, transparent 21%),
+    linear-gradient(180deg, transparent 0 65%, rgba(245, 239, 230, 0.045) 66%, transparent 67%);
+}
+
+.noir-chart svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.noir-marker {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  padding: 5px 9px;
+  border: 1px solid color-mix(in srgb, var(--bronze, #d4a574) 42%, transparent);
+  border-radius: 1px;
+  color: var(--bronze, #d4a574);
+  background: rgba(212, 165, 116, 0.11);
+  font-family: var(--mono, monospace);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.noir-xaxis {
+  margin-top: 14px;
+}
+
 .qa-panel,
 .thanks-card {
   width: min(1080px, 88vw);
@@ -216,7 +344,8 @@
   .dashboard-grid,
   .code-grid,
   .architecture-map,
-  .risk-grid {
+  .risk-grid,
+  .noir-stat-row {
     grid-template-columns: 1fr;
   }
 

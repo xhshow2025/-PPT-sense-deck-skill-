@@ -1,12 +1,13 @@
 {
-  "name": "jingge-ppt-template-library",
+  "name": "sense-deck-template-library",
   "version": "0.1.0",
   "workflow": "Read this index first, generate content IR, then select a theme, a full deck or single-page layouts, and optional animations before writing content.",
   "catalogs": {
     "themes": "themes/theme-catalog.json",
     "fullDecks": "full-decks/deck-catalog.json",
     "singlePageLayouts": "single-page-layouts/layout-catalog.json",
-    "animations": "animations/animation-catalog.json"
+    "animations": "animations/animation-catalog.json",
+    "components": "components/component-catalog.json"
   },
   "schemas": {
     "contentIr": "schemas/content-ir.schema.json",
@@ -51,11 +52,10 @@
     ]
   },
   "targetLibraryShape": {
-    "fullDecks": 19,
-    "singlePageLayouts": 31,
+    "fullDecks": 15,
+    "singlePageLayouts": 32,
     "cssAnimations": 27,
-    "canvasFx": 20,
-    "themes": 9
+    "canvasFx": 20
   },
   "themes": [
     {
@@ -156,54 +156,21 @@
       ]
     },
     {
-      "id": "nordic-childrens-picture-book",
-      "name": "北欧儿童绘本风",
-      "path": "themes/nordic-childrens-picture-book.css",
+      "id": "noir-bronze-editorial",
+      "path": "themes/noir-bronze-editorial.css",
       "bestFor": [
-        "Nordic fairy-tale picture book",
-        "children's story",
-        "nostalgic childhood",
-        "playful illustrated deck"
+        "magazine keynote",
+        "data story",
+        "founder narrative",
+        "case study",
+        "premium black-gold report"
       ],
       "visual": [
-        "thick black line art",
-        "flat color blocks",
-        "mint green",
-        "mustard yellow",
-        "doodle-like childlike composition"
-      ]
-    },
-    {
-      "id": "史诗级",
-      "path": "themes/史诗级.css",
-      "bestFor": [
-        "史诗级",
-        "historical culture deck",
-        "Chinese cinematic narrative",
-        "gesture-ready immersive presentation"
-      ],
-      "visual": [
-        "full-bleed film stills",
-        "desert frontier atmosphere",
-        "warm historical palette"
-      ]
-    },
-    {
-      "id": "neon-noir-city",
-      "name": "Neon Noir City",
-      "path": "themes/neon-noir-city.css",
-      "assetKit": "themes/neon-noir-city.asset-kit.json",
-      "bestFor": [
-        "赛博朋克",
-        "cyberpunk city",
-        "future life",
-        "2098 lifestyle"
-      ],
-      "visual": [
-        "neon noir",
-        "rainy futuristic city",
-        "dark glass panels",
-        "magenta cyan glow"
+        "black background",
+        "bronze accent",
+        "Chinese serif headline",
+        "mono metadata",
+        "editorial chart"
       ]
     }
   ],
@@ -434,77 +401,6 @@
         "shared runtime",
         "static HTML"
       ]
-    },
-    {
-      "id": "nordic-childrens-picture-book",
-      "name": "北欧儿童绘本风",
-      "path": "full-decks/nordic-childrens-picture-book",
-      "slides": 7,
-      "bestFor": [
-        "北欧童话绘本风",
-        "儿童绘本风 PPT",
-        "nostalgia story"
-      ],
-      "features": [
-        "speaker mode",
-        "keyboard navigation",
-        "touch-ready static HTML",
-        "style-locked illustration system"
-      ]
-    },
-    {
-      "id": "电影质感",
-      "path": "full-decks/电影质感",
-      "slides": 10,
-      "bestFor": [
-        "电影质感",
-        "昭君出塞",
-        "historical concept deck",
-        "cultural tourism narrative"
-      ],
-      "theme": "史诗级",
-      "features": [
-        "MediaPipe hand gesture navigation",
-        "keyboard navigation",
-        "horizontal cinematic flow"
-      ]
-    },
-    {
-      "id": "碎纸片",
-      "path": "full-decks/碎纸片",
-      "slides": 8,
-      "bestFor": [
-        "碎纸片",
-        "纸片拼贴风",
-        "paper craft lab",
-        "AI游戏生产线",
-        "GPT Image 2 + Codex"
-      ],
-      "features": [
-        "speaker mode",
-        "keyboard navigation",
-        "touch navigation",
-        "local transparent paper assets"
-      ],
-      "theme": "paper-craft-lab"
-    },
-    {
-      "id": "赛博朋克",
-      "path": "full-decks/赛博朋克",
-      "slides": 9,
-      "bestFor": [
-        "赛博朋克",
-        "2098年人类生活",
-        "future city",
-        "neon noir"
-      ],
-      "features": [
-        "speaker mode",
-        "keyboard navigation",
-        "cyberpunk component assets",
-        "template frame assets"
-      ],
-      "theme": "neon-noir-city"
     }
   ],
   "singlePageLayouts": [
@@ -592,6 +488,16 @@
       "id": "risk-board",
       "path": "single-page-layouts/risk-board.html",
       "semanticUse": "Risk categories and mitigations"
+    },
+    {
+      "id": "feature-ops-dashboard",
+      "path": "single-page-layouts/feature-ops-dashboard.html",
+      "semanticUse": "Product feature overview, SaaS operations dashboard, editable sparkline, donut, waveform, and alert list"
+    },
+    {
+      "id": "noir-growth-story",
+      "path": "single-page-layouts/noir-growth-story.html",
+      "semanticUse": "Black-bronze magazine data story with three large serif stats, growth curve, and milestone labels"
     }
   ],
   "animations": [
@@ -610,6 +516,5 @@
       "path": "animations/canvas-fx-pack.js",
       "useWhen": "Register first batch Canvas FX with slide lifecycle"
     }
-  ],
-  "displayName": "鲸格PPT"
+  ]
 }

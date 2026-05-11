@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Jingge PPT Content IR",
+  "title": "Sense Deck Content IR",
   "type": "object",
   "required": ["title", "audience", "theme", "features", "slides"],
   "properties": {
@@ -11,87 +11,6 @@
     "tone": { "type": "string" },
     "language": { "type": "string" },
     "theme": { "type": "string" },
-    "assets": {
-      "type": "object",
-      "properties": {
-        "backgroundDecision": {
-          "type": "object",
-          "required": ["needed", "reason"],
-          "properties": {
-            "needed": { "type": "boolean" },
-            "reason": { "type": "string" },
-            "assetPlan": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "id": { "type": "string" },
-                  "path": { "type": "string" },
-                  "slides": { "type": "array", "items": { "type": "string" } },
-                  "brief": { "type": "string" },
-                  "style": { "type": "string" },
-                  "aspectRatio": { "type": "string" }
-                }
-              }
-            }
-          }
-        },
-        "imageGeneration": {
-          "type": "object",
-          "properties": {
-            "mode": { "enum": ["auto", "required", "off", "fallback-prompts"] },
-            "providerHint": { "type": "string" },
-            "preferRaster": { "type": "boolean" },
-            "assetStrategy": { "enum": ["cinematic-images", "png-components", "svg-css-fallback", "hybrid"] },
-            "providerConfig": {
-              "type": "object",
-              "properties": {
-                "name": { "type": "string" },
-                "mode": { "type": "string" },
-                "model": { "type": "string" },
-                "apiBaseEnv": { "type": "string" },
-                "apiKeyEnv": { "type": "string" },
-                "commandTemplate": { "type": "string" },
-                "outputFormat": { "enum": ["png", "webp", "jpg", "jpeg"] },
-                "supportsAlpha": { "type": "boolean" },
-                "supportsImageReference": { "type": "boolean" },
-                "fallbackStrategy": { "enum": ["image-prompts-json", "svg-css-fallback", "manual-assets"] }
-              }
-            },
-            "svgPolicy": { "type": "string" }
-          }
-        },
-        "spotIllustrations": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "required": ["id", "path", "slides", "brief", "semanticUse"],
-            "properties": {
-              "id": { "type": "string" },
-              "path": { "type": "string" },
-              "slides": { "type": "array", "items": { "type": "string" } },
-              "brief": { "type": "string" },
-              "style": { "type": "string" },
-              "placement": { "type": "string" },
-              "size": { "enum": ["spot", "card", "rail", "hero-fragment", "background"] },
-              "maxSlideWidth": { "type": "string" },
-              "semanticUse": { "type": "string" },
-              "alt": { "type": "string" },
-              "fallback": { "type": "string" }
-            }
-          }
-        },
-        "firstThreeSlideTrial": {
-          "type": "object",
-          "properties": {
-            "required": { "type": "boolean" },
-            "status": { "enum": ["not-needed", "planned", "generated", "placed", "reviewed", "fallback-prompts"] },
-            "slides": { "type": "array", "items": { "type": "string" } },
-            "notes": { "type": "string" }
-          }
-        }
-      }
-    },
     "features": {
       "type": "object",
       "required": ["gesture", "presenterMode"],
