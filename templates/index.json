@@ -52,7 +52,7 @@
     ]
   },
   "targetLibraryShape": {
-    "fullDecks": 15,
+    "fullDecks": 16,
     "singlePageLayouts": 32,
     "cssAnimations": 27,
     "canvasFx": 20
@@ -401,6 +401,23 @@
         "shared runtime",
         "static HTML"
       ]
+    },
+    {
+      "id": "nordic-childrens-picture-book",
+      "path": "full-decks/nordic-childrens-picture-book",
+      "slides": 7,
+      "bestFor": [
+        "北欧童话绘本风",
+        "儿童绘本风 PPT",
+        "怀旧故事",
+        "轻松幽默主题演讲"
+      ],
+      "features": [
+        "speaker mode",
+        "keyboard navigation",
+        "static HTML",
+        "lightweight SVG backgrounds"
+      ]
     }
   ],
   "singlePageLayouts": [
@@ -516,5 +533,11 @@
       "path": "animations/canvas-fx-pack.js",
       "useWhen": "Register first batch Canvas FX with slide lifecycle"
     }
-  ]
+  ],
+  "distribution": {
+    "id": "coze-lite",
+    "sizeLimit": "20MB",
+    "imageGeneration": "not required",
+    "strategy": "Use bundled full decks, CSS themes, SVG/CSS charts, and single-page layouts. Avoid missing asset-heavy showcase decks."
+  }
 }

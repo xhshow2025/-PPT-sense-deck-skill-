@@ -1,6 +1,6 @@
 {
   "purpose": "Choose a complete deck first when the requested presentation matches a known scenario. Copy the closest deck, then replace content.",
-  "targetCount": 19,
+  "targetCount": 16,
   "decks": [
     {
       "id": "pitch-deck",
@@ -322,104 +322,6 @@
         "quote",
         "grown-up-humor",
         "closing"
-      ]
-    },
-    {
-      "id": "电影质感",
-      "name": "电影质感",
-      "status": "implemented",
-      "path": "电影质感",
-      "theme": "史诗级",
-      "bestFor": [
-        "电影质感",
-        "昭君出塞",
-        "历史人物故事",
-        "国风文化叙事",
-        "文旅汇报",
-        "带手势识别的 HTML PPT"
-      ],
-      "defaultSlides": [
-        "cover",
-        "text",
-        "narrative",
-        "road",
-        "quote",
-        "emotion",
-        "table",
-        "method",
-        "history",
-        "end"
-      ],
-      "features": [
-        "MediaPipe hand gesture navigation",
-        "keyboard navigation",
-        "horizontal cinematic HTML deck",
-        "full-bleed background imagery"
-      ]
-    },
-    {
-      "id": "碎纸片",
-      "name": "碎纸片",
-      "status": "implemented",
-      "path": "碎纸片",
-      "theme": "paper-craft-lab",
-      "bestFor": [
-        "碎纸片",
-        "纸片拼贴风",
-        "paper craft lab",
-        "AI游戏生产线",
-        "GPT Image 2 + Codex",
-        "创意技术流程展示"
-      ],
-      "defaultSlides": [
-        "cover",
-        "agenda",
-        "role-split",
-        "asset-board",
-        "codex-loop",
-        "architecture",
-        "quality",
-        "handoff"
-      ],
-      "features": [
-        "speaker mode",
-        "keyboard navigation",
-        "touch navigation",
-        "local transparent paper assets",
-        "editable HTML source"
-      ]
-    },
-    {
-      "id": "赛博朋克",
-      "name": "赛博朋克 2098",
-      "status": "implemented",
-      "path": "赛博朋克",
-      "theme": "neon-noir-city",
-      "bestFor": [
-        "赛博朋克",
-        "cyberpunk",
-        "2098年人类生活",
-        "未来城市",
-        "neon noir",
-        "AI未来生活方式"
-      ],
-      "defaultSlides": [
-        "cover",
-        "system-overview",
-        "habitat",
-        "mobility",
-        "work-mode",
-        "body-os",
-        "identity",
-        "risk-warning",
-        "final-question"
-      ],
-      "features": [
-        "speaker mode",
-        "keyboard navigation",
-        "cyberpunk component assets",
-        "neon noir theme",
-        "template frame assets"
       ]
     }
   ]
