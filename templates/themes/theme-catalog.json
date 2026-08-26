@@ -50,6 +50,15 @@
       "path": "noir-bronze-editorial.css",
       "bestFor": ["magazine keynote", "data story", "founder narrative", "case study", "premium black-gold report"],
       "visual": ["black background", "bronze accent", "Chinese serif headline", "mono metadata", "editorial data chart"]
+    },
+    {
+      "id": "editorial-cinematic-paper",
+      "status": "implemented",
+      "path": "editorial-cinematic-paper.css",
+      "defaultWhenUnspecified": true,
+      "guide": "../../docs/editorial-cinematic-paper-style.md",
+      "bestFor": ["unspecified visual style", "methodology report", "process explanation", "cinematic evidence board", "editorial keynote"],
+      "visual": ["warm ivory paper", "near-black Chinese serif headline", "oxblood accent", "thin editorial grid", "low-key cinematic stills"]
     }
   ]
 }

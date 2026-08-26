@@ -1,0 +1,192 @@
+  .ecp-masthead {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--ecp-space-5);
+    align-items: center;
+    color: var(--ecp-muted);
+    font-family: var(--ecp-meta);
+    font-size: var(--ecp-type-overline);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .ecp-masthead::after {
+    content: "";
+    grid-column: 2;
+    grid-row: 1;
+    height: 1px;
+    background: var(--ecp-rule);
+  }
+
+  .ecp-series {
+    grid-column: 1;
+  }
+
+  .ecp-page-no {
+    grid-column: 3;
+    color: var(--ecp-oxblood);
+    font-family: var(--ecp-serif);
+    font-size: clamp(44px, 4.2vw, 76px);
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    line-height: 0.8;
+  }
+
+  .ecp-heading {
+    display: grid;
+    gap: var(--ecp-space-4);
+    align-content: start;
+  }
+
+  .ecp-heading--compact h2 {
+    font-size: var(--ecp-type-h2);
+    line-height: 1.08;
+  }
+
+  .ecp-accent-rule {
+    width: var(--ecp-space-12);
+    height: var(--ecp-space-1);
+    border: 0;
+    background: var(--ecp-oxblood);
+  }
+
+  .ecp-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--ecp-space-5);
+  }
+
+  .ecp-fact-list {
+    display: grid;
+    align-content: start;
+    border-top: 1px solid var(--ecp-rule);
+  }
+
+  .ecp-fact-row {
+    display: grid;
+    grid-template-columns: minmax(72px, 0.72fr) 2fr;
+    gap: var(--ecp-space-4);
+    align-items: start;
+    padding: var(--ecp-space-4) 0;
+    border-bottom: 1px solid var(--ecp-rule-soft);
+  }
+
+  .ecp-fact-row strong {
+    color: var(--ecp-ink);
+    font-size: var(--ecp-type-h3);
+    font-weight: 500;
+  }
+
+  .ecp-index {
+    color: var(--ecp-oxblood);
+    font-size: clamp(30px, 2.8vw, 52px);
+    line-height: 1;
+  }
+
+  .ecp-fact-row p {
+    margin-top: var(--ecp-space-1);
+    color: var(--ecp-muted);
+    font-size: var(--ecp-type-caption);
+  }
+
+  .ecp-still {
+    position: relative;
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid var(--ecp-rule);
+    border-radius: 0;
+    color: var(--ecp-photo-ink);
+    background: var(--ecp-night);
+  }
+
+  .ecp-still img,
+  .ecp-still picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .ecp-still img {
+    object-fit: cover;
+    object-position: center;
+    filter: saturate(0.72) contrast(1.04);
+  }
+
+  .ecp-still--focus-center img {
+    object-position: 48% 48%;
+  }
+
+  .ecp-still--focus-right img {
+    object-position: 72% center;
+  }
+
+  .ecp-still--hero {
+    aspect-ratio: 16 / 9;
+  }
+
+  .ecp-still--strip {
+    aspect-ratio: 2.35 / 1;
+  }
+
+  .ecp-still--tile {
+    aspect-ratio: 4 / 3;
+  }
+
+  .ecp-still--fallback {
+    display: grid;
+    place-items: center;
+    padding: var(--ecp-space-5);
+    isolation: isolate;
+    border-style: dashed;
+    color: var(--ecp-muted);
+    background: var(--ecp-surface);
+  }
+
+  .ecp-still--fallback::before,
+  .ecp-still--fallback::after {
+    content: none;
+    display: none;
+  }
+
+  .ecp-still-label,
+  .ecp-photo-caption {
+    position: absolute;
+    left: var(--ecp-space-3);
+    bottom: var(--ecp-space-3);
+    z-index: 1;
+    padding: var(--ecp-space-1) var(--ecp-space-2);
+    color: var(--ecp-photo-ink);
+    background: color-mix(in srgb, var(--ecp-night) 76%, transparent);
+    font-family: var(--ecp-meta);
+    font-size: var(--ecp-type-caption);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .ecp-still--fallback .ecp-still-label {
+    position: static;
+    max-width: 30ch;
+    padding: 0;
+    color: var(--ecp-muted);
+    background: transparent;
+    line-height: 1.6;
+    text-align: center;
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+
+  .ecp-photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--ecp-space-2);
+  }
+
+  .ecp-contact-sheet {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--ecp-space-1);
+    padding: var(--ecp-space-2);
+    background: var(--ecp-night);
+  }

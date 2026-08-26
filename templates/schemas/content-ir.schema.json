@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Sense Deck Content IR",
   "type": "object",
-  "required": ["title", "audience", "theme", "features", "slides"],
+  "required": ["title", "audience", "theme", "imageCapabilityMode", "features", "slides"],
   "properties": {
     "title": { "type": "string" },
     "subtitle": { "type": "string" },
@@ -11,6 +11,7 @@
     "tone": { "type": "string" },
     "language": { "type": "string" },
     "theme": { "type": "string" },
+    "imageCapabilityMode": { "enum": ["generate", "user-supplied", "upload-slots"] },
     "features": {
       "type": "object",
       "required": ["gesture", "presenterMode"],

@@ -5,6 +5,7 @@
   "scenario": "行业趋势分享",
   "tone": "Apple Bento + glassmorphism + strategic insight",
   "language": "zh-CN",
+  "imageCapabilityMode": "generate",
   "features": {
     "gesture": "off",
     "presenterMode": true,
@@ -16,16 +17,16 @@
     {
       "id": "decor-shield",
       "path": "assets/decor-shield.png",
-      "source": "AI-generated PNG in any multimodal image-capable environment, or CSS fallback outside those environments",
+      "source": "AI-generated PNG in generate mode, user asset in user-supplied mode, or a blank upload slot in upload-slots mode",
       "semanticUse": "quality, audit, safety, risk control",
-      "fallback": "CSS glass badge with checkmark"
+      "fallback": "Blank labeled upload slot; do not imitate the raster object with CSS"
     },
     {
       "id": "decor-bot",
       "path": "assets/decor-bot.png",
-      "source": "AI-generated PNG in any multimodal image-capable environment, or CSS fallback outside those environments",
+      "source": "AI-generated PNG in generate mode, user asset in user-supplied mode, or a blank upload slot in upload-slots mode",
       "semanticUse": "AI assistant, automation, agent",
-      "fallback": "CSS rounded bot tile"
+      "fallback": "Blank labeled upload slot; do not imitate the raster object with CSS"
     }
   ],
   "sourceSummary": {

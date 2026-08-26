@@ -1,0 +1,61 @@
+@layer tokens, components;
+@import url("./editorial-cinematic-paper-core.css") layer(components);
+@import url("./editorial-cinematic-paper-elements.css") layer(components);
+@import url("./editorial-cinematic-paper-media.css") layer(components);
+
+
+@layer tokens {
+  :root {
+    --ecp-paper: #f1eee4;
+    --ecp-paper-deep: #e4ded0;
+    --ecp-surface: #f7f4eb;
+    --ecp-ink: #141311;
+    --ecp-ink-soft: #49443c;
+    --ecp-muted: #746d61;
+    --ecp-rule: #b8b0a1;
+    --ecp-rule-soft: #d3ccbf;
+    --ecp-oxblood: #7a2f2b;
+    --ecp-oxblood-soft: #d8c1ba;
+    --ecp-night: #171816;
+    --ecp-night-soft: #2b2b27;
+    --ecp-photo-ink: #f3eee4;
+
+    --ecp-serif: "Songti SC", "STSong", "Source Han Serif SC", "Noto Serif CJK SC", serif;
+    --ecp-meta: "Arial Narrow", "Helvetica Neue", "PingFang SC", sans-serif;
+
+    --ecp-type-display: clamp(72px, 7.4vw, 132px);
+    --ecp-type-h1: clamp(58px, 5.8vw, 104px);
+    --ecp-type-h2: clamp(34px, 3.2vw, 56px);
+    --ecp-type-h3: clamp(22px, 1.8vw, 30px);
+    --ecp-type-lead: clamp(22px, 2vw, 34px);
+    --ecp-type-body: clamp(16px, 1.15vw, 21px);
+    --ecp-type-caption: clamp(12px, 0.85vw, 15px);
+    --ecp-type-overline: clamp(11px, 0.7vw, 13px);
+
+    --ecp-space-1: 4px;
+    --ecp-space-2: 8px;
+    --ecp-space-3: 12px;
+    --ecp-space-4: 16px;
+    --ecp-space-5: 20px;
+    --ecp-space-6: 24px;
+    --ecp-space-8: 32px;
+    --ecp-space-10: 40px;
+    --ecp-space-12: 48px;
+    --ecp-space-14: 56px;
+    --ecp-space-16: 64px;
+    --ecp-space-20: 80px;
+
+    --bg: var(--ecp-paper);
+    --ink: var(--ecp-ink);
+    --muted: var(--ecp-muted);
+    --line: var(--ecp-rule-soft);
+    --glass: var(--ecp-surface);
+    --blue: var(--ecp-oxblood);
+    --mint: var(--ecp-ink-soft);
+    --pink: var(--ecp-oxblood);
+    --orange: var(--ecp-oxblood);
+    --shadow: none;
+    --radius: 2px;
+    --font: var(--ecp-serif);
+  }
+}

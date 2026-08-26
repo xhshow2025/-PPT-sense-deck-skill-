@@ -18,15 +18,22 @@ You are a browser-native PPT architect. Build polished static HTML decks by sele
 4. Choose one theme from `templates/themes/`.
 5. Choose the closest full deck from `templates/full-decks/` when the user's task matches an existing scenario.
 6. Use `templates/single-page-layouts/` to add or replace individual slides.
-7. Add motion from `templates/animations/` only when it helps explain meaning.
-8. Wire animation lifecycle through `templates/runtime/slide-lifecycle.js`.
-9. Add optional features only when requested or useful, especially `features/gesture-controller.js`.
-10. Write the final deck as static HTML/CSS/JS.
-11. Validate keyboard navigation, mobile layout, presenter mode, gesture fallback, and export path.
+7. Resolve the image asset mode before visual implementation: generated images, user-supplied images, or blank upload slots.
+8. Add motion from `templates/animations/` only when it helps explain meaning.
+9. Wire animation lifecycle through `templates/runtime/slide-lifecycle.js`.
+10. Add optional features only when requested or useful, especially `features/gesture-controller.js`.
+11. Write the final deck as static HTML/CSS/JS.
+12. Validate keyboard navigation, mobile layout, presenter mode, image slots, gesture fallback, and export path.
 
 ## Default Selection Policy
 
 When the user does not name a deck, still choose a bundled full deck. Do not generate an ad hoc presentation from scratch just because the prompt is short or only names a topic.
+
+Style precedence is independent from deck selection and must be resolved before visual implementation:
+
+1. If the user explicitly names a bundled Sense Deck style and the request matches it, use that style.
+2. If the user gives a clear visual brief that is not a bundled style, honor the brief and adapt the nearest compatible template. Do not silently replace an explicit request with a house style.
+3. If the user gives no visual direction, use `editorial-cinematic-paper` and read `docs/editorial-cinematic-paper-style.md` before styling.
 
 Selection priority:
 
@@ -34,8 +41,9 @@ Selection priority:
 2. Copy the closest full deck as the structural base.
 3. Replace its content through `content-ir.json`.
 4. Add or swap individual slides from `templates/single-page-layouts/` only when the selected deck lacks a needed page shape.
-5. Pick the closest theme after deck selection, not before.
-6. If no full deck fits, assemble from single-page layouts and document the fallback in implementation notes.
+5. Apply the style precedence above after deck selection. Scenario determines structure; user direction determines style.
+6. When style is unspecified and the scenario is ambiguous or report/process-heavy, prefer `templates/full-decks/editorial-cinematic-report/`.
+7. If no full deck fits, assemble from single-page layouts and document the fallback in implementation notes.
 
 Theme selection is a styling decision. Full deck selection is a narrative and quality decision. A deck generated without using any bundled full deck or layout is a last resort, not the default.
 
@@ -89,6 +97,29 @@ The HTML deck is the main presentation runtime because it owns animation, browse
 
 Typst is an optional exporter, not the main PPT runtime. Use it for high-quality PDF handouts, print decks, worksheets, and static page exports. Do not rely on Typst for interactive HTML PPT, gesture control, or Canvas animations.
 
+## Image Capability Routing
+
+Resolve image handling by callable capability, not marketing claims or model name alone. Record the selected mode in `content-ir.json` as `imageCapabilityMode`.
+
+Read `docs/image-generation-guide.md` when the deck needs cinematic stills, illustrations, product images, raster decor, or planned upload slots.
+
+Use exactly one of these modes:
+
+1. `generate`: A high-quality image generation tool and image inspection tool are callable. Codex/ChatGPT with built-in image generation satisfies this route. Generate the needed cinematic stills, illustrations, product images, or raster decor; inspect them; copy final files into the deck's `assets/` folder; and render them in the finished slides.
+2. `user-supplied`: The user provided usable images. Preserve them non-destructively, crop them for the selected layout, keep them local to the deck, and do not replace them with generated alternatives unless asked.
+3. `upload-slots`: No reliable high-quality image generation and inspection path is callable, or the available agent produces visibly weak images. A text-only or DeepSeek-only environment without a capable image tool normally lands here. Finish the writing, information structure, typography, spacing, diagrams, and slide layout, but leave photographic and illustrative regions as clean upload slots for the user.
+
+Rules for `upload-slots`:
+
+- Do not create low-quality fake photos, generic AI illustrations, CSS scenery, SVG pseudo-photography, or abstract geometry to disguise the missing image.
+- Do not leave bundled demonstration stills in a real user deck. Remove them and render an empty `.ecp-still--fallback` slot with a concise label such as `上传图片 · 16:9 · 人物靠右`.
+- Preserve the exact aspect ratio and crop intent so a user upload can replace the slot without changing the layout.
+- Add an accessible `aria-label` or visible instruction that states subject, crop, and orientation. Do not show a broken `<img>` element.
+- Optionally write `image-prompts.json` so the user can generate the missing assets elsewhere, but do not make image generation a blocker for completing the deck.
+- Code-native charts, diagrams, icons, rules, and layout frames may still use HTML/CSS/SVG. The blank-slot rule applies to photographic, cinematic, illustrative, product, and complex raster content.
+
+Never downgrade from `generate` to `upload-slots` merely to save effort when a capable image tool is available. Never attempt poor-quality generation merely because the current model has a generic image endpoint.
+
 ## Raster Decor Asset Pipeline
 
 Some premium deck styles need bitmap assets instead of code-drawn approximations. Use generated or cutout raster images for complex visual objects such as translucent crystal rings, holographic shields, glass robots, 3D badges, magnifiers, product mockups, realistic devices, and glossy decorative ribbons.
@@ -98,9 +129,9 @@ This is semantic decoration, not a fixed shape library. Do not default to circle
 Rules:
 
 1. Do not force CSS/SVG to imitate complex 3D glass objects. If the object depends on refraction, translucent material, iridescent lighting, realistic bevels, or soft volumetric glow, create or reuse a PNG/WebP asset.
-2. Use capability detection, not product-name detection. If the current environment has image generation and image understanding available, use AI-generated PNG/WebP components for these assets. This includes Codex, Gemini, or any other product/model integration with comparable multimodal generation/inspection capability.
+2. Follow `Image Capability Routing`. Generate raster decor only in `generate` mode; use user assets in `user-supplied` mode; use a labeled upload slot in `upload-slots` mode when the complex raster object materially matters.
 3. For transparent assets, prefer generating or exporting a PNG/WebP with alpha when the environment supports it. If only flat-background generation is available, use a removable chroma-key background, remove the key locally, and save the final alpha PNG into the deck's `assets/` folder.
-4. If the current model/product cannot generate or inspect images, fall back to CSS/SVG/Canvas approximations. Keep the fallback simpler, label it as a fallback in implementation notes when useful, and preserve the same semantic placement.
+4. If the current model/product cannot reliably generate and inspect images, do not approximate photographic or complex raster content with CSS/SVG/Canvas. Leave a correctly sized upload slot. Use CSS/SVG/Canvas only for genuinely code-native diagrams, icons, and structural graphics.
 5. If the user supplies reference images, treat them as style/composition references or as cutout sources. Crop and matte them non-destructively into project-local assets such as `assets/decor-ring.png`, `assets/decor-shield.png`, or `assets/decor-robot.png`.
 6. Record generated or extracted assets in `content-ir.json` under a compact `decorAssets` field when they materially shape the deck's look.
 7. Insert decor assets semantically, not randomly. Examples:
@@ -152,6 +183,7 @@ Before generating a deck, produce a compact IR:
   "title": "AI短剧出海风起时",
   "audience": "出海团队 / 投资人 / 内容创作者",
   "tone": "Apple Bento + glassmorphism + strategic insight",
+  "imageCapabilityMode": "generate",
   "features": {
     "gesture": "off",
     "presenterMode": true,
@@ -260,6 +292,7 @@ Use `templates/runtime/slide-lifecycle.js` and `templates/runtime/canvas-fx-runt
 
 Use these house styles unless the user requests another direction:
 
+- Editorial Cinematic Paper: warm ivory paper, near-black Chinese serif type, oxblood numbering and rules, strict editorial grids, and low-key cinematic stills. This is the default when the user gives no style direction.
 - Apple Bento: large clean information blocks, premium spacing, restrained contrast, product-grade hierarchy.
 - Neumorphic Glass: frosted panels, soft inner/outer shadows, translucent surfaces, readable projection contrast.
 - Noir Bronze Editorial: black keynote background, bronze accents, Chinese serif hero type, mono metadata, thin rules, grain, and magazine-like data storytelling.
@@ -292,13 +325,22 @@ Slide title rules:
 
 ## Theme Selection
 
-Default selection:
+Resolve theme selection in this order:
+
+1. An explicit user style that matches a bundled style.
+2. An explicit user visual brief, adapted through the nearest compatible template even when no bundled style is an exact match.
+3. `editorial-cinematic-paper` when the user gives no visual direction.
+
+When the default is selected, read `docs/editorial-cinematic-paper-style.md`. Keep its warm paper, oxblood accent, editorial grid, Chinese serif hierarchy, and low-key cinematic image logic together; do not reduce it to a beige background.
+
+Bundled scenario matches for explicit requests include:
 
 - AI, product, strategy, new category: `apple-bento-glass`
 - Investor or executive: `executive-clean`
 - social media carousel: `xhs-editorial`
 - technical talk: `semantic-dark`
 - magazine-style keynote, founder narrative, growth case, black-gold data story: `noir-bronze-editorial`
+- warm editorial report, methodology, process system, cinematic evidence board: `editorial-cinematic-paper`
 
 When using multiple styles, keep typography and spacing tokens consistent.
 
@@ -359,6 +401,8 @@ This skill currently includes:
 - `templates/themes/cyber-neon.css`
 - `templates/themes/warm-paper.css`
 - `templates/themes/noir-bronze-editorial.css`
+- `templates/themes/editorial-cinematic-paper.css`
+- `docs/editorial-cinematic-paper-style.md`
 - `templates/content-ir/content-ir.example.json`
 - `templates/schemas/content-ir.schema.json`
 - `templates/schemas/template.schema.json`
@@ -380,6 +424,7 @@ This skill currently includes:
 - `templates/full-decks/demo-day/`
 - `templates/full-decks/brand-story/`
 - `templates/full-decks/ai-short-drama-overseas/`
+- `templates/full-decks/editorial-cinematic-report/`
 - `templates/single-page-layouts/layout-catalog.json`
 - `templates/single-page-layouts/cover-bento-glass.html`
 - `templates/single-page-layouts/layouts.css`

@@ -1,0 +1,54 @@
+{
+  "title": "从材料到可信演示",
+  "subtitle": "把观点、证据、结构与视觉资产组织成一套可交付的演示系统",
+  "audience": "内容团队 / 策略团队 / 创意技术团队",
+  "scenario": "方法论与系统说明",
+  "tone": "warm editorial paper + cinematic evidence + structured diagrams",
+  "language": "zh-CN",
+  "theme": "editorial-cinematic-paper",
+  "imageCapabilityMode": "generate",
+  "features": {
+    "gesture": "off",
+    "presenterMode": true,
+    "editable": true,
+    "typstHandout": false
+  },
+  "assets": {
+    "imageMode": "cinematic-images",
+    "continuity": "one quiet urban interior, neutral white balance, local warm practical lights, low saturation, deep black separation",
+    "requiredStills": [
+      "quiet-room-source",
+      "rainy-street-tension",
+      "window-space",
+      "desk-lamp-light",
+      "profile-separation"
+    ],
+    "localStills": {
+      "quiet-room-source": "assets/apartment-morning.png",
+      "rainy-street-tension": "assets/rain-street.png",
+      "window-space": "assets/apartment-morning.png",
+      "desk-lamp-light": "assets/night-window-portrait.png",
+      "profile-separation": "assets/night-window-portrait.png"
+    },
+    "replacementRule": "These bundled stills demonstrate the visual grammar. Replace them with subject-specific local assets when generating a real deck.",
+    "fallback": "In upload-slots mode, remove demonstration stills and use empty labeled .ecp-still--fallback upload wells. Never synthesize fake photography with CSS or SVG."
+  },
+  "sourceSummary": {
+    "thesis": "风格、结构和证据必须共同服务于理解，质量控制要把真实结果沉淀回模板。",
+    "keyArguments": [
+      "先构建语义中间层，再渲染页面",
+      "影像是证据与空间，不是装饰滤镜",
+      "多视角资产必须保持空间连续性",
+      "质量回归要区分叙事、美学、资产和运行层问题"
+    ]
+  },
+  "slides": [
+    { "role": "cover", "title": "从材料到可信演示", "layout": "editorial-cover", "theme": "editorial-cinematic-paper", "speakerNotes": "开场交代核心判断。" },
+    { "role": "workflow", "title": "一套真正可执行的演示工作流", "layout": "numbered-workflow", "theme": "editorial-cinematic-paper", "speakerNotes": "说明从求真到回归的主线。" },
+    { "role": "system", "title": "先结构化导演意图，再编译成页面", "layout": "system-diagram", "theme": "editorial-cinematic-paper", "speakerNotes": "解释内容 IR 的稳定作用。" },
+    { "role": "image-analysis", "title": "电影感来自成像逻辑，不是一层滤镜", "layout": "image-analysis-board", "theme": "editorial-cinematic-paper", "speakerNotes": "用四个成像原则解释电影感。" },
+    { "role": "asset-system", "title": "先建立空间事实，再让镜头生长出来", "layout": "multi-view-assets", "theme": "editorial-cinematic-paper", "speakerNotes": "说明多视角资产的空间闭合。" },
+    { "role": "quality-loop", "title": "质量控制不是出图结束，而是回归", "layout": "quality-control-loop", "theme": "editorial-cinematic-paper", "speakerNotes": "区分问题层级并沉淀经验。" },
+    { "role": "closing", "title": "先归因，再修正", "layout": "editorial-closing", "theme": "editorial-cinematic-paper", "speakerNotes": "回到行动原则并收束。" }
+  ]
+}

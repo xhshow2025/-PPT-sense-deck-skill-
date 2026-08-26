@@ -1,0 +1,121 @@
+  .ecp-diagram {
+    padding: var(--ecp-space-5);
+    border: 1px solid var(--ecp-rule);
+    color: var(--ecp-ink);
+    background: var(--ecp-surface);
+  }
+
+  .ecp-flow {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--ecp-space-3);
+    align-items: center;
+  }
+
+  .ecp-node {
+    min-height: 116px;
+    display: grid;
+    place-content: center;
+    gap: var(--ecp-space-2);
+    padding: var(--ecp-space-4);
+    border: 1px solid var(--ecp-rule);
+    text-align: center;
+  }
+
+  .ecp-node--accent {
+    border-color: var(--ecp-oxblood);
+    color: var(--ecp-photo-ink);
+    background: var(--ecp-oxblood);
+  }
+
+  .ecp-node small {
+    color: inherit;
+    font-family: var(--ecp-meta);
+    font-size: var(--ecp-type-overline);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .ecp-flow-arrow {
+    height: 1px;
+    background: var(--ecp-rule);
+  }
+
+  .ecp-quote-footer {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--ecp-space-8);
+    align-items: end;
+    padding: var(--ecp-space-6) var(--ecp-space-5);
+    border-top: 1px solid var(--ecp-rule);
+  }
+
+  .ecp-quote-footer blockquote {
+    max-width: 1100px;
+    font-size: var(--ecp-type-h2);
+    line-height: 1.18;
+  }
+
+  .ecp-system-mark {
+    width: 104px;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--ecp-ink-soft);
+    border-radius: 50%;
+    color: var(--ecp-ink-soft);
+    font-family: var(--ecp-meta);
+    font-size: var(--ecp-type-overline);
+    letter-spacing: 0.12em;
+    line-height: 1.5;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 900px) {
+    .slide {
+      gap: var(--ecp-space-6);
+      padding: var(--ecp-space-8) var(--ecp-space-5) 96px;
+    }
+
+    .slide::before {
+      inset: var(--ecp-space-3);
+    }
+
+    h1,
+    .hero-title {
+      font-size: clamp(50px, 13vw, 76px);
+    }
+
+    h2 {
+      font-size: clamp(42px, 10vw, 64px);
+    }
+
+    .ecp-grid,
+    .ecp-photo-grid,
+    .ecp-flow,
+    .ecp-quote-footer {
+      grid-template-columns: 1fr;
+    }
+
+    .ecp-flow-arrow {
+      width: 1px;
+      height: var(--ecp-space-6);
+      justify-self: center;
+    }
+
+    .ecp-contact-sheet {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .slide,
+    .slide *,
+    .controls button {
+      animation: none;
+      transition: none;
+      transform: none;
+    }
+  }

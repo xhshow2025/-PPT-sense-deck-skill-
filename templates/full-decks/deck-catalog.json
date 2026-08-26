@@ -1,6 +1,6 @@
 {
   "purpose": "Choose a complete deck first when the requested presentation matches a known scenario. Copy the closest deck, then replace content.",
-  "targetCount": 19,
+  "targetCount": 20,
   "decks": [
     {
       "id": "pitch-deck",
@@ -278,6 +278,39 @@
         "closing"
       ],
       "path": "brand-story"
+    },
+    {
+      "id": "editorial-cinematic-report",
+      "name": "暖纸编辑部电影报告",
+      "status": "implemented",
+      "path": "editorial-cinematic-report",
+      "theme": "editorial-cinematic-paper",
+      "defaultWhenStyleUnspecified": true,
+      "bestFor": [
+        "未指定视觉风格的演示",
+        "方法论报告",
+        "流程说明",
+        "质量体系",
+        "电影静帧证据板",
+        "编辑部风格主题演讲"
+      ],
+      "defaultSlides": [
+        "cover",
+        "numbered-workflow",
+        "system-diagram",
+        "image-analysis-board",
+        "multi-view-assets",
+        "quality-control-loop",
+        "closing"
+      ],
+      "features": [
+        "speaker mode",
+        "edit mode",
+        "keyboard navigation",
+        "touch navigation",
+        "responsive vertical preview",
+        "local image slots with labeled fallbacks"
+      ]
     },
     {
       "id": "ai-short-drama-overseas",

@@ -52,7 +52,7 @@
     ]
   },
   "targetLibraryShape": {
-    "fullDecks": 15,
+    "fullDecks": 20,
     "singlePageLayouts": 32,
     "cssAnimations": 27,
     "canvasFx": 20
@@ -171,6 +171,26 @@
         "Chinese serif headline",
         "mono metadata",
         "editorial chart"
+      ]
+    },
+    {
+      "id": "editorial-cinematic-paper",
+      "path": "themes/editorial-cinematic-paper.css",
+      "defaultWhenUnspecified": true,
+      "guide": "../docs/editorial-cinematic-paper-style.md",
+      "bestFor": [
+        "unspecified visual style",
+        "methodology report",
+        "process explanation",
+        "cinematic evidence board",
+        "editorial keynote"
+      ],
+      "visual": [
+        "warm ivory paper",
+        "near-black Chinese serif headline",
+        "oxblood accent",
+        "thin editorial grid",
+        "low-key cinematic stills"
       ]
     }
   ],
@@ -400,6 +420,87 @@
         "speaker mode",
         "shared runtime",
         "static HTML"
+      ]
+    },
+    {
+      "id": "nordic-childrens-picture-book",
+      "path": "full-decks/nordic-childrens-picture-book",
+      "slides": 7,
+      "bestFor": [
+        "北欧童话绘本风",
+        "儿童绘本风 PPT",
+        "怀旧故事"
+      ],
+      "features": [
+        "speaker mode",
+        "keyboard navigation",
+        "editable HTML source"
+      ]
+    },
+    {
+      "id": "电影质感",
+      "path": "full-decks/电影质感",
+      "slides": 10,
+      "bestFor": [
+        "电影质感",
+        "历史人物故事",
+        "国风文化叙事"
+      ],
+      "features": [
+        "MediaPipe hand gesture navigation",
+        "keyboard navigation",
+        "full-bleed background imagery"
+      ]
+    },
+    {
+      "id": "碎纸片",
+      "path": "full-decks/碎纸片",
+      "slides": 8,
+      "bestFor": [
+        "碎纸片",
+        "纸片拼贴风",
+        "创意技术流程展示"
+      ],
+      "features": [
+        "speaker mode",
+        "touch navigation",
+        "local transparent paper assets"
+      ]
+    },
+    {
+      "id": "赛博朋克",
+      "path": "full-decks/赛博朋克",
+      "slides": 9,
+      "bestFor": [
+        "赛博朋克",
+        "未来城市",
+        "neon noir"
+      ],
+      "features": [
+        "speaker mode",
+        "keyboard navigation",
+        "cyberpunk component assets"
+      ]
+    },
+    {
+      "id": "editorial-cinematic-report",
+      "path": "full-decks/editorial-cinematic-report",
+      "slides": 7,
+      "theme": "editorial-cinematic-paper",
+      "bestFor": [
+        "unspecified presentation scenario",
+        "methodology report",
+        "process explanation",
+        "quality system",
+        "cinematic editorial keynote"
+      ],
+      "features": [
+        "speaker mode",
+        "edit mode",
+        "keyboard navigation",
+        "touch navigation",
+        "responsive vertical preview",
+        "local image slots with labeled fallbacks"
       ]
     }
   ],

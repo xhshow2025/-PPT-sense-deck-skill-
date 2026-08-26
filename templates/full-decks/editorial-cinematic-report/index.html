@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="暖纸编辑部风格的电影化报告型 Sense Deck 模板" />
+    <title>从材料到可信演示 | Editorial Cinematic Report</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="../../themes/editorial-cinematic-paper.css" />
+  </head>
+  <body>
+    <nav class="controls" aria-label="Presentation controls">
+      <button id="prevBtn" type="button" aria-label="Previous slide">PREV</button>
+      <span id="counter" aria-live="polite">1 / 7</span>
+      <button id="nextBtn" type="button" aria-label="Next slide">NEXT</button>
+      <button id="speakerBtn" type="button" aria-label="Toggle speaker mode">S</button>
+      <button id="editBtn" type="button" aria-label="Toggle edit mode">E</button>
+    </nav>
+
+    <main class="deck" aria-label="Editorial Cinematic Report presentation">
+      <section class="slide active layout-cover" data-title="从材料到可信演示" data-role="cover" data-layout="editorial-cover">
+        <header class="ecp-masthead">
+          <span class="ecp-series" data-editable data-field="series">EDITORIAL DECK SERIES</span>
+          <span class="ecp-page-no" aria-hidden="true">01</span>
+        </header>
+        <div class="cover-body ecp-grid">
+          <div class="ecp-heading cover-heading">
+            <p class="kicker" data-editable data-field="chapter">SENSE DECK / DEFAULT SYSTEM</p>
+            <h1 data-editable data-field="title">从材料到<br />可信演示</h1>
+            <span class="ecp-accent-rule" aria-hidden="true"></span>
+            <p class="lead" data-editable data-field="lead">把观点、证据、结构与视觉资产组织成一套可交付、可复用、可验证的演示系统。</p>
+          </div>
+          <aside class="cover-aside" aria-label="Theme characteristics">
+            <p class="meta">WARM PAPER</p>
+            <p class="meta">CINEMATIC EVIDENCE</p>
+            <p class="meta">EDITORIAL GRID</p>
+          </aside>
+        </div>
+        <footer class="ecp-quote-footer">
+          <blockquote data-editable data-field="takeaway">风格不是装饰层，而是信息被理解的顺序。</blockquote>
+          <div class="ecp-system-mark" aria-hidden="true">SENSE<br />DECK<br />SYSTEM</div>
+        </footer>
+        <aside class="notes">开场先交代这套报告的唯一判断：结构、证据和视觉必须共同服务于理解。</aside>
+      </section>
+
+      <section class="slide layout-workflow" data-title="一套真正可执行的演示工作流" data-role="workflow" data-layout="numbered-workflow">
+        <header class="ecp-masthead">
+          <span class="ecp-series">EDITORIAL DECK SERIES</span>
+          <span class="ecp-page-no" aria-hidden="true">02</span>
+        </header>
+        <div class="ecp-heading ecp-heading--compact">
+          <p class="kicker">FROM SOURCE TO DELIVERY</p>
+          <h2 class="workflow-title" data-editable data-field="title"><span>一套真正可执行的</span><span>演示工作流</span></h2>
+          <span class="ecp-accent-rule" aria-hidden="true"></span>
+        </div>
+        <div class="workflow-body">
+          <div class="ecp-fact-list" data-layout="workflow-steps">
+            <article class="ecp-fact-row"><span class="ecp-index">01</span><div><strong data-editable>材料求真</strong><p data-editable>确认事实、冲突与来源边界</p></div></article>
+            <article class="ecp-fact-row"><span class="ecp-index">02</span><div><strong data-editable>结论先行</strong><p data-editable>先写判断，再组织证据</p></div></article>
+            <article class="ecp-fact-row"><span class="ecp-index">03</span><div><strong data-editable>角色编排</strong><p data-editable>让每页只承担一种语义任务</p></div></article>
+            <article class="ecp-fact-row"><span class="ecp-index">04</span><div><strong data-editable>视觉取证</strong><p data-editable>图片、图解与数字各司其职</p></div></article>
+            <article class="ecp-fact-row"><span class="ecp-index">05</span><div><strong data-editable>质量回归</strong><p data-editable>在真实浏览器里复核表达</p></div></article>
+          </div>
+          <div class="workflow-evidence" data-layout="cinematic-evidence">
+            <figure class="ecp-still ecp-still--strip"><img src="./assets/apartment-morning.png" alt="清晨公寓与城市窗景" /><figcaption class="ecp-still-label">SOURCE / QUIET ROOM</figcaption></figure>
+            <figure class="ecp-still ecp-still--strip"><img src="./assets/rain-street.png" alt="雨夜街道中的持伞行人" /><figcaption class="ecp-still-label">TENSION / RAINY STREET</figcaption></figure>
+            <div class="ecp-photo-grid">
+              <figure class="ecp-still ecp-still--tile"><img src="./assets/apartment-morning.png" alt="公寓空间关系" /><figcaption class="ecp-still-label">SPACE</figcaption></figure>
+              <figure class="ecp-still ecp-still--tile ecp-still--focus-right"><img src="./assets/night-window-portrait.png" alt="窗边人物与暖色台灯" /><figcaption class="ecp-still-label">LIGHT</figcaption></figure>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">用五个阶段讲清楚从材料到交付的主线，右侧画面只承担证据和情绪定位。</aside>
+      </section>
+
+      <section class="slide layout-system" data-title="先结构化导演意图，再编译成页面" data-role="system" data-layout="system-diagram">
+        <header class="ecp-masthead">
+          <span class="ecp-series">EDITORIAL DECK SERIES</span>
+          <span class="ecp-page-no" aria-hidden="true">03</span>
+        </header>
+        <div class="ecp-heading ecp-heading--compact">
+          <p class="kicker">SEMANTIC INTERMEDIATE LAYER</p>
+          <h2 data-editable data-field="title">先结构化导演意图，<br />再编译成页面</h2>
+        </div>
+        <div class="system-body">
+          <div class="system-inputs" data-layout="semantic-inputs">
+            <article class="ecp-node"><small>Thesis</small><strong data-editable>核心判断</strong><p data-editable>一句话说明为什么</p></article>
+            <article class="ecp-node"><small>Evidence</small><strong data-editable>证据系统</strong><p data-editable>数据、案例、引用</p></article>
+            <article class="ecp-node"><small>Visual</small><strong data-editable>美学约束</strong><p data-editable>字体、网格、影像</p></article>
+            <article class="ecp-node"><small>Runtime</small><strong data-editable>交互能力</strong><p data-editable>导航、备注、编辑</p></article>
+          </div>
+          <div class="ecp-diagram compile-diagram" data-layout="compile-diagram">
+            <div class="ecp-node ecp-node--accent"><small>Content IR</small><strong data-editable>语义中间层</strong></div>
+            <span class="compile-line" aria-hidden="true"></span>
+            <div class="compile-outputs">
+              <article class="ecp-node"><small>HTML</small><strong data-editable>演示运行时</strong></article>
+              <article class="ecp-node"><small>Export</small><strong data-editable>PDF / 静态图</strong></article>
+            </div>
+          </div>
+          <div class="ecp-photo-grid system-stills">
+            <figure class="ecp-still ecp-still--strip"><img src="./assets/apartment-morning.png" alt="连续空间的建立镜头" /><figcaption class="ecp-still-label">VISUAL CONTINUITY</figcaption></figure>
+            <figure class="ecp-still ecp-still--strip"><img src="./assets/rain-street.png" alt="雨夜叙事建立镜头" /><figcaption class="ecp-still-label">NARRATIVE CONTINUITY</figcaption></figure>
+          </div>
+        </div>
+        <aside class="notes">强调中间层的价值：换页面、换主题、换输出格式时，论点和证据不会丢失。</aside>
+      </section>
+
+      <section class="slide layout-image-board" data-title="电影感来自成像逻辑，不是一层滤镜" data-role="image-analysis" data-layout="image-analysis-board">
+        <header class="ecp-masthead">
+          <span class="ecp-series">EDITORIAL DECK SERIES</span>
+          <span class="ecp-page-no" aria-hidden="true">04</span>
+        </header>
+        <div class="ecp-heading ecp-heading--compact">
+          <p class="kicker">CINEMATIC IMAGE LOGIC</p>
+          <h2 data-editable data-field="title">电影感来自成像逻辑，<br />不是一层滤镜</h2>
+          <span class="ecp-accent-rule" aria-hidden="true"></span>
+        </div>
+        <div class="image-board">
+          <div class="image-principles ecp-fact-list">
+            <article class="ecp-fact-row"><span class="dot" aria-hidden="true"></span><div><strong data-editable>高光有肩部</strong><p data-editable>保留灯具与窗景的质感</p></div></article>
+            <article class="ecp-fact-row"><span class="dot" aria-hidden="true"></span><div><strong data-editable>白平衡中性</strong><p data-editable>暖色只服务于局部情绪</p></div></article>
+            <article class="ecp-fact-row"><span class="dot" aria-hidden="true"></span><div><strong data-editable>锐度有分区</strong><p data-editable>主体清楚，背景保留层次</p></div></article>
+            <article class="ecp-fact-row"><span class="dot" aria-hidden="true"></span><div><strong data-editable>颗粒在最后</strong><p data-editable>质感不能覆盖结构问题</p></div></article>
+          </div>
+          <div class="analysis-gallery" data-layout="cinematic-contact-sheet">
+            <figure class="ecp-still ecp-still--hero"><img src="./assets/night-window-portrait.png" alt="雨夜窗边人物与动机光" /><figcaption class="ecp-still-label">HERO / MOTIVATED LIGHT</figcaption></figure>
+            <div class="ecp-contact-sheet">
+              <figure class="ecp-still ecp-still--tile ecp-still--focus-center"><img src="./assets/night-window-portrait.png" alt="灯具高光细节" /><figcaption class="ecp-still-label">01 HIGHLIGHT</figcaption></figure>
+              <figure class="ecp-still ecp-still--tile"><img src="./assets/apartment-morning.png" alt="中性日光空间" /><figcaption class="ecp-still-label">02 NEUTRAL</figcaption></figure>
+              <figure class="ecp-still ecp-still--tile"><img src="./assets/rain-street.png" alt="雨夜冷暖色彩关系" /><figcaption class="ecp-still-label">03 COLOR</figcaption></figure>
+              <figure class="ecp-still ecp-still--tile ecp-still--focus-right"><img src="./assets/night-window-portrait.png" alt="人物与背景的层次分离" /><figcaption class="ecp-still-label">04 SEPARATION</figcaption></figure>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">这一页不是教调色参数，而是说明图像在报告中如何建立可信的空间、光线和信息层级。</aside>
+      </section>
+
+      <section class="slide layout-multiview" data-title="先建立空间事实，再让镜头生长出来" data-role="asset-system" data-layout="multi-view-assets">
+        <header class="ecp-masthead">
+          <span class="ecp-series">EDITORIAL DECK SERIES</span>
+          <span class="ecp-page-no" aria-hidden="true">05</span>
+        </header>
+        <div class="ecp-heading ecp-heading--compact">
+          <p class="kicker">MULTI-VIEW ASSET SYSTEM</p>
+          <h2 data-editable data-field="title">先建立空间事实，<br />再让镜头生长出来</h2>
+        </div>
+        <div class="multiview-body">
+          <figure class="ecp-still ecp-still--hero"><img src="./assets/apartment-morning.png" alt="公寓主视角建立镜头" /><figcaption class="ecp-still-label">PRIMARY VIEW / ESTABLISHING SHOT</figcaption></figure>
+          <div class="floor-plan ecp-diagram" aria-label="Simplified room plan">
+            <span class="plan-label plan-window">窗区</span>
+            <span class="plan-label plan-sofa">沙发区</span>
+            <span class="plan-label plan-table">桌面</span>
+            <span class="plan-label plan-screen">屏幕</span>
+            <span class="camera camera-top">A</span>
+            <span class="camera camera-left">B</span>
+            <span class="camera camera-right">C</span>
+            <span class="camera camera-entry">D</span>
+          </div>
+          <div class="view-grid" data-layout="derived-views">
+            <article class="ecp-node"><small>View A</small><strong data-editable>主视角</strong><p data-editable>建立空间关系</p></article>
+            <article class="ecp-node"><small>View B</small><strong data-editable>反打</strong><p data-editable>保留人物轴线</p></article>
+            <article class="ecp-node"><small>View C</small><strong data-editable>侧向</strong><p data-editable>补充行为细节</p></article>
+            <article class="ecp-node"><small>View D</small><strong data-editable>入口</strong><p data-editable>说明动线与尺度</p></article>
+          </div>
+        </div>
+        <aside class="notes">多视角资产的关键是空间闭合，而不是把看起来相似的图拼成一页。</aside>
+      </section>
+
+      <section class="slide layout-quality" data-title="质量控制不是出图结束，而是回归" data-role="quality-loop" data-layout="quality-control-loop">
+        <header class="ecp-masthead">
+          <span class="ecp-series">EDITORIAL DECK SERIES</span>
+          <span class="ecp-page-no" aria-hidden="true">06</span>
+        </header>
+        <div class="ecp-heading ecp-heading--compact">
+          <p class="kicker">QUALITY CONTROL LOOP</p>
+          <h2 data-editable data-field="title">质量控制不是出图结束，<br />而是回归</h2>
+          <span class="ecp-accent-rule" aria-hidden="true"></span>
+        </div>
+        <div class="quality-body">
+          <div class="quality-loop ecp-diagram" data-layout="quality-loop">
+            <article class="loop-node"><span>01</span><strong data-editable>观察</strong><p data-editable>以听众视角检视</p></article>
+            <article class="loop-node"><span>02</span><strong data-editable>归因</strong><p data-editable>定位真实问题</p></article>
+            <article class="loop-node"><span>03</span><strong data-editable>修正</strong><p data-editable>回到正确层级</p></article>
+            <article class="loop-node"><span>04</span><strong data-editable>再生成</strong><p data-editable>保持结构一致</p></article>
+            <article class="loop-node"><span>05</span><strong data-editable>记录</strong><p data-editable>沉淀可复用经验</p></article>
+            <article class="loop-node"><span>06</span><strong data-editable>升级</strong><p data-editable>更新模板与技能</p></article>
+          </div>
+          <div class="diagnosis-list ecp-fact-list" data-layout="diagnosis-list">
+            <article class="ecp-fact-row"><span class="dot" aria-hidden="true"></span><div><strong data-editable>叙事问题</strong><p data-editable>镜头语言、节奏、论证顺序</p></div></article>
+            <article class="ecp-fact-row"><span class="dot" aria-hidden="true"></span><div><strong data-editable>美学问题</strong><p data-editable>光影、色彩、构图、质感</p></div></article>
+            <article class="ecp-fact-row"><span class="dot" aria-hidden="true"></span><div><strong data-editable>资产问题</strong><p data-editable>比例、裁切、尺寸、连续性</p></div></article>
+            <article class="ecp-fact-row"><span class="dot" aria-hidden="true"></span><div><strong data-editable>运行问题</strong><p data-editable>导航、响应式、控制台、导出</p></div></article>
+          </div>
+        </div>
+        <footer class="quality-takeaway" data-editable>从评估到进化：让结果可以被衡量，也可以被改进。</footer>
+        <aside class="notes">区分问题层级能避免在错误层面反复打补丁，最终把经验沉淀回模板。</aside>
+      </section>
+
+      <section class="slide layout-closing" data-title="先归因，再修正" data-role="closing" data-layout="editorial-closing">
+        <header class="ecp-masthead">
+          <span class="ecp-series">EDITORIAL DECK SERIES</span>
+          <span class="ecp-page-no" aria-hidden="true">07</span>
+        </header>
+        <div class="closing-body">
+          <p class="kicker">DIRECTIONAL THINKING / SYSTEMATIC EXECUTION</p>
+          <blockquote data-editable data-field="closing">先归因，再修正；<br />让真实结果反向训练系统。</blockquote>
+          <span class="ecp-accent-rule" aria-hidden="true"></span>
+          <p class="lead" data-editable>下一次生成不从空白开始，而从已验证的方法开始。</p>
+        </div>
+        <footer class="closing-footer">
+          <span class="meta">EDIT WITH E / SPEAKER MODE WITH S</span>
+          <div class="ecp-system-mark" aria-hidden="true">SENSE<br />DECK<br />SYSTEM</div>
+        </footer>
+        <aside class="notes">收束时回到行动原则：先找真实原因，再修正对应层级，并把经验沉淀回系统。</aside>
+      </section>
+    </main>
+
+    <aside class="speaker-panel" id="speakerPanel" aria-label="Speaker mode" aria-hidden="true">
+      <div class="speaker-card"><small>当前页</small><strong id="speakerTitle"></strong></div>
+      <div class="speaker-card"><small>下一页</small><strong id="speakerNext"></strong></div>
+      <div class="speaker-card notes"><small>讲稿</small><p id="speakerNotes"></p></div>
+      <div class="speaker-card"><small>计时</small><strong id="timer">00:00</strong></div>
+    </aside>
+
+    <script type="module" src="./deck.js"></script>
+  </body>
+</html>

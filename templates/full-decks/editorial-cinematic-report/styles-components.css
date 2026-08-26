@@ -1,0 +1,206 @@
+.floor-plan {
+  position: relative;
+  min-height: 0;
+  background: var(--ecp-surface);
+}
+
+.floor-plan::before {
+  content: "";
+  position: absolute;
+  inset: 16% 14%;
+  border: 2px solid var(--ecp-ink-soft);
+}
+
+.plan-label,
+.camera {
+  position: absolute;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  font-family: var(--ecp-meta);
+  font-size: var(--ecp-type-caption);
+}
+
+.plan-label {
+  border: 1px solid var(--ecp-rule);
+  background: var(--ecp-paper);
+}
+
+.plan-window { inset: 18% 30% auto; height: 12%; }
+.plan-sofa { inset: 38% auto auto 18%; width: 32%; height: 18%; }
+.plan-table { inset: 54% 36% auto; height: 16%; }
+.plan-screen { inset: 36% 18% auto auto; width: 18%; height: 32%; }
+
+.camera {
+  width: var(--ecp-space-8);
+  aspect-ratio: 1;
+  border: 1px solid var(--ecp-oxblood);
+  color: var(--ecp-photo-ink);
+  background: var(--ecp-oxblood);
+}
+
+.camera-top { top: var(--ecp-space-4); left: 48%; }
+.camera-left { left: var(--ecp-space-4); top: 46%; }
+.camera-right { right: var(--ecp-space-4); top: 46%; }
+.camera-entry { bottom: var(--ecp-space-4); left: 48%; }
+
+.view-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ecp-space-3);
+}
+
+.quality-body {
+  grid-template-columns: minmax(0, 7fr) minmax(340px, 5fr);
+}
+
+.quality-loop {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--ecp-space-3);
+}
+
+.loop-node {
+  min-height: 156px;
+  display: grid;
+  align-content: center;
+  gap: var(--ecp-space-2);
+  padding: var(--ecp-space-4);
+  border: 1px solid var(--ecp-rule-soft);
+}
+
+.loop-node span {
+  color: var(--ecp-oxblood);
+  font-size: var(--ecp-type-caption);
+}
+
+.loop-node strong {
+  font-size: var(--ecp-type-h3);
+  font-weight: 500;
+}
+
+.loop-node p {
+  color: var(--ecp-muted);
+  font-size: var(--ecp-type-caption);
+}
+
+.quality-takeaway {
+  padding-top: var(--ecp-space-4);
+  border-top: 1px solid var(--ecp-rule);
+  color: var(--ecp-oxblood);
+  font-size: var(--ecp-type-lead);
+}
+
+.closing-body {
+  align-self: center;
+  display: grid;
+  gap: var(--ecp-space-6);
+  max-width: 1360px;
+}
+
+.closing-body blockquote {
+  font-size: var(--ecp-type-display);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.closing-body .lead {
+  max-width: 920px;
+}
+
+.closing-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  padding-top: var(--ecp-space-5);
+  border-top: 1px solid var(--ecp-rule);
+}
+
+.controls {
+  position: fixed;
+  right: var(--ecp-space-5);
+  bottom: var(--ecp-space-5);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+}
+
+.controls button {
+  min-width: 48px;
+  height: 40px;
+  padding: 0 var(--ecp-space-3);
+  cursor: pointer;
+  font-family: var(--ecp-meta);
+  font-size: var(--ecp-type-overline);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.controls span {
+  min-width: 72px;
+  text-align: center;
+}
+
+.speaker-panel {
+  position: fixed;
+  inset: var(--ecp-space-6);
+  z-index: 30;
+  display: none;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ecp-space-4);
+  padding: var(--ecp-space-5);
+}
+
+.speaker-panel.on {
+  display: grid;
+}
+
+.speaker-card {
+  padding: var(--ecp-space-6);
+}
+
+.speaker-card small {
+  display: block;
+  margin-bottom: var(--ecp-space-3);
+  font-family: var(--ecp-meta);
+  letter-spacing: 0.08em;
+}
+
+.speaker-card strong {
+  font-size: var(--ecp-type-h2);
+  font-weight: 500;
+}
+
+.speaker-card.notes {
+  grid-column: 1 / 3;
+}
+
+.speaker-card.notes p {
+  font-size: var(--ecp-type-lead);
+}
+
+aside.notes {
+  display: none;
+}
+
+.sense-edit-toolbar {
+  border: 1px solid var(--ecp-rule) !important;
+  border-radius: 0 !important;
+  color: var(--ecp-ink) !important;
+  background: var(--ecp-paper) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  font-family: var(--ecp-meta) !important;
+}
+
+.sense-edit-toolbar button {
+  border: 1px solid var(--ecp-rule-soft) !important;
+  border-radius: 0 !important;
+  color: var(--ecp-ink) !important;
+  background: var(--ecp-surface) !important;
+}
+
+.sense-editing [contenteditable="true"],
+.sense-edit-selected {
+  outline-color: var(--ecp-oxblood) !important;
+}

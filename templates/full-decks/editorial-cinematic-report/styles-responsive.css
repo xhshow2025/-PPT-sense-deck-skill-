@@ -1,0 +1,125 @@
+@media (max-width: 900px) {
+  html,
+  body {
+    overflow: auto;
+  }
+
+  .deck {
+    width: 100%;
+    height: auto;
+    min-height: 100dvh;
+  }
+
+  .slide {
+    position: relative;
+    min-height: calc(100dvh - 64px);
+    display: none;
+    grid-template-rows: auto auto auto;
+    padding-bottom: var(--ecp-space-8);
+    overflow: visible;
+  }
+
+  .layout-workflow {
+    padding-block: var(--ecp-space-8);
+  }
+
+  .slide.active {
+    display: grid;
+  }
+
+  .cover-heading,
+  .cover-aside {
+    grid-column: 1;
+  }
+
+  .cover-aside {
+    display: none;
+  }
+
+  .workflow-body,
+  .system-body,
+  .image-board,
+  .multiview-body,
+  .quality-body,
+  .quality-loop,
+  .view-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .system-inputs,
+  .compile-outputs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .floor-plan {
+    min-height: 420px;
+  }
+
+  .controls {
+    position: static;
+    width: max-content;
+    max-width: calc(100% - (2 * var(--ecp-space-3)));
+    margin: var(--ecp-space-3) auto 0;
+    overflow-x: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    transform: none;
+  }
+
+  .speaker-panel {
+    inset: var(--ecp-space-3);
+    grid-template-columns: 1fr;
+    overflow: auto;
+  }
+
+  .speaker-card.notes {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  h1,
+  h2,
+  .hero-title {
+    letter-spacing: 0;
+  }
+
+  .workflow-title {
+    font-size: clamp(34px, 9vw, 48px);
+  }
+
+  .workflow-title span {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .ecp-masthead {
+    grid-template-columns: 1fr auto;
+  }
+
+  .ecp-masthead::after {
+    display: none;
+  }
+
+  .ecp-page-no {
+    grid-column: 2;
+  }
+
+  .system-inputs,
+  .compile-outputs {
+    grid-template-columns: 1fr;
+  }
+
+  .controls button {
+    min-width: 42px;
+    padding: 0 var(--ecp-space-2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide {
+    transition: none;
+    transform: none;
+  }
+}

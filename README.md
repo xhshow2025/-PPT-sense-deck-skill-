@@ -12,7 +12,7 @@
 - 先选模板、再填内容，避免从空白 CSS 重造 PPT。
 - 支持商务汇报、技术分享、融资路演、市场研究、课程培训、小红书九宫格、短剧出海、产品发布、品牌叙事、电影质感、赛博朋克、纸片拼贴、北欧绘本等场景。
 - 支持静态 HTML Deck、演讲者模式、键盘/触摸导航、可编辑模式、Canvas FX、可选手势翻页。
-- 支持图文并茂工作流，包括电影级背景图、PNG/WebP 组件、小配图批量生成、SVG/CSS/Canvas 回退。
+- 支持图文并茂工作流，包括电影级背景图、PNG/WebP 组件和小配图批量生成；SVG/CSS/Canvas 仅用于图表、图标、流程图和结构图等代码原生图形，缺少可靠图像能力时，摄影、插图、产品图与复杂位图区域必须保留为上传槽。
 - 支持 HTML、PDF、Typst handout 等导出辅助。
 
 ## 适用场景
@@ -167,9 +167,11 @@ HTML Deck 的运行时辅助，包括 slide lifecycle、Canvas FX runtime、编�
 - `nordic-childrens-picture-book`：北欧儿童绘本风、怀旧幽默故事。
 - `史诗级`：历史文化叙事、昭君出塞、国风电影感展示。
 - `neon-noir-city`：赛博朋克城市、AI 未来生活、2098 叙事。
+- `editorial-cinematic-paper`：暖象牙纸、近黑宋体、暗酒红强调、编辑部网格与低照度电影静帧；用户未指定视觉风格时的默认主题。
 
 主题选择建议：
 
+- 未指定视觉风格：`editorial-cinematic-paper`
 - AI / 产品 / 策略 / 新品类：`apple-bento-glass`
 - 投资人 / 管理层 / 董事会：`executive-clean`
 - 技术分享 / 架构图 / 系统解释：`semantic-dark`
@@ -179,9 +181,11 @@ HTML Deck 的运行时辅助，包括 slide lifecycle、Canvas FX runtime、编�
 - 赛博朋克 / 未来城市 / 2098 生活方式：`neon-noir-city`
 - 电影海报感 / 历史人物故事 / 国风叙事：`电影质感`
 
+视觉优先级：用户明确指定且与内置主题相符时，使用对应内置主题；用户明确描述了其他视觉方向时，尊重该方向并改造最接近模板；只有在用户没有给出视觉方向时，才回退到 `editorial-cinematic-paper`。详细规则见 `docs/editorial-cinematic-paper-style.md`。
+
 ## 完整 Deck 模板
 
-完整版包含 19 类主线 Deck：
+完整版包含 20 类主线 Deck：
 
 - `pitch-deck`：融资路演、商业 pitch。
 - `weekly-report`：周报、业务复盘、项目进展。
@@ -202,6 +206,7 @@ HTML Deck 的运行时辅助，包括 slide lifecycle、Canvas FX runtime、编�
 - `电影质感`：电影感、昭君出塞、历史文化叙事、MediaPipe 手势 Deck。
 - `碎纸片`：纸片拼贴、paper craft lab、AI 游戏生产线。
 - `赛博朋克`：赛博朋克、未来城市、2098 生活方式。
+- `editorial-cinematic-report`：未指定视觉风格时的暖纸编辑部电影报告默认模板，含流程、系统图、影像分析、多视角资产、质量闭环与收束页。
 
 ## 单页布局
 
@@ -247,13 +252,14 @@ HTML Deck 的运行时辅助，包括 slide lifecycle、Canvas FX runtime、编�
 
 1. `cinematic-images`：电影级背景、人物场景、文化叙事、品牌大片、情绪型 Deck。
 2. `png-components`：商务、产品、策略、培训、科技类 Deck 中的透明 PNG/WebP 组件，例如玻璃盾牌、机器人、徽章、设备、数据卡片、纸片、霓虹招牌等。
-3. `svg-css-fallback`：没有图片生成能力时，用于图表、图标、线框、结构图和正式回退。
-4. `hybrid`：少量主视觉图片 + SVG/CSS 图解 + PNG 组件混合。
+3. `code-native-graphics`：本来就适合代码绘制的图表、图标、线框和结构图。
+4. `upload-slots`：没有可靠图片生成与检查能力时，为摄影、插图、产品图和复杂位图保留空白上传位。
+5. `hybrid`：少量主视觉图片 + SVG/CSS 图解 + PNG 组件混合。
 
 重要原则：
 
 - 用户要求图文并茂、插图、电影质感、绘本、产品视觉、品牌感、海报感时，若环境支持图片生成，应主动使用真实图片生成能力。
-- SVG 不应冒充用户明确要求的插图。SVG 适合图标、图解、线框和 fallback。
+- SVG 不应冒充用户明确要求的插图或缺失照片。SVG 只适合真正的图标、图解、线框和结构框架。
 - 所有生成或收集的素材应放到 Deck 输出目录，例如 `assets/backgrounds/`、`assets/spot/`、`assets/decor/`。
 - Deck 中引用本地相对路径，不依赖临时目录、桌面、下载目录或远程热链。
 
@@ -497,7 +503,8 @@ Deck 应能通过本地 HTTP 服务运行，也可部署到静态托管环境。
 1. 在 `content-ir.json` 中设置 `assets.imageGeneration.assetStrategy`：
    - `cinematic-images`
    - `png-components`
-   - `svg-css-fallback`
+   - `code-native-graphics`
+   - `upload-slots`
    - `hybrid`
 2. 先写图片 brief，再生成或收集图片。
 3. 图片保存到 Deck 输出目录：
@@ -511,7 +518,7 @@ assets/
 
 4. 封面和章节页可用主视觉；正文页优先用小场景、小道具、小组件配合观点。
 5. 前三页试样必须检查文字可读、图片尺寸和风格一致性。
-6. 如果没有图片生成能力，输出 `image-prompts.json`，不要把 SVG fallback 当作真实插图。
+6. 如果没有可靠图片生成与检查能力，设置 `imageCapabilityMode: "upload-slots"`，输出 `image-prompts.json`，并留下标明比例和构图方向的空白上传位。
 
 ### 7. 商务汇报、战略报告或投资人材料
 
@@ -706,7 +713,7 @@ assets/
 ### 图文并茂
 
 ```text
-用鲸格PPT做图文并茂版本。自动判断需要 cinematic-images、png-components、svg-css-fallback 还是 hybrid。先做前三页视觉试样，图片都保存到 assets/，不要引用远程热链。
+用鲸格PPT做图文并茂版本。先判断 imageCapabilityMode，再选择 cinematic-images、png-components、code-native-graphics、upload-slots 或 hybrid。有可靠图像能力时先做前三页视觉试样并把图片保存到 assets/；没有时完成文字与排版并留空白上传位，不要引用远程热链。
 ```
 
 ### PPT 美化
@@ -746,7 +753,7 @@ deck-name/
   assets/
 ```
 
-如果无法直接生成图片，应额外输出：
+如果无法可靠生成并检查图片，应保留标注尺寸和构图意图的空白上传位，并可额外输出：
 
 ```text
 image-prompts.json
@@ -785,7 +792,7 @@ exports/
 
 ### 没有图片生成能力怎么办？
 
-输出 `image-prompts.json`，同时用 SVG/CSS/Canvas 做清晰 fallback。不要把 fallback 描述成已完成的真实插图。
+把 `imageCapabilityMode` 设为 `upload-slots`。完成文字、信息结构、图表和格式排版；摄影、电影静帧、插图、产品图及复杂位图位置保持为空，并标注上传尺寸、比例和构图方向。不要用低质量生成图、SVG/CSS/Canvas 假照片或抽象几何冒充完成图片。可以输出 `image-prompts.json` 供用户到其他工具生成。代码绘制只保留给真正的图表、图标、流程图和结构框架。
 
 ### 什么时候使用完整 Deck，什么时候使用单页布局？
 
@@ -821,7 +828,7 @@ exports/
 - 需要厚黑手绘线、薄荷绿、芥末黄、奶油纸、珊瑚、天蓝、淡紫等色彩。
 - 不使用 3D 字、挤压字、厚重阴影或写实渐变。
 - 文本与插图要分区，避免重叠。
-- CSS doodle 只是 fallback，最终用户 Deck 应优先使用生成或手绘背景/小插图。
+- 有可靠图像能力时生成或使用手绘背景/小插图；没有时保留标明尺寸与主题的插图上传位，不用 CSS doodle 冒充成品插图。
 
 ### 电影质感
 
@@ -829,6 +836,7 @@ exports/
 - 适合历史人物、国风文化、电影海报感、戏剧性故事。
 - 需要统一镜头语言、光照、服化道、颗粒感和色彩温度。
 - 封面/章节页可用 full-bleed 主视觉，正文页更适合小场景、道具、纹理、路线标记或象征物。
+- `generate` 模式生成并检查本地静帧；`user-supplied` 模式使用用户图片；`upload-slots` 模式只完成文字与版式并留空白图片位，不制作低质量假电影图。
 
 ### 碎纸片
 
